@@ -45,16 +45,26 @@
     //Renders the quick login form in the header
     function render_header_quick_login() {
         echo "<div id='header_quick_login'>\n";
+
         if(is_logged_in()) {
-            /*
-            $user_name = $_SESSION['user_name'];
-            $user_id = $_SESSION['user_id'];
-            echo "<p class='player_name'>$user_name <span class='small_text'><a href='./logout.php'>(logout)</a></span></p>";
-            echo "<span class='player_info_button'><a href='./account.php'>Account</a></span>\n";
-            echo "<span class='player_info_button'><a href='./profile.php?id=$user_id'>Profile</a></span>\n";
-            echo "<span class='player_info_button'><a href='./games.php'>Games</a></span>\n";
-            */
+
+            //Show the player info small box
+            $user_name = get_logged_in_username();
+            $user_id = get_logged_in_userid();
+            echo "<div id='header_character_picker'>\n";
+            if(false) {
+                //Show character picker dropdown menu
+            } else {
+                echo "<p><a href='play.php'>Create a character</a></p>\n";
+            }
+            echo "</div> <!-- end header_character_picker div -->\n";
+            echo "<div id='header_username'>\n";
+            echo "<p>Welcome <a href='users.php?user_id=$user_id'>$user_name</a>!</p>\n";
+            echo "</div> <!-- end header_username div -->\n";
+
         } else {
+        
+            //Show the login form small box
             echo "<form name='header_login_form' method='POST' action='./login.php' ".
                  "style='padding: .25em; text-align: center;'>\n";
             echo "<label class='fixed_width'>Username: </label>\n";
@@ -67,6 +77,7 @@
             echo "Remember login?<input type='checkbox' name='remember' value='true'/>\n";
             echo "<input type='submit' value='Login' style='margin-top: .25em'/>\n";
             echo "</form>\n";
+
         }
         echo "</div> <!-- end header_quick_login div -->\n";
     }
