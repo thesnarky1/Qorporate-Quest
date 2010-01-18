@@ -80,6 +80,14 @@
     margin-top: .25em;
 }
 
+#main_text {
+}
+
+#main_text p {
+    padding: .25em;
+}
+
+
 .nav_button {
     background-color: #ccc;
     height: 2em;
@@ -96,4 +104,20 @@
     color: #fff;
     text-decoration: none;
     border: none;
+}
+
+#sidebar {
+    width: 15em;
+    border: 1px solid #333;
+    padding: .25em;
+    margin-top: .25em;
+    background-color: #ccc;
+    float: right;
+}
+
+#sidebar h3 {
+    text-align: center;
+    margin-top: 0px;
+    color: white;
+    background-color: #999;
 }
