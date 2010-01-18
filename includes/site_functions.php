@@ -5,6 +5,14 @@
       Includes any functions or variables needed to actually display the site
     */
 
+    //Renders everything in the footer
+    function render_footer() {
+        echo "</div> <!-- end content div -->\n";
+        echo "</div> <!-- end container div -->\n";
+        echo "</body>\n";
+        echo "</html>\n";
+    }
+
     //Renders the meta header, aka everything up until the actual body of the page
     function render_header() {
         echo "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n";
@@ -20,25 +28,18 @@
         render_page_header();
     }
 
-    //Renders the page header, aka the header within the body
-    function render_page_header() {
-        echo "<body>\n";
-        echo "<div id='container'>\n";
-        echo "<div id='header'>\n";
-
-        //Logo on the left side
-        echo "<div id='header_logo'>\n";
-        echo "<!-- logo by Master_son - http://commons.wikimedia.org/wiki/File:WIS_County_QQ.svg -->\n";
-        echo "<img src='images/site/qq_logo_export.png' />\n";
-        echo "</div> <!-- End header_logo div -->\n";
-
-        //Quick login form on the right side
-        render_header_quick_login();
-
-        //Nav bar in the middle
-        render_header_nav_bar();
-
-        echo "</div> <!-- end header div -->\n";
+    //Renders the nav bar within the header
+    function render_header_nav_bar() {
+        echo "<div id='header_nav_buttons'>\n";
+        echo "<span class='nav_button'><a href='index.php'>Home</a></span>\n";
+        //Toggle between login/logout
+        if(is_logged_in()) {
+            echo "<span class='nav_button'><a href='logout.php'>Logout</a></span>\n";
+        } else {
+            echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
+        }
+        echo "<span class='nav_button'><a href='help.php'>Help</a></span>\n";
+        echo "</div> <!-- end header_nav_buttons div -->\n";
     }
 
     //Renders the quick login form in the header
@@ -70,25 +71,26 @@
         echo "</div> <!-- end header_quick_login div -->\n";
     }
 
-    //Renders the nav bar within the header
-    function render_header_nav_bar() {
-        echo "<div id='header_nav_buttons'>\n";
-        echo "<span class='nav_button'><a href='index.php'>Home</a></span>\n";
-        //Toggle between login/logout
-        if(is_logged_in()) {
-            echo "<span class='nav_button'><a href='logout.php'>Logout</a></span>\n";
-        } else {
-            echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
-        }
-        echo "<span class='nav_button'><a href='help.php'>Help</a></span>\n";
-        echo "</div> <!-- end header_nav_buttons div -->\n";
+    //Renders the page header, aka the header within the body
+    function render_page_header() {
+        echo "<body>\n";
+        echo "<div id='container'>\n";
+        echo "<div id='header'>\n";
+
+        //Logo on the left side
+        echo "<div id='header_logo'>\n";
+        echo "<!-- logo by Master_son - http://commons.wikimedia.org/wiki/File:WIS_County_QQ.svg -->\n";
+        echo "<img src='images/site/qq_logo_export.png' />\n";
+        echo "</div> <!-- End header_logo div -->\n";
+
+        //Quick login form on the right side
+        render_header_quick_login();
+
+        //Nav bar in the middle
+        render_header_nav_bar();
+
+        echo "</div> <!-- end header div -->\n";
+        echo "<div id='content'>\n";
     }
 
-    //Renders everything in the footer
-    function render_footer() {
-        echo "</div> <!-- end container div -->\n";
-        echo "</body>\n";
-        echo "</html>\n";
-    }
-    
 ?>
