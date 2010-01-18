@@ -19,6 +19,8 @@
 #header_nav_buttons {
     text-align: center;
     margin-top: 2.25em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #header_quick_login {
@@ -34,6 +36,37 @@
     float: left;
     text-align: right;
     width: 7em;
+    margin-top: .25em;
+}
+
+#login_form {
+    margin-top: 1em;
+    border: 1px solid #ccc;
+    width: 20em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login_form .fixed_width {
+    width: 6em;
+    margin-top: .25em;
+    float: left;
+    text-align: right;
+}
+
+#login_form .form {
+    text-align: center;
+    width: 19em;
+}
+
+#login_form h3 {
+    margin-top: 0px;
+    background-color: #999;
+    color: white;
+    text-align: center;
+}
+
+#login_form input {
     margin-top: .25em;
 }
 
