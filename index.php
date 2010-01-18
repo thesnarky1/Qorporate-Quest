@@ -4,7 +4,7 @@
 
     render_header();
 
-    echo "Hello World!";
+    echo "<p>Hello World!</p>";
 
     render_footer();
 
