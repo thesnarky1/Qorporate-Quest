@@ -53,7 +53,7 @@
             $user_name = $user_row['user_name'];
             $user_hash = $user_row['user_hash'];
             $user_id = $user_row['user_id'];
-            $_SESSION['user_name'] = $user_id;
+            $_SESSION['user_name'] = $user_name;
             $_SESSION['user_id'] = $user_id;
             $_SESSION['user_hash'] = $user_hash;
             if($remember) {
