@@ -1,0 +1,56 @@
+#header {
+    clear: both;
+    height: 6em;
+    border: 1px solid #000;
+    background-color: #ccc;
+}
+
+#header_logo {
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+
+#header_logo img {
+    height: 6em;
+    width: 6em;
+}
+
+#header_nav_buttons {
+    text-align: center;
+    margin-top: 2.25em;
+}
+
+#header_quick_login {
+    float: right;
+    width: 20em;
+    height: 5.5em;
+    background-color: white;
+    margin: .25em;
+    border: 1px solid #999;
+}
+
+#header_quick_login .fixed_width {
+    float: left;
+    text-align: right;
+    width: 7em;
+    margin-top: .25em;
+}
+
+.nav_button {
+    background-color: #999;
+    height: 2em;
+    margin-right: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    color: #fff;
+}
+
+.nav_button a {
+    height: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+}
