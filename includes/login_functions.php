@@ -27,13 +27,6 @@
         $current_login_error = false;
     }
 
-    //Function to set the current login error, will overwrite old data
-    function set_login_error($new_error) {
-        global $current_login_error;
-
-        $current_login_error = $new_error;
-    }
-
     //Function to tell if someone is currently logged in or not
     function is_logged_in() {
         if(isset($_SESSION['user_name']) &&
@@ -62,7 +55,7 @@
             $_SESSION['user_hash'] = $user_hash;
             return true;
         } else {
-            set_current_login_error("Invalid username/password combination");
+            set_login_error("Invalid username/password combination");
             return false;
         }
     }
@@ -73,5 +66,23 @@
         $_SESSION['user_id'] = null;
         $_SESSION['user_hash'] = null;
     }
+
+    //Function takes user input and makes it a tad safer
+    function safetify_input($input) {
+        global $dbh;
+
+        $to_return = html_entity_decode($input);
+        $to_return = mysqli_real_escape_string($dbh, $to_return);
+
+        return $to_return;
+    }
+
+    //Function to set the current login error, will overwrite old data
+    function set_login_error($new_error) {
+        global $current_login_error;
+
+        $current_login_error = $new_error;
+    }
+
 
 ?>
