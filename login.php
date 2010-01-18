@@ -37,7 +37,6 @@
         echo "<span class='error'>You are already logged in! ".
              "Wouldn't you rather <a href='play.php'>play</a>?</span>\n";
     } else {
-        print_r($_REQUEST);
         echo "<div id='login_form'>\n";
         echo "<h3>Login</h3>\n";
         echo "<form name='login' method='POST' action='login.php' class='form'>\n";
@@ -57,7 +56,6 @@
         echo "<label class='fixed_width'>Password: </label>\n";
         echo "<input type='password' name='user_pass' />\n";
         echo "<br />\n";
-        echo "<input type='hidden' name='next_page' value='$_SERVER[PHP_SELF]' />\n";
         echo "Remember login?<input type='checkbox' name='remember' value='true'/>\n";
         echo "<input type='submit' value='Login' />\n";
         echo "</form>\n";
