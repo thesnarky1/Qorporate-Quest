@@ -30,6 +30,22 @@
         $current_login_error = false;
     }
 
+    function get_logged_in_userid() {
+        if(is_logged_in()) {
+            return $_SESSION['user_id'];
+        } else {
+            return false;
+        }
+    }
+
+    function get_logged_in_username() {
+        if(is_logged_in()) {
+            return $_SESSION['user_name'];
+        } else {
+            return false;
+        }
+    }
+
     //Function to tell if someone is currently logged in or not
     function is_logged_in() {
         if(isset($_SESSION['user_name']) &&
