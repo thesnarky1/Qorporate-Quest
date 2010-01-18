@@ -75,7 +75,12 @@
     function render_header_nav_bar() {
         echo "<div id='header_nav_buttons'>\n";
         echo "<span class='nav_button'><a href='index.php'>Home</a></span>\n";
-        echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
+        //Toggle between login/logout
+        if(is_logged_in()) {
+            echo "<span class='nav_button'><a href='logout.php'>Logout</a></span>\n";
+        } else {
+            echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
+        }
         echo "<span class='nav_button'><a href='help.php'>Help</a></span>\n";
         echo "</div> <!-- end header_nav_buttons div -->\n";
     }
