@@ -28,8 +28,14 @@
         }
     }
 
-    function login_user($user_name, $password) {
-        
+    function login_user($user_name, $user_pass) {
+        $query = "SELECT user_id, user_hash FROM users ".
+                 "WHERE user_name='$user_name' AND user_pass='$user_pass'";
+        if($user_row = mysqli_get_one($query)) {
+            //Valid login
+        } else {
+            //Error
+        }
     }
 
     function logout_user() {
