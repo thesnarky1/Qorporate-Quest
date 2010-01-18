@@ -19,6 +19,9 @@
     //Login error most recently generated, will be overwritten upon new error
     $current_login_error = false;
 
+    //Domain for the cookies
+    $my_domain = "qorporate_quest";
+
     //Function to fetch the current login error for display
     function get_login_error() {
         global $current_login_error;
@@ -42,7 +45,7 @@
     }
 
     //Function to handle logging in a user.
-    function login_user($user_name, $user_pass) {
+    function login_user($user_name, $user_pass, $remember=false) {
         $query = "SELECT user_id, user_hash, user_name FROM users ".
                  "WHERE user_name LIKE '$user_name' AND user_pass='$user_pass'";
         if($user_row = mysqli_get_one($query)) {
@@ -53,9 +56,12 @@
             $_SESSION['user_name'] = $user_id;
             $_SESSION['user_id'] = $user_id;
             $_SESSION['user_hash'] = $user_hash;
+            if($remember) {
+                //Set cookies
+            }
             return true;
         } else {
-            set_login_error("Invalid username/password combination");
+            set_login_error("Invalid login combination");
             return false;
         }
     }
@@ -65,6 +71,8 @@
         $_SESSION['user_name'] = null;
         $_SESSION['user_id'] = null;
         $_SESSION['user_hash'] = null;
+        //Destroy cookies
+        session_destroy();
     }
 
     //Function takes user input and makes it a tad safer
