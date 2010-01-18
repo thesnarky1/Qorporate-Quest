@@ -68,6 +68,7 @@
             echo "</form>\n";
         }
         echo "</div> <!-- end header_quick_login div -->\n";
+        print_r($_SESSION);
     }
 
     //Renders the nav bar within the header

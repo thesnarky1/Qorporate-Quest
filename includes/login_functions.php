@@ -47,11 +47,11 @@
     //Function to handle logging in a user.
     function login_user($user_name, $user_pass, $remember=false) {
         $query = "SELECT user_id, user_hash, user_name FROM users ".
-                 "WHERE user_name LIKE '$user_name' AND user_pass='$user_pass'";
+                 "WHERE user_name LIKE '$user_name' AND user_pass=MD5('$user_pass')";
         if($user_row = mysqli_get_one($query)) {
             //Valid login
             $user_name = $user_row['user_name'];
-            $user_hash = $user_rpw['user_hash'];
+            $user_hash = $user_row['user_hash'];
             $user_id = $user_row['user_id'];
             $_SESSION['user_name'] = $user_id;
             $_SESSION['user_id'] = $user_id;
