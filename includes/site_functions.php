@@ -56,10 +56,10 @@
         } else {
             echo "<form name='header_login_form' method='POST' action='./login.php' ".
                  "style='padding: .25em; text-align: center;'>\n";
-            echo "<label class='fixed_label'>Username: </label>\n";
+            echo "<label class='fixed_width'>Username: </label>\n";
             echo "<input type='text' name='user_name'  style='margin-top: .25em;'/>\n";
             echo "<br />\n";
-            echo "<label class='fixed_label'>Password: </label>\n";
+            echo "<label class='fixed_width'>Password: </label>\n";
             echo "<input type='password' name='user_pass' style='margin-top: .25em;' />\n";
             echo "<br />\n";
             echo "<input type='hidden' name='next_page' value='$_SERVER[PHP_SELF]' />\n";

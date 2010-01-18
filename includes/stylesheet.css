@@ -27,7 +27,7 @@
     float: right;
     width: 20em;
     height: 5.5em;
-    background-color: white;
+    background-color: #ddd;
     margin: .25em;
     border: 1px solid #999;
 }
@@ -36,6 +36,10 @@
     float: left;
     text-align: right;
     width: 7em;
+    margin-top: .25em;
+}
+
+#header_quick_login input {
     margin-top: .25em;
 }
 
@@ -71,7 +75,7 @@
 }
 
 .nav_button {
-    background-color: #999;
+    background-color: #ccc;
     height: 2em;
     margin-right: 1em;
     padding-top: .25em;
