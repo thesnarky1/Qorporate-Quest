@@ -7,6 +7,39 @@ a:hover {
     text-decoration: underline;
 }
 
+#char_creation {
+    margin-top: 1em;
+    border: 1px solid #bbb;
+    width: 30em;
+}
+
+#char_creation .fixed_width {
+    width: 12em;
+    margin-top: .25em;
+    float: left;
+    text-align: right;
+}
+
+#char_creation .form {
+    text-align: center;
+    width: 29em;
+}
+
+#char_creation h3 {
+    margin-top: 0px;
+    background-color: #999;
+    color: white;
+    text-align: center;
+}
+
+#char_creation input {
+    margin-top: .25em;
+}
+
+#char_creation select {
+    margin-top: .25em;
+}
+
 .error {
     color: red;
     font-weight: bold;
@@ -73,6 +106,18 @@ a:hover {
     width: 100%;
     text-align: center;
     margin-top: 3em;
+}
+
+#job_description {
+    width: 30em;
+    border: 1px solid #bbb;
+}
+
+#job_description h3 {
+    margin-top: 0px;
+    background-color: #999;
+    color: white;
+    text-align: center;
 }
 
 #login_form {
