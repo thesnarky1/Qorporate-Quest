@@ -37,6 +37,7 @@
             echo "<span class='nav_button'><a href='logout.php'>Logout</a></span>\n";
         } else {
             echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
+            echo "<span class='nav_button'><a href='register.php'>Register</a></span>\n";
         }
         echo "<span class='nav_button'><a href='help.php'>Help</a></span>\n";
         echo "</div> <!-- end header_nav_buttons div -->\n";
