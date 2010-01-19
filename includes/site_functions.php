@@ -35,6 +35,7 @@
         //Toggle between login/logout
         if(is_logged_in()) {
             echo "<span class='nav_button'><a href='logout.php'>Logout</a></span>\n";
+            echo "<span class='nav_button'><a href='play.php'>Play</a></span>\n";
         } else {
             echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
             echo "<span class='nav_button'><a href='register.php'>Register</a></span>\n";
