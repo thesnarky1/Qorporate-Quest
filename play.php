@@ -78,12 +78,20 @@
         echo "<label class='fixed_width'>Applicant Department:</label>\n";
         echo "<select name='department'>\n";
         $departments = get_departments();
+        $to_show = "";
         foreach($departments as $department_row) {
             $department_name = $department_row['department_name'];
             $department_id = $department_row['department_id'];
-            echo "<option value='$department_id'>$department_name</option>\n";
+            $department_div = "department_$department_id";
+            echo "<option value='$department_id' ".
+                   "onmouseover='swap_text(\"#descriptions\", \"#$department_div\");'".
+                   "/*onmouseout='clear_text(\"#descriptions\");'*/>$department_name</option>\n";
+            $to_show .= "<div id='$department_div' style='display: none;'>\n";
+            $to_show .= "$department_name is really fun!\n";
+            $to_show .= "</div> <!-- end $department_div div -->\n";
         }
         echo "</select>\n";
+        echo "$to_show";
         echo "<br />\n";
         echo "<input type='submit' name='submit' value='Apply!' />\n";
         echo "</form>\n";
