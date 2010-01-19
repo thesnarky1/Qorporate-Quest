@@ -12,26 +12,33 @@
     echo "<li>Butt kicking: Infinite</li>\n";
     echo "</ul>\n";
     echo "</div> <!-- end sidebar_stats div -->\n";
-    echo "<div id='sidebar_stats'>\n";
-    echo "<h3>Random Characters</h3>\n";
-    echo "<ul>\n";
-    echo "<li>Snarky</li>\n";
-    echo "<li>Jimmy</li>\n";
-    echo "<li>Johnny</li>\n";
-    echo "<li>Jenny</li>\n";
-    echo "<li>Joey</li>\n";
-    echo "</ul>\n";
-    echo "</div> <!-- end sidebar_stats div -->\n";
-    echo "<div id='sidebar_stats'>\n";
-    echo "<h3>Top Ranked</h3>\n";
-    echo "<ol>\n";
-    echo "<li>Snarky</li>\n";
-    echo "<li>Jimmy</li>\n";
-    echo "<li>Johnny</li>\n";
-    echo "<li>Jenny</li>\n";
-    echo "<li>Joey</li>\n";
-    echo "</ol>\n";
-    echo "</div> <!-- end sidebar_stats div -->\n";
+    $rand_characters = get_random_characters(5);
+    if($rand_characters) {
+        echo "<div id='sidebar_stats'>\n";
+        echo "<h3>Random Characters</h3>\n";
+        echo "<ul>\n";
+        foreach($rand_characters as $character_row) {
+            $char_name = $character_row['character_name'];
+            $char_id = $character_row['character_id'];
+            echo "<li><a href='characters.php?char_id=$char_id'>$char_name</a></li>\n";
+        }
+        echo "</ul>\n";
+        echo "</div> <!-- end sidebar_stats div -->\n";
+    }
+    $rand_characters = get_random_characters(5, "character_level DESC");
+    if($rand_characters) {
+        echo "<div id='sidebar_stats'>\n";
+        echo "<h3>Top Characters</h3>\n";
+        echo "<ul>\n";
+        foreach($rand_characters as $character_row) {
+            $char_name = $character_row['character_name'];
+            $char_id = $character_row['character_id'];
+            $char_level = $character_row['character_level'];
+            echo "<li><a href='characters.php?char_id=$char_id'>$char_name ($char_level)</a></li>\n";
+        }
+        echo "</ul>\n";
+        echo "</div> <!-- end sidebar_stats div -->\n";
+    }
     echo "</div> <!-- end sidebar div -->\n";
 
     echo "<div id='main_text'>\n";
