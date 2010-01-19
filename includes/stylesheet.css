@@ -40,6 +40,19 @@ a:hover {
     margin-top: .25em;
 }
 
+#descriptions {
+    width: 30em;
+    border: 1px solid #bbb;
+    height: 6em;
+}
+
+#descriptions h3 {
+    margin-top: 0px;
+    background-color: #999;
+    color: white;
+    text-align: center;
+}
+
 .error {
     color: red;
     font-weight: bold;
@@ -106,18 +119,6 @@ a:hover {
     width: 100%;
     text-align: center;
     margin-top: 3em;
-}
-
-#job_description {
-    width: 30em;
-    border: 1px solid #bbb;
-}
-
-#job_description h3 {
-    margin-top: 0px;
-    background-color: #999;
-    color: white;
-    text-align: center;
 }
 
 #login_form {

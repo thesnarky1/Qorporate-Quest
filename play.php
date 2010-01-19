@@ -40,10 +40,14 @@
     if(isset($_REQUEST['create_char'])) {
         //Display new character form
         echo "<h3>Character Creation</h3>\n";
-        echo "<div id='job_description'>\n";
-        echo "<h3>Job Description</h3>\n";
-        echo "<p>Testing</p>\n";
-        echo "</div> <!-- end job_description div -->\n";
+
+        //Our help field for the descriptions
+        echo "<div id='descriptions'>\n";
+        echo "<h3>Job/Department Description</h3>\n";
+        echo "<p></p>\n";
+        echo "</div> <!-- end descriptions div -->\n";
+
+        //The main application bit
         echo "<div id='char_creation'>\n";
         echo "<h3>&lt;Company Name&gt; Application</h3>\n";
         echo "<form name='char_creation' method='POST' action='play.php' class='form'>\n";
@@ -56,15 +60,20 @@
         echo "<label class='fixed_width'>Applicant Position:</label>\n";
         echo "<select name='job'>\n";
         $jobs = get_jobs();
+        $to_show = "";
         foreach($jobs as $job_row) {
             $job_name = $job_row['job_name'];
             $job_id = $job_row['job_id'];
-            echo "<option value='$job_id'>$job_name</option>\n";
-            echo "<div id='job_".$job_id."' class='hidden'>\n";
-            echo "<p>$job_name is really fun!</p>\n";
-            echo "</div> <!-- end job_".$job_id." div -->\n";
+            $job_div = "job_$job_id";
+            echo "<option value='$job_id' ".
+                   "onmouseover='swap_text(\"#descriptions\", \"#$job_div\");'".
+                   "/*onmouseout='clear_text(\"#descriptions\");'*/>$job_name</option>\n";
+            $to_show .= "<div id='$job_div' style='display: none;'>\n";
+            $to_show .= "$job_name is really fun!\n";
+            $to_show .= "</div> <!-- end $job_div div -->\n";
         }
         echo "</select>\n";
+        echo "$to_show";
         echo "<br />\n";
         echo "<label class='fixed_width'>Applicant Department:</label>\n";
         echo "<select name='department'>\n";
