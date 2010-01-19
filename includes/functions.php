@@ -7,6 +7,7 @@
     include('mysqli_functions.php');
     include('login_functions.php');
     include('site_functions.php');
+    include('game_functions.php');
 
     //Function takes a user_id and returns an array of all the characters that belong to them
     function get_characters($user_id) {
