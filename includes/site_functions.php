@@ -19,8 +19,10 @@
         echo "'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>\n";
         echo "<html xmlns='http://www.w3.org/1999/xhtml' lang='en' xml:lang='en'>\n";
         echo "<head>\n";
-        echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />";
+        echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />\n";
         echo "<link rel='stylesheet' href='./includes/stylesheet.css' type='text/css' media='screen' />\n";
+        echo "<script type='text/javascript' src='./scripts/libs/jquery-1.4.min.js'></script>\n";
+        echo "<script type='text/javascript' src='./scripts/common.js'></script>\n";
         echo "<title>Qorporate Quest - QQ moar, intern</title>\n";
         echo "</head>\n";
 

@@ -60,7 +60,7 @@
             $job_name = $job_row['job_name'];
             $job_id = $job_row['job_id'];
             echo "<option value='$job_id'>$job_name</option>\n";
-            echo "<div id='job_".$job_id."' class='hidden'>\n":
+            echo "<div id='job_".$job_id."' class='hidden'>\n";
             echo "<p>$job_name is really fun!</p>\n";
             echo "</div> <!-- end job_".$job_id." div -->\n";
         }
