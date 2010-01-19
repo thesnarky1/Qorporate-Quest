@@ -60,7 +60,9 @@
         //Our help field for the descriptions
         echo "<div id='descriptions'>\n";
         echo "<h3>Job/Department Description</h3>\n";
-        echo "<p></p>\n";
+        echo "<p>\n";
+        echo "Need to know more about a life endi^H^H^H^H changing position with us? Look no further!";
+        echo "</p>\n";
         echo "</div> <!-- end descriptions div -->\n";
 
         //The main application bit
