@@ -12,6 +12,26 @@
     echo "<li>Butt kicking: Infinite</li>\n";
     echo "</ul>\n";
     echo "</div> <!-- end sidebar_stats div -->\n";
+    echo "<div id='sidebar_stats'>\n";
+    echo "<h3>Random Characters</h3>\n";
+    echo "<ul>\n";
+    echo "<li>Snarky</li>\n";
+    echo "<li>Jimmy</li>\n";
+    echo "<li>Johnny</li>\n";
+    echo "<li>Jenny</li>\n";
+    echo "<li>Joey</li>\n";
+    echo "</ul>\n";
+    echo "</div> <!-- end sidebar_stats div -->\n";
+    echo "<div id='sidebar_stats'>\n";
+    echo "<h3>Top Ranked</h3>\n";
+    echo "<ol>\n";
+    echo "<li>Snarky</li>\n";
+    echo "<li>Jimmy</li>\n";
+    echo "<li>Johnny</li>\n";
+    echo "<li>Jenny</li>\n";
+    echo "<li>Joey</li>\n";
+    echo "</ol>\n";
+    echo "</div> <!-- end sidebar_stats div -->\n";
     echo "</div> <!-- end sidebar div -->\n";
 
     echo "<div id='main_text'>\n";
