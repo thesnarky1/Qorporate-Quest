@@ -17,7 +17,8 @@
     echo "<div id='main_text'>\n";
     echo "<h1>&lt;Company Name&gt;</h1>\n";
     echo "<p>";
-    echo "Welcome to &lt;Company Name&gt; where we live for our employees! Your goal while employed at &lt;Company Name&gt; is to pursue your career goals, have fun, and most importantly, slave at your desk for 15 hours a day to make sure the TPS reports get out on time!";
+    echo "Welcome to &lt;Company Name&gt; where we live for our employees! Or is it our employees die for us? I can't remember. ";
+    echo "Your goal while employed at &lt;Company Name&gt; is to pursue your career goals, have fun, and most importantly, slave at your desk for 15 hours a day to make sure the TPS reports get out on time!";
     echo "</p>\n";
     echo "</div> <!-- end main_text div -->\n";
 
