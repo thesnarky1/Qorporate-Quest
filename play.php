@@ -2,6 +2,22 @@
 
     include('includes/functions.php');
 
+    $char_name = false;
+    $job = false;
+    $department = false;
+
+    if(isset($_REQUEST['character_name'])) {
+        $char_name = safetify_input($_REQUEST['character_name']);
+    }
+
+    if(isset($_REQUEST['job'])) {
+        $job = safetify_input($_REQUEST['job']);
+    }
+
+    if(isset($_REQUEST['department'])) {
+        $department = safetify_input($_REQUEST['department']);
+    }
+
     render_header();
 
     //Make sure the player is logged in, otherwise we want to dump them out of the page
@@ -50,15 +66,20 @@
         //The main application bit
         echo "<div id='char_creation'>\n";
         echo "<h3>&lt;Company Name&gt; Application</h3>\n";
-        echo "<form name='char_creation' method='POST' action='play.php' class='form'>\n";
+        echo "<form name='char_creation' method='POST' action='play.php?create_char' class='form'>\n";
         if($error != "") {
             echo "<span class='error'>$error</span><br />\n";
         }
         echo "<label class='fixed_width'>Applicant Name:</label>\n";
-        echo "<input type='text' name='character_name' />\n";
+        echo "<input type='text' name='character_name' ";
+        if($char_name) {
+            echo "value='$char_name'";
+        }
+        echo "/>\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Applicant Position:</label>\n";
         echo "<select name='job'>\n";
+        echo "<option value='0'>--Select a Job Position</option>\n";
         $jobs = get_jobs();
         $to_show = "";
         foreach($jobs as $job_row) {
@@ -66,8 +87,11 @@
             $job_id = $job_row['job_id'];
             $job_div = "job_$job_id";
             echo "<option value='$job_id' ".
-                   "onmouseover='swap_text(\"#descriptions\", \"#$job_div\");'".
-                   "/*onmouseout='clear_text(\"#descriptions\");'*/>$job_name</option>\n";
+                   "onmouseover='swap_text(\"#descriptions\", \"#$job_div\");' ";
+            if($job && $job == $job_id) {
+                echo "selected='true'";
+            }
+            echo "/>$job_name</option>\n";
             $to_show .= "<div id='$job_div' style='display: none;'>\n";
             $to_show .= "$job_name is really fun!\n";
             $to_show .= "</div> <!-- end $job_div div -->\n";
@@ -77,6 +101,7 @@
         echo "<br />\n";
         echo "<label class='fixed_width'>Applicant Department:</label>\n";
         echo "<select name='department'>\n";
+        echo "<option value='0'>--Select a Department</option>\n";
         $departments = get_departments();
         $to_show = "";
         foreach($departments as $department_row) {
@@ -84,8 +109,11 @@
             $department_id = $department_row['department_id'];
             $department_div = "department_$department_id";
             echo "<option value='$department_id' ".
-                   "onmouseover='swap_text(\"#descriptions\", \"#$department_div\");'".
-                   "/*onmouseout='clear_text(\"#descriptions\");'*/>$department_name</option>\n";
+                   "onmouseover='swap_text(\"#descriptions\", \"#$department_div\");' ";
+            if($department && $department == $department_id) {
+                echo "selected='true'";
+            }
+            echo "/>$department_name</option>\n";
             $to_show .= "<div id='$department_div' style='display: none;'>\n";
             $to_show .= "$department_name is really fun!\n";
             $to_show .= "</div> <!-- end $department_div div -->\n";
