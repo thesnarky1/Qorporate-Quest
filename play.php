@@ -2,26 +2,12 @@
 
     include('includes/functions.php');
 
-    $char_name = false;
-    $job = false;
-    $department = false;
-
-    if(isset($_REQUEST['character_name'])) {
-        $char_name = safetify_input($_REQUEST['character_name']);
-    }
-
-    if(isset($_REQUEST['job'])) {
-        $job = safetify_input($_REQUEST['job']);
-    }
-
-    if(isset($_REQUEST['department'])) {
-        $department = safetify_input($_REQUEST['department']);
-    }
-
-    render_header();
+    //We're logged in, lets set up the variables
+    $user_id = get_logged_in_userid();
 
     //Make sure the player is logged in, otherwise we want to dump them out of the page
     if(!is_logged_in()) {
+        render_header();
         echo "<p class='error'>";
         echo "Sorry, but if you want to have tons of fun and collate your weight in reports you'll have to <a href='login.php'>login</a> or <a href='register.php'>register</a> first!";
         echo "</p>\n";
@@ -29,8 +15,36 @@
         die();
     }
 
-    //We're logged in, lets set up the variables
-    $user_id = get_logged_in_userid();
+    $char_name = false;
+    $job = false;
+    $department = false;
+
+    if(isset($_REQUEST['submit'])) {
+        //Clean up all our input
+        if(isset($_REQUEST['character_name'])) {
+            $char_name = safetify_input($_REQUEST['character_name']);
+        }
+    
+        if(isset($_REQUEST['job'])) {
+            $job = safetify_input($_REQUEST['job']);
+        }
+    
+        if(isset($_REQUEST['department'])) {
+            $department = safetify_input($_REQUEST['department']);
+        }
+
+        $query = "INSERT INTO characters(character_name, character_level, user_id, job_id, department_id) ".
+                 "VALUES('$char_name', 1, '$user_id', '$job', '$department')";
+        $success = mysqli_insert($query);
+        if($success) {
+        } else {
+        }
+    }
+
+
+    render_header();
+
+
     $characters = get_characters($user_id);
   
     //Draw the sidebar, this will consist of a list of their characters to quickly switch
