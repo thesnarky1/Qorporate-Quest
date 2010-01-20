@@ -1,5 +1,13 @@
 <?php
 
+    //Function takes a user_id and returns an array of all the characters that belong to them
+    function get_characters($user_id, $ordering='character_name') {
+        $query = "SELECT * FROM characters WHERE user_id='$user_id' ".
+                 "ORDER BY $ordering";
+        $characters = mysqli_get_many($query);
+        return $characters;
+    }
+
     //Function returns an array containing all the departments in our database
     function get_departments() {
         $query = "SELECT * FROM departments";
