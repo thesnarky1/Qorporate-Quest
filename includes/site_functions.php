@@ -56,8 +56,20 @@
             $user_name = get_logged_in_username();
             $user_id = get_logged_in_userid();
             echo "<div id='header_character_picker'>\n";
-            if(false) {
+            $characters = get_characters($user_id, "character_level ASC");
+            if($characters) {
                 //Show character picker dropdown menu
+                echo "<span>Quick Play:</span>\n";
+                echo "<select name='character_picker'>\n";
+                foreach($characters as $character_row) {
+                    $char_name = $character_row['character_name'];
+                    $char_level = $character_row['character_level'];
+                    $char_id = $character_row['character_id'];
+                    echo "<option onclick='window.location=\"play.php?char_id=$char_id\";'>";
+                    echo "$char_name ($char_level)";
+                    echo "</option>\n";
+                }
+                echo "</select>\n";
             } else {
                 echo "<p><a href='play.php'>Create a character</a></p>\n";
             }
