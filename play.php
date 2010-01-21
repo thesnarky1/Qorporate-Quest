@@ -2,9 +2,6 @@
 
     include('includes/functions.php');
 
-    //We're logged in, lets set up the variables
-    $user_id = get_logged_in_userid();
-
     //Make sure the player is logged in, otherwise we want to dump them out of the page
     if(!is_logged_in()) {
         render_header();
@@ -15,10 +12,17 @@
         die();
     }
 
+    //We're logged in, lets set up the variables
+    $user_id = get_logged_in_userid();
     $char_name = false;
+    $char_id = false;
     $job = false;
     $department = false;
 
+
+    ///
+    /// Actual character creation code
+    ///
     if(isset($_REQUEST['submit'])) {
         //Clean up all our input
         if(isset($_REQUEST['character_name'])) {
@@ -37,13 +41,13 @@
                  "VALUES('$char_name', 1, '$user_id', '$job', '$department')";
         $success = mysqli_insert($query);
         if($success) {
+            //make sure we select the new char_id so it starts playing!
         } else {
         }
     }
 
 
     render_header();
-
 
     $characters = get_characters($user_id);
   
@@ -65,9 +69,43 @@
     }
     echo "</div> <!-- end sidebar div -->\n";
 
+    //
     //Now draw the main area of the page
+    //
     echo "<div id='main_text'>\n";
-    if(isset($_REQUEST['create_char'])) {
+
+    //Do we know which character is playing?
+    if(isset($_REQUEST['char_id'])) {
+        $char_id = safetify_input($_REQUEST['char_id']);
+    } else {
+        $characters = get_characters($user_id, "character_level ASC");
+        $lowest_character = $characters[0];
+        $char_id = $lowest_character['character_id'];
+    }
+
+    if($char_id) {
+
+        //We can play since we know which character to do
+        $char_id = safetify_input($_REQUEST['char_id']);
+    
+        if(!user_owns_character($user_id, $char_id)) {
+
+            //Cheating... snarky comment needed
+            echo "<p class='error'>Sorry, you're cheating... BACK TO WORK!</p>";
+            render_footer();
+            die();
+
+        } else {
+
+            //This user owns this character, lets play
+            echo "<h3>Game view</h3>\n";
+
+        }
+
+    ///
+    /// Display character creation form
+    ///
+    } else if(isset($_REQUEST['create_char']) || !$char_id) {
         //Display new character form
         echo "<h3>Character Creation</h3>\n";
 
@@ -140,9 +178,6 @@
         echo "<input type='submit' name='submit' value='Apply!' />\n";
         echo "</form>\n";
         echo "</div> <!-- end char_creation div -->\n";
-    } else {
-        //Display game view
-        echo "<h3>Game view</h3>\n";
     }
     echo "</div> <!-- end main_text div -->\n";
 
