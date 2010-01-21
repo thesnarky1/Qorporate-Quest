@@ -55,7 +55,7 @@
     echo "<div id='sidebar'>\n";
     echo "<h3>Characters</h3>\n";
     if(!$characters) {
-        echo "You have no characters yet :(";
+        echo "You have no characters yet.";
     } else {
         //Spit out characters
         echo "<ul>\n";

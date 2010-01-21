@@ -71,7 +71,7 @@
                 }
                 echo "</select>\n";
             } else {
-                echo "<p><a href='play.php'>Create a character</a></p>\n";
+                echo "<p><a href='play.php?create_char'>Start Playing!</a></p>\n";
             }
             echo "</div> <!-- end header_character_picker div -->\n";
             echo "<div id='header_username'>\n";
