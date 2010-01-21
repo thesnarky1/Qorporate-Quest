@@ -1,5 +1,13 @@
 <?php
 
+    //Function takes a character_id and user_id and says if the user owns this character
+    function user_owns_character($user_id, $character_id) {
+        $query = "SELECT character_id FROM characters ".
+                 "WHERE character_id='$character_id' AND user_id='$user_id'";
+        $result = mysqli_get_one($query);
+        return $result;
+    }
+
     //Function takes a user_id and returns an array of all the characters that belong to them
     function get_characters($user_id, $ordering='character_name') {
         $query = "SELECT * FROM characters WHERE user_id='$user_id' ".
