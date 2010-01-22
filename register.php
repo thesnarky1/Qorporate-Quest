@@ -43,8 +43,9 @@
         if($error == false) {
             //register them
             $query = "INSERT INTO users(user_name, user_pass, user_hash, user_email) ".
-                     "VALUES('$user_name', MD5('$user_pass'), '$user_hash', '$user_email')";
-            $insert_id = mysqli_insert($query);
+                     "VALUES(?, MD5(?), ?, ?)";
+            $result = $conn->Execute($query, array($user_name, $user_pass, $user_hash, $user_email));
+            $insert_id = $conn->Insert_ID();
             if($insert_id) {
                 //successful
                 login_user($user_name, $user_pass);

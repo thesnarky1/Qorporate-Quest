@@ -13,10 +13,10 @@
                  "jobs.job_name, jobs.job_id, ".
                  "departments.department_name, departments.department_id ".
                  "FROM characters, jobs, departments ".
-                 "WHERE characters.character_id='$char_id' AND ".
+                 "WHERE characters.character_id=? AND ".
                  "jobs.job_id=characters.job_id AND ".
                  "departments.department_id=characters.department_id";
-        $character_row = mysqli_get_one($query);
+        $character_row = $conn->GetRow($query, array($char_id));
         if($character_row) {
             $char_name = $character_row['character_name'];
             $department_name = $character_row['department_name'];

@@ -8,9 +8,11 @@
     */
 
     function mysqli_delete($query) {
-        global $dbh;
-        $result = mysqli_query($dbh, $query);
-        if($result && mysqli_affected_rows($dbh) > 0) {
+        global $conn;
+
+        $query = $conn->qstr($query);
+        $result = $conn->Execute($query);
+        if($result && $conn->Affected_Rows() > 0) {
             return true;
         } else {
             return false;
@@ -18,10 +20,12 @@
     }
 
     function mysqli_get_one($query) {
-        global $dbh;
-        $result = mysqli_query($dbh, $query);
-        if($result && mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_array($result);
+        global $conn;
+
+        $query = $conn->qstr($query);
+        $result = $conn->Execute($query);
+        if($result && $conn->Affected_Rows() == 1) {
+            $row = $result->FetchRow();
             return $row;
         } else {
             return false;
@@ -29,11 +33,13 @@
     }
 
     function mysqli_get_many($query) {
-        global $dbh;
-        $result = mysqli_query($dbh, $query);
+        global $conn;
+
+        $query = $conn->qstr($query, true);
+        $result = $conn->Execute($query);
         if($result) {
             $to_return = array();
-            while($row = mysqli_fetch_array($result)) {
+            while($row = $result->FetchRow()) {
                 $to_return[] = $row;
             }
             return $to_return;
@@ -42,19 +48,23 @@
     }
 
     function mysqli_insert($query) {
-        global $dbh;
-        $result = mysqli_query($dbh, $query);
-        if($result && mysqli_affected_rows($dbh) == 1) {
-            return mysqli_insert_id($dbh);
+        global $conn;
+
+        $query = $conn->qstr($query);
+        $result = $conn->Execute($query);
+        if($result && $conn->Affected_Rows() == 1) {
+            return $conn->Insert_Id();
         } else {
             return false;
         }
     }
     
     function mysqli_set_one($query) {
-        global $dbh;
-        $result = mysqli_query($dbh, $query);
-        if($result && mysqli_affected_rows($dbh) == 1) {
+        global $conn;
+
+        $query = $conn->qstr($query);
+        $result = $conn->Execute($query);
+        if($result && $conn->Affected_Rows() == 1) {
             return true;
         } else {
             return false;
@@ -62,9 +72,11 @@
     }
 
     function mysqli_set_many($query) {
-        global $dbh;
-        $result = mysqli_query($dbh, $query);
-        if($result && mysqli_affected_rows($dbh) > 0) {
+        global $conn;
+
+        $query = $conn->qstr($query);
+        $result = $conn->Execute($query);
+        if($result && $conn->Affected_Rows() > 0) {
             return true;
         } else {
             return false;

@@ -38,6 +38,8 @@
         }
         echo "</ul>\n";
         echo "</div> <!-- end sidebar_stats div -->\n";
+    } else {
+        echo $conn->ErrorMsg();
     }
     echo "</div> <!-- end sidebar div -->\n";
 

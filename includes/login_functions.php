@@ -62,10 +62,13 @@
 
     //Function to handle logging in a user.
     function login_user($user_name, $user_pass, $remember=false) {
+        global $conn;
         $query = "SELECT user_id, user_hash, user_name FROM users ".
-                 "WHERE user_name LIKE '$user_name' AND user_pass=MD5('$user_pass')";
-        if($user_row = mysqli_get_one($query)) {
+                 "WHERE user_name LIKE ? AND user_pass=MD5(?)";
+        $result = $conn->Execute($query, array($user_name, $user_pass));
+        if($result->RecordCount() == 1) {
             //Valid login
+            $user_row = $result->FetchRow();
             $user_name = $user_row['user_name'];
             $user_hash = $user_row['user_hash'];
             $user_id = $user_row['user_id'];
@@ -77,6 +80,7 @@
             }
             return true;
         } else {
+            echo $conn->ErrorMsg();
             set_login_error("Invalid login combination");
             return false;
         }
@@ -93,11 +97,13 @@
 
     //Function takes user input and makes it a tad safer
     function safetify_input($input) {
-        global $dbh;
+        global $conn;
 
-        $to_return = html_entity_decode($input);
-        $to_return = mysqli_real_escape_string($dbh, $to_return);
+        //$to_return = html_entity_decode($input);
+        //$to_return = mysqli_real_escape_string($dbh, $to_return);
+        //$to_return = $conn->qstr($input);
 
+        $to_return = $input;
         return $to_return;
     }
 
