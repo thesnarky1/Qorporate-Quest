@@ -11,8 +11,7 @@
 
         $query = "SELECT * FROM characters WHERE user_id=? ".
                  "ORDER BY $ordering";
-        $results = $conn->Execute($query, array($user_id));
-        $characters = $results->GetRows();
+        $characters = $conn->GetAll($query, array($user_id));
         return $characters;
     }
 
@@ -21,8 +20,7 @@
         global $conn;
 
         $query = "SELECT * FROM departments";
-        $results = $conn->Execute($query);
-        $departments = $results->GetRows();
+        $departments = $conn->GetAll($query);
         return $departments;
     }
 
@@ -31,8 +29,7 @@
         global $conn;
 
         $query = "SELECT * FROM jobs";
-        $result = $conn->Execute($query);
-        $jobs = $result->GetRows();
+        $jobs = $conn->GetAll($query);
 
         return $jobs;
     }
@@ -43,8 +40,7 @@
 
         $characters = false;
         $query = "SELECT * FROM characters ORDER BY $ordering LIMIT $num";
-        $result = $conn->Execute($query);
-        $characters = $result->GetRows();
+        $characters = $conn->GetAll($query);
         return $characters;
     }
 
