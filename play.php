@@ -81,6 +81,10 @@
         echo "</ul>\n";
     }
     echo "</div> <!-- end sidebar div -->\n";
+    //
+    // End sidebar
+    //
+    
 
     //
     //Now draw the main area of the page
