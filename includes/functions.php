@@ -9,6 +9,7 @@
     include('login_functions.php');
     include('site_functions.php');
     include('game_functions.php');
+    include('character_functions.php');
 
 
 ?>
