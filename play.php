@@ -42,9 +42,16 @@
         $success = $conn->Execute($query);
         if($success && $conn->Affected_Rows() == 1) {
             //make sure we select the new char_id so it starts playing!
-            //aka set location to be play.php?char_id....
             $char_id = $conn->Insert_ID();
-            header("Location: play.php?char_id=$char_id");
+            //Set up the newbie quests
+            $set_up = initialize_quests($char_id);
+            if($set_up) {
+                //aka set location to be play.php?char_id....
+                header("Location: play.php?char_id=$char_id");
+            } else {
+                render_footer();
+                die();
+            }
         } else {
             echo $conn->ErrorMsg();
         }
