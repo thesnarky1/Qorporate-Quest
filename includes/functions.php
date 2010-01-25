@@ -10,6 +10,6 @@
     include('site_functions.php');
     include('game_functions.php');
     include('character_functions.php');
-
+    include('quest_creation_functions.php');
 
 ?>
