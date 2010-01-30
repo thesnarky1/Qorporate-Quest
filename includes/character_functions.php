@@ -5,8 +5,11 @@
         global $conn;
 
         $to_return = array();
-        $query = "SELECT * FROM characters ".
-                 "WHERE character_id=$char_id";
+        $query = "SELECT characters.character_name, characters.character_level, ".
+                 "jobs.job_name, departments.department_name ".
+                 "FROM characters, jobs, departments ".
+                 "WHERE characters.character_id=$char_id AND jobs.job_id=characters.job_id AND ".
+                 "departments.department_id=characters.department_id";
         $result = $conn->GetRow($query);
         if($result) {
             $to_return['bio'] = $result;
