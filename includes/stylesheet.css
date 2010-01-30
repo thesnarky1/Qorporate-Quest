@@ -9,6 +9,35 @@ a:hover {
     border-bottom: 1px solid #333;
 }
 
+#char_bio_info {
+    float: left;
+    border: 1px solid #999;
+    background-color: #bbb;
+    padding: .25em;
+}
+
+#char_bio_info h3 {
+    margin-top: 0px;
+    background-color: #999;
+    color: white;
+    text-align: center;
+    padding-left: .25em;
+    padding-right: .25em;
+    margin-bottom: 1em;
+}
+
+#char_bio_info .char_bio_info_fixed {
+    width: 4em;
+    text-align:right;
+    float: left;
+    margin-right: .25em;
+    font-weight: bold;
+}
+
+#char_bio_job, #char_bio_department, #char_bio_name {
+    clear: both;
+}
+
 #char_creation {
     margin-top: 1em;
     border: 1px solid #bbb;
@@ -40,6 +69,46 @@ a:hover {
 
 #char_creation select {
     margin-top: .25em;
+}
+
+#char_play_div {
+    border: 1px solid #000;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 16em;
+    overflow: auto;
+    background: #ddd;
+}
+
+#char_stats_info {
+    float: right;
+    border: 1px solid #999;
+    background-color: #bbb;
+    padding: .25em;
+}
+
+#char_stats_info h3 {
+    margin-top: 0px;
+    background-color: #999;
+    color: white;
+    text-align: center;
+    padding-left: .25em;
+    padding-right: .25em;
+    margin-bottom: 1em;
+}
+
+#char_stats_info table {
+    width: 100%;
+}
+
+#char_stats_info td {
+    //border: 1px solid black;
+    text-align: center;
+    width: 25%;
+}
+
+#char_stats_info tr {
+    border: 1px solid black;
 }
 
 #descriptions {

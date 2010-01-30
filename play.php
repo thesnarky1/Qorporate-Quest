@@ -117,9 +117,9 @@
         } else {
 
             $character_info = get_character_info($char_id);
-            echo "<div><p>\n";
-            print_r($character_info);
-            echo "</p></div>\n";
+            //echo "<div><p>\n";
+            //print_r($character_info);
+            //echo "</p></div>\n";
 
 
             //This user owns this character, lets play
@@ -146,7 +146,26 @@
             echo "<span>".$character_info['bio']['department_name']."</span>\n";
             echo "</div> <!-- end char_bio_department div -->\n";
             echo "</div> <!-- end char_bio_info div -->\n";
-        
+       
+            //Stats div
+            echo "<div id='char_stats_info'>\n";
+            echo "<h3>Employee Statistics</h3>\n";
+            echo "<table>\n";
+            echo "<tr>\n";
+            echo "<td>Agi</td>\n";
+            echo "<td>Dex</td>\n";
+            echo "<td>Str</td>\n";
+            echo "<td>Int</td>\n";
+            echo "</tr>\n";
+            echo "<tr>\n";
+            echo "<td>1</td>\n";
+            echo "<td>2</td>\n";
+            echo "<td>3</td>\n";
+            echo "<td>4</td>\n";
+            echo "</tr>\n";
+            echo "</table>\n";
+            echo "</div> <!-- end char_stats_info div -->\n";
+
             //Quest area
             echo "<div id='char_quests_div'>\n";
             foreach($character_info['quests'] as $quest_row) {
