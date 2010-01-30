@@ -151,12 +151,14 @@
             echo "<div id='char_stats_info'>\n";
             echo "<h3>Employee Statistics</h3>\n";
             echo "<table>\n";
+            echo "<thead>\n";
             echo "<tr>\n";
             echo "<td>Agi</td>\n";
             echo "<td>Dex</td>\n";
             echo "<td>Str</td>\n";
             echo "<td>Int</td>\n";
             echo "</tr>\n";
+            echo "</thead>\n";
             echo "<tr>\n";
             echo "<td>1</td>\n";
             echo "<td>2</td>\n";

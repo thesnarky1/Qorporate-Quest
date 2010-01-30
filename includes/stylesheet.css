@@ -75,8 +75,9 @@ a:hover {
     border: 1px solid #000;
     padding: 1em;
     margin-left: 1em;
-    margin-right: 16em;
-    overflow: auto;
+    maring-right: 1em;
+    width: 55em;
+    overflow: hidden;
     background: #ddd;
 }
 
@@ -85,6 +86,7 @@ a:hover {
     border: 1px solid #999;
     background-color: #bbb;
     padding: .25em;
+    width: 20em;
 }
 
 #char_stats_info h3 {
@@ -94,21 +96,21 @@ a:hover {
     text-align: center;
     padding-left: .25em;
     padding-right: .25em;
-    margin-bottom: 1em;
+    margin-bottom: 0px;
 }
 
 #char_stats_info table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 #char_stats_info td {
-    //border: 1px solid black;
     text-align: center;
     width: 25%;
 }
 
-#char_stats_info tr {
-    border: 1px solid black;
+#char_stats_info thead {
+    border-bottom: 1px solid #999;
 }
 
 #descriptions {
