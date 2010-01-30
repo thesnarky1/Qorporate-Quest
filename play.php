@@ -124,18 +124,37 @@
 
             //This user owns this character, lets play
             echo "<h3>Game view</h3>\n";
+            echo "<div id='char_play_div'>\n";
+
+            //Biographical area
             echo "<div id='char_bio_info'>\n";
+            echo "<h3>Employee Personal Information</h3>\n";
+            //Char name
             echo "<div id='char_bio_name'>\n";
-            echo "<span>Employee Name: ".$character_info['bio']['character_name']."</span>\n";
+            echo "<div class='char_bio_info_fixed'>Name: </div>";
+            echo "<div>".$character_info['bio']['character_name']."</div>\n";
             echo "</div> <!-- end char_bio_name div -->\n";
+            //Char job/Level
             echo "<div id='char_bio_job'>\n";
-            echo "<span>Employee Job: ".$character_info['bio']['job_name']."</span>\n";
+            echo "<div class='char_bio_info_fixed'>Job: </div>";
+            echo "<span>Level ".$character_info['bio']['character_level']." ".
+                 $character_info['bio']['job_name']."</span>\n";
             echo "</div> <!-- end char_bio_job div -->\n";
+            //Char department
             echo "<div id='char_bio_department'>\n";
-            echo "<span>Employee Department: ".$character_info['bio']['department_name']."</span>\n";
+            echo "<div class='char_bio_info_fixed'>Dept: </div>";
+            echo "<span>".$character_info['bio']['department_name']."</span>\n";
             echo "</div> <!-- end char_bio_department div -->\n";
             echo "</div> <!-- end char_bio_info div -->\n";
-
+        
+            //Quest area
+            echo "<div id='char_quests_div'>\n";
+            foreach($character_info['quests'] as $quest_row) {
+                echo "<div id='char_quest_single'>\n";
+                echo "</div> <!-- end char_quest_single -->\n";
+            }
+            echo "</div> <!-- end char_quests_div -->\n";
+            echo "</div> <!-- end char_play_div -->\n";
         }
 
     ///
