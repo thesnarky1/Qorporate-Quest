@@ -100,6 +100,10 @@
         $char_id = $lowest_character['character_id'];
     }
 
+
+    //
+    // Draw the play area
+    //
     if($char_id) {
    
         //We can play since we know which character we have
@@ -112,8 +116,25 @@
 
         } else {
 
+            $character_info = get_character_info($char_id);
+            echo "<div><p>\n";
+            print_r($character_info);
+            echo "</p></div>\n";
+
+
             //This user owns this character, lets play
             echo "<h3>Game view</h3>\n";
+            echo "<div id='char_bio_info'>\n";
+            echo "<div id='char_bio_name'>\n";
+            echo "<span>Employee Name: ".$character_info['bio']['character_name']."</span>\n";
+            echo "</div> <!-- end char_bio_name div -->\n";
+            echo "<div id='char_bio_job'>\n";
+            echo "<span>Employee Job: ".$character_info['bio']['job_name']."</span>\n";
+            echo "</div> <!-- end char_bio_job div -->\n";
+            echo "<div id='char_bio_department'>\n";
+            echo "<span>Employee Department: ".$character_info['bio']['department_name']."</span>\n";
+            echo "</div> <!-- end char_bio_department div -->\n";
+            echo "</div> <!-- end char_bio_info div -->\n";
 
         }
 
