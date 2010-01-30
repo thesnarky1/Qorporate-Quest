@@ -1,5 +1,29 @@
 <?php
 
+    //Function to nab the character's information for the play field
+    function get_character_info($char_id) {
+        global $conn;
+
+        $to_return = array();
+        $query = "SELECT * FROM characters ".
+                 "WHERE character_id=$char_id";
+        $result = $conn->GetRow($query);
+        if($result) {
+            $to_return['bio'] = $result;
+            $query = "SELECT * FROM adventures, quests ".
+                     "WHERE adventures.character_id=$char_id AND ".
+                     "quests.quest_id=adventures.quest_id";
+            $result = $conn->GetAll($query);
+            if($result) {
+                $to_return['quests'] = $result;
+            }
+        } else {
+            $to_return = false;
+        }
+
+        return $to_return;
+    }
+
     //Function to set up an initial character's quests
     function initialize_quests($char_id) {
         global $conn;
