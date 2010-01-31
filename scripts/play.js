@@ -38,6 +38,8 @@ function do_task(div) {
     if(current_quest.parent().css("display") != "block") {
         current_quest.parent().css("display", "block");
     }
+    // busted effin code....
+    //current_quest.children('#div').children('#char_quest_single_head').click(function() { return false; });
     div.remove();
 }
 
