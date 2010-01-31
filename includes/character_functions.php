@@ -40,7 +40,8 @@
         global $conn;
 
         $to_return = array();
-        $query = "SELECT adventures.adventure_experience, quests.quest_name, ".
+        $query = "SELECT adventures.adventure_experience, adventures.adventure_id, ".
+                 "quests.quest_name, ".
                  "quests.quest_flavor, quests.quest_id ".
                  "FROM adventures, quests ".
                  "WHERE adventures.character_id=? AND ".

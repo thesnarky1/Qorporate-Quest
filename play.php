@@ -188,12 +188,14 @@
                     $quest_name = $quest_row['quest_name'];
                     $quest_flavor = $quest_row['quest_flavor'];
                     $quest_experience = $quest_row['adventure_experience'];
+                    $adventure_id = $quest_row['adventure_id'];
 
                     //Display
                     echo "<div id='char_quest_single'>\n";
                     echo "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
                     echo "<h3>$quest_name</h3>\n";
                     echo "<span>Experience: $quest_experience</span>\n";
+                    echo "<div id='char_quest_single_id'>$adventure_id</div>\n";
                     echo "</div> <!-- end char_quest_single_head -->\n";
                     echo "<p>$quest_flavor</p>\n";
                     echo "</div> <!-- end char_quest_single -->\n";
