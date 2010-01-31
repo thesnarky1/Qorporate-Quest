@@ -1,5 +1,5 @@
 var my_char_id = null;
-
+var my_timeout = null;
 
 $(document).ready(function() {
     my_char_id = $('#char_id_hidden').html();
@@ -36,11 +36,12 @@ function display_experience(data) {
             $('#char_loyalty').html(data.loyalty);
         }
     }
-    window.setTimeout(function() {
-                        $('#char_messages').css('display', 'none');
-                      },
-                      20000
-                      );
+    my_timeout = window.setTimeout(function() {
+                                     $('#char_messages').css('display', 'none');
+                                     my_timeout = null;
+                                   },
+                                   20000
+                                  );
 }
 
 function fetch_tasks() {
@@ -106,6 +107,9 @@ function pick_next_task() {
     var next_task = $('#char_quests_div').children('#char_quest_single')[0];
     if(!next_task) {
         //Error out
+        if(my_timeout) {
+            window.clearTimeout(my_timeout);
+        }
         $('#char_messages').css('display', 'block').html("<p class='error'>It seems your connection may have dropped, please reload the page and try again.</p>");
     } else {
         //Keep going
