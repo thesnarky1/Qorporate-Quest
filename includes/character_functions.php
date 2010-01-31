@@ -19,9 +19,12 @@
                  "character_brown_nosing=?, character_competence=?, character_loyalty=? ".
                  "WHERE character_id=?";
         $result = $conn->Execute($query, array($exp, $level, $satis, $brown, $comp, $loyal, $char_id));
-        if(!$result) {
-            echo $conn->ErrorMsg();
-        }
+        return array("return_value" => "<p class='error'>You are now level $level!</p>",
+                     "level" => $level,
+                     "satisfaction" => $satis,
+                     "brown_nosing" => $brown,
+                     "competence" => $comp,
+                     "loyalty" => $loyal);
     }
 
     //Function to add experience to a given character, checks for level up
@@ -38,7 +41,7 @@
             $curr_exp = $result['character_exp'];
             $curr_exp += $exp;
             $max_exp = $level * 100;
-            if($curr_exp > $level * 100) {
+            if($curr_exp >= $level * 100) {
                 //We have a level up
                 $level++;
                 $curr_exp = $curr_exp - $max_exp;
@@ -46,9 +49,8 @@
                 $brown_nosing = $result['character_brown_nosing'];
                 $competence = $result['character_competence'];
                 $loyalty = $result['character_loyalty'];
-                level_up_character($char_id, $level, $curr_exp, $satisfaction, $brown_nosing, $competence, $loyalty);
-                return array("return_value"=>"<p class='error'>You are now level $level!</p>",
-                             "level" => $level);
+                $to_return = level_up_character($char_id, $level, $curr_exp, $satisfaction, $brown_nosing, $competence, $loyalty);
+                return $to_return;
             } else {
                 //Just update the exp
                 $query = "UPDATE characters ".

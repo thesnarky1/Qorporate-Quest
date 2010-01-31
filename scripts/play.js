@@ -23,6 +23,18 @@ function display_experience(data) {
         if(data.level) {
             $('#char_level').html(data.level);
         }
+        if(data.satisfaction) {
+            $('#char_satisfaction').html(data.satisfaction);
+        }
+        if(data.brown_nosing) {
+            $('#char_brown_nosing').html(data.brown_nosing);
+        }
+        if(data.competence) {
+            $('#char_competence').html(data.competence);
+        }
+        if(data.loyalty) {
+            $('#char_loyalty').html(data.loyalty);
+        }
     }
     window.setTimeout(function() {
                         $('#char_messages').css('display', 'none');

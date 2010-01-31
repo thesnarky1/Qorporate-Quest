@@ -163,10 +163,10 @@
             echo "</tr>\n";
             echo "</thead>\n";
             echo "<tr>\n";
-            echo "<td>".$character_info['bio']['character_satisfaction']."</td>\n";
-            echo "<td>".$character_info['bio']['character_loyalty']."</td>\n";
-            echo "<td>".$character_info['bio']['character_competence']."</td>\n";
-            echo "<td>".$character_info['bio']['character_brown_nosing']."</td>\n";
+            echo "<td id='char_satisfaction'>".$character_info['bio']['character_satisfaction']."</td>\n";
+            echo "<td id='char_loyalty'>".$character_info['bio']['character_loyalty']."</td>\n";
+            echo "<td id='char_competence'>".$character_info['bio']['character_competence']."</td>\n";
+            echo "<td id='char_brown_nosing'>".$character_info['bio']['character_brown_nosing']."</td>\n";
             echo "</tr>\n";
             echo "</table>\n";
             echo "</div> <!-- end char_stats_info div -->\n";
