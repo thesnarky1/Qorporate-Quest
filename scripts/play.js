@@ -91,7 +91,7 @@ function work_on_task(task_id, progress) {
     if(progress >= 100) {
         finish_task(task_id);
     } else {
-        progress++;
+        progress += 5;
         $('#char_quest_current').children('h3').children('span').html(progress + "% done");
         window.setTimeout(function() {
                             work_on_task(task_id, progress);
@@ -104,7 +104,7 @@ function work_on_task(task_id, progress) {
 function pick_next_task() {
     do_task($($('#char_quests_div').children('#char_quest_single')[0]));
     //Check for enough tasks
-    if(quests_left() < 10) {
+    if(quests_left() < 5) {
         fetch_tasks();
     }
 }
