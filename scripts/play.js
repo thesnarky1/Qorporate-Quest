@@ -1,3 +1,25 @@
+var my_char_id = null;
+
+
+$(document).ready(function() {
+    my_char_id = $('#char_id_hidden').html;
+    pick_next_task();
+});
+
+function fetch_tasks() {
+    $.post("tasks.php", 
+        { char_id: '1' }, 
+        function(data) {
+            display_tasks(data);
+        },
+        "json"
+    );
+}
+
+function display_tasks(data) {
+    $('#char_quests_div').html(data.return_value);
+}
+
 function toggle_my_p(div) {
     div = $(div).parent().children("p");
     var curr_display = div.css("display");
@@ -21,4 +43,13 @@ function do_task(div) {
 
 function pick_next_task() {
     do_task($($('#char_quests_div').children('#char_quest_single')[0]));
+    //Start timer
+    //Check for enough tasks
+    if(quests_left() < 10) {
+        fetch_tasks();
+    }
+}
+
+function quests_left() {
+    return $('#char_quests_div').children().length;
 }
