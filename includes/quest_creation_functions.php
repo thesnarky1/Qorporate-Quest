@@ -60,6 +60,26 @@
         echo "$finished_quest[0]\n$finished_quest[1]\n";
     }
 
+    function generate_quest_for_character($char_id) {
+        global $conn;
+
+        $query = "SELECT quest_id ".
+                 "FROM quests ORDER BY RAND()";
+        $result = $conn->GetOne($query);
+        if($result) {
+            $query = "INSERT INTO adventures(adventure_experience, quest_id, character_id) ".
+                     "VALUES('10', $result, $char_id)";
+            $conn->Execute($query);
+        }
+    }
+
+    function generate_quests_for_character($char_id, $num) {
+        while($num > 0) {
+            generate_quest_for_character($char_id);
+            $num--;
+        }
+    }
+
     //Function to get a random element of an array
     function get_random_element($arr) {
         $index = array_rand($arr);
