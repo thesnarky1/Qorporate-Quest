@@ -15,7 +15,7 @@
         }
         $result = $conn->Execute($query, array($char_id));
         if($result) {
-            if($result->RecordCount() < 50) {
+            if($result->RecordCount() < 10) {
                 generate_quests_for_character($char_id, 200);
                 return get_character_tasks($char_id, $limit);
             }
@@ -27,7 +27,7 @@
     }
 
     //Function to nab the character's information for the play field
-    function get_character_info($char_id) {
+    function get_character_info($char_id, $quest_limit=false) {
         global $conn;
 
         $to_return = array();
@@ -39,7 +39,7 @@
         $result = $conn->GetRow($query);
         if($result) {
             $to_return['bio'] = $result;
-            $quests = get_character_tasks($char_id);
+            $quests = get_character_tasks($char_id, $quest_limit);
             $to_return['quests'] = $quests;
         } else {
             $to_return = false;
