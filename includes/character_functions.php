@@ -1,5 +1,6 @@
 <?php
 
+    //Function to add experience to a given character, checks for level up
     function add_character_experience($char_id, $exp) {
         global $conn;
 
