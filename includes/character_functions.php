@@ -1,10 +1,36 @@
 <?php
 
+    //Function levels up a character
+    function level_up_character($char_id, $level, $exp, $satis, $brown, $comp, $loyal) {
+        global $conn;
+
+        $satis_add = rand(1, 5);
+        $brown_add = rand(1, 5);
+        $comp_add = rand(1, 5);
+        $loyal_add = rand(1, 5);
+
+        $satis -= $satis_add;
+        $brown += $brown_add;
+        $comp += $comp_add;
+        $loyal += $loyal_add;
+
+        $query = "UPDATE characters ".
+                 "SET character_exp=?, character_level=?, character_satisfaction=?, ".
+                 "character_brown_nosing=?, character_competence=?, character_loyalty=? ".
+                 "WHERE character_id=?";
+        $result = $conn->Execute($query, array($exp, $level, $satis, $brown, $comp, $loyal, $char_id));
+        if(!$result) {
+            echo $conn->ErrorMsg();
+        }
+    }
+
     //Function to add experience to a given character, checks for level up
     function add_character_experience($char_id, $exp) {
         global $conn;
 
-        $query = "SELECT character_exp, character_level ".
+        $query = "SELECT character_exp, character_level, ".
+                 "character_satisfaction, character_brown_nosing, ".
+                 "character_competence, character_loyalty ".
                  "FROM characters WHERE character_id=?";
         $result = $conn->GetRow($query, array($char_id));
         if($result) {
@@ -16,10 +42,11 @@
                 //We have a level up
                 $level++;
                 $curr_exp = $curr_exp - $max_exp;
-                $query = "UPDATE characters ".
-                         "SET character_exp=?, character_level=? ".
-                         "WHERE character_id=?";
-                $result = $conn->Execute($query, array($curr_exp, $level, $char_id));
+                $satisfaction = $result['character_satisfaction'];
+                $brown_nosing = $result['character_brown_nosing'];
+                $competence = $result['character_competence'];
+                $loyalty = $result['character_loyalty'];
+                level_up_character($char_id, $level, $curr_exp, $satisfaction, $brown_nosing, $competence, $loyalty);
                 return array("return_value"=>"<p class='error'>You are now level $level!</p>",
                              "level" => $level);
             } else {
