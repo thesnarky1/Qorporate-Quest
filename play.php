@@ -116,7 +116,7 @@
 
         } else {
 
-            $character_info = get_character_info($char_id);
+            $character_info = get_character_info($char_id, 20);
             //echo "<div><p>\n";
             //print_r($character_info);
             //echo "</p></div>\n";
