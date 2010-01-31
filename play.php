@@ -124,7 +124,6 @@
 
             //This user owns this character, lets play
             echo "<h3></h3>\n";
-            echo "<div id='char_messages' style='display: none;'></div>\n";
             echo "<div id='char_id_hidden' style='display:none;'>$char_id</div>\n";
             echo "<div id='char_play_div'>\n";
 
@@ -172,6 +171,7 @@
             echo "</div> <!-- end char_stats_info div -->\n";
             echo "</div> <!-- end char_sheet_upper div -->\n";
 
+            echo "<div id='char_messages' style='display: none;'></div>\n";
             //Current task area
             echo "<div id='char_quest_current'>\n";
             echo "<h3>Current task: <span id='progress'></span></h3>\n";
