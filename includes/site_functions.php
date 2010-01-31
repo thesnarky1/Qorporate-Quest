@@ -23,6 +23,12 @@
         echo "<link rel='stylesheet' href='./includes/stylesheet.css' type='text/css' media='screen' />\n";
         echo "<script type='text/javascript' src='./scripts/libs/jquery-1.4.min.js'></script>\n";
         echo "<script type='text/javascript' src='./scripts/common.js'></script>\n";
+        $curr_file = basename($_SERVER['REQUEST_URI']);
+        if(strpos($curr_file, "play.php") === false) {
+            echo "<!-- $curr_file -->\n";
+        } else {
+            echo "<script type='text/javascript' src='./scripts/play.js'></script>\n";
+        }
         echo "<title>Qorporate Quest - QQ moar, intern</title>\n";
         echo "</head>\n";
 
