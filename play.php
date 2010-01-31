@@ -181,7 +181,7 @@
 
                     //Display
                     echo "<div id='char_quest_single'>\n";
-                    echo "<div id='char_quest_single_head' onclick='show_my_p(this);'>\n";
+                    echo "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
                     echo "<h3>$quest_name</h3>\n";
                     echo "<span>Experience: $quest_experience</span>\n";
                     echo "</div> <!-- end char_quest_single_head -->\n";
