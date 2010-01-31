@@ -103,11 +103,19 @@ function work_on_task(task_id, progress) {
 }
 
 function pick_next_task() {
-    do_task($($('#char_quests_div').children('#char_quest_single')[0]));
-    //Check for enough tasks
-    update_quests_left();
-    if(quests_left() < 5) {
-        fetch_tasks();
+    var next_task = $('#char_quests_div').children('#char_quest_single')[0];
+    if(!next_task) {
+        //Error out
+        $('#char_messages').css('display', 'block').html("<p class='error'>It seems your connection may have dropped, please reload the page and try again.</p>");
+    } else {
+        //Keep going
+        do_task($(next_task));
+
+        //Check for enough tasks
+        update_quests_left();
+        if(quests_left() < 5) {
+            fetch_tasks();
+        }
     }
 }
 
