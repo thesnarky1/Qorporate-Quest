@@ -172,7 +172,7 @@
 
             //Current task area
             echo "<div id='char_quest_current'>\n";
-            echo "<h3>Current quest</h3>\n";
+            echo "<h3>Current task</h3>\n";
             echo "<div id='char_quest_current_text'>\n";
             echo "</div> <!-- end char_quest_current_text div -->\n";
             echo "</div> <!-- end char_quest_current div -->\n";
