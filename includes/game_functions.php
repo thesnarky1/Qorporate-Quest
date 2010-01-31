@@ -45,14 +45,26 @@
     }
 
     //Function takes a character_id and user_id and says if the user owns this character
-    function user_owns_character($user_id, $character_id) {
+    function user_owns_character($user_id, $character_id, $user_hash=false) {
         global $conn;
+
+        $user_hash_true = false;
+        if($user_hash) {
+            $query = "SELECT user_id FROM users ".
+                     "WHERE user_id=? AND user_hash=?";
+            $result = $conn->Execute($query, array($user_id, $user_hash));
+            if($result && $result->RecordCount() == 1) {
+                $user_hash_true = true;
+            }
+        } else {
+            $user_hash_true = true;
+        }
 
         $query = "SELECT character_id FROM characters ".
                  "WHERE character_id=? AND user_id=?";
         $result = $conn->Execute($query, array($character_id, $user_id));
         if($result->RecordCount() == 1) {
-            return true;
+            return $user_hash_true;
         } else {
             return false;
         }
