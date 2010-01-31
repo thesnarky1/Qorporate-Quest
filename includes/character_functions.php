@@ -4,8 +4,6 @@
     function get_character_tasks($char_id, $limit=false) {
         global $conn;
 
-        //Add code to make sure we have enough quests in there
-
         $to_return = array();
         $query = "SELECT adventures.adventure_experience, quests.quest_name, ".
                  "quests.quest_flavor, quests.quest_id ".
@@ -17,9 +15,14 @@
         }
         $result = $conn->Execute($query, array($char_id));
         if($result) {
+            if($result->RecordCount() < 50) {
+                generate_quests_for_character($char_id, 200);
+                return get_character_tasks($char_id, $limit);
+            }
             return $result->GetRows();
         } else {
-            return false;
+            generate_quests_for_character($char_id, 200);
+            return get_character_tasks($char_id, $limit);
         }
     }
 
