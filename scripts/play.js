@@ -6,6 +6,22 @@ $(document).ready(function() {
     pick_next_task();
 });
 
+function finish_task(task_id) {
+    $.post("tasks.php",
+           { char_id: my_char_id, quest_id: task_id },
+            function(data) {
+                display_experience(data);
+            },
+            "json"
+    );
+}
+
+function display_experience(data) {
+    if(data && data.level) {
+        $('#char_messages').css('display', 'block').html(data.level).fadeOut('slow',function() {});
+    } 
+}
+
 function fetch_tasks() {
     $.post("tasks.php", 
         { char_id: my_char_id }, 
