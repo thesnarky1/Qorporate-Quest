@@ -36,7 +36,7 @@
                     echo json_encode($to_return);
                 } else {
                     $to_return = "";
-                    $tasks = get_character_tasks($char_id, 10);
+                    $tasks = get_character_tasks($char_id, 20);
                     foreach($tasks as $task) {
                         //Set up vars
                         $quest_name = $task['quest_name'];
