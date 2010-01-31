@@ -126,6 +126,7 @@
             echo "<h3>Game view</h3>\n";
             echo "<div id='char_play_div'>\n";
 
+            echo "<div id='char_sheet_upper'>\n";
             //Biographical area
             echo "<div id='char_bio_info'>\n";
             echo "<h3>Employee Personal Information</h3>\n";
@@ -167,12 +168,26 @@
             echo "</tr>\n";
             echo "</table>\n";
             echo "</div> <!-- end char_stats_info div -->\n";
+            echo "</div> <!-- end char_sheet_upper div -->\n";
 
             //Quest area
             echo "<div id='char_quests_div'>\n";
-            foreach($character_info['quests'] as $quest_row) {
-                echo "<div id='char_quest_single'>\n";
-                echo "</div> <!-- end char_quest_single -->\n";
+            if(isset($character_info['quests'])) {
+                foreach($character_info['quests'] as $quest_row) {
+                    //Set up vars
+                    $quest_name = $quest_row['quest_name'];
+                    $quest_flavor = $quest_row['quest_flavor'];
+                    $quest_experience = $quest_row['adventure_experience'];
+
+                    //Display
+                    echo "<div id='char_quest_single'>\n";
+                    echo "<div id='char_quest_single_head' onclick='show_my_p(this);'>\n";
+                    echo "<h3>$quest_name</h3>\n";
+                    echo "<span>Experience: $quest_experience</span>\n";
+                    echo "</div> <!-- end char_quest_single_head -->\n";
+                    echo "<p>$quest_flavor</p>\n";
+                    echo "</div> <!-- end char_quest_single -->\n";
+                }
             }
             echo "</div> <!-- end char_quests_div -->\n";
             echo "</div> <!-- end char_play_div -->\n";
