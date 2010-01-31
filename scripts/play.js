@@ -2,13 +2,13 @@ var my_char_id = null;
 
 
 $(document).ready(function() {
-    my_char_id = $('#char_id_hidden').html;
+    my_char_id = $('#char_id_hidden').html();
     pick_next_task();
 });
 
 function fetch_tasks() {
     $.post("tasks.php", 
-        { char_id: '1' }, 
+        { char_id: my_char_id }, 
         function(data) {
             display_tasks(data);
         },
