@@ -124,6 +124,7 @@
 
             //This user owns this character, lets play
             echo "<h3></h3>\n";
+            echo "<div id='char_id_hidden' style='display:none;'>$char_id</div>\n";
             echo "<div id='char_play_div'>\n";
 
             echo "<div id='char_sheet_upper'>\n";
