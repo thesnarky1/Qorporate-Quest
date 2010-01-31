@@ -55,6 +55,7 @@ function fetch_tasks() {
 
 function display_tasks(data) {
     $('#char_quests_div').html(data.return_value);
+    update_quests_left();
 }
 
 function toggle_my_p(div) {
@@ -104,6 +105,7 @@ function work_on_task(task_id, progress) {
 function pick_next_task() {
     do_task($($('#char_quests_div').children('#char_quest_single')[0]));
     //Check for enough tasks
+    update_quests_left();
     if(quests_left() < 5) {
         fetch_tasks();
     }
@@ -111,4 +113,10 @@ function pick_next_task() {
 
 function quests_left() {
     return $('#char_quests_div').children().length;
+}
+
+function update_quests_left() {
+    var quests_left = $('#char_quests_div').children().length;
+    quests_left = "(" + quests_left + " left)";
+    $('#char_tasks_remaining').html(quests_left);
 }
