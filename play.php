@@ -180,7 +180,11 @@
             echo "</div> <!-- end char_quest_current div -->\n";
 
             //Quest area
-            echo "<h3>Task List</h3>\n";
+            $quest_num = 0;
+            if($character_info['quests']) {
+                $quest_num = count($character_info['quests']);
+            }
+            echo "<h3>Task List <span id='char_tasks_remaining'>($quest_num left)</span></h3>\n";
             if(isset($character_info['quests'])) {
                 echo "<div id='char_quests_div'>\n";
                 foreach($character_info['quests'] as $quest_row) {
