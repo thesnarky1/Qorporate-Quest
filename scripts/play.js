@@ -21,7 +21,7 @@ function display_experience(data) {
     if(data) {
         $('#char_messages').css('display', 'block').html(data.return_value);
         if(data.level) {
-            $('#char_messages').css('display', 'block').html(data.level);
+            $('#char_level').html(data.level);
         }
     }
     window.setTimeout(function() {
