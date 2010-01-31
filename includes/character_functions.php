@@ -13,7 +13,9 @@
         $result = $conn->GetRow($query);
         if($result) {
             $to_return['bio'] = $result;
-            $query = "SELECT * FROM adventures, quests ".
+            $query = "SELECT adventures.adventure_experience, quests.quest_name, ".
+                     "quests.quest_flavor, quests.quest_id ".
+                     "FROM adventures, quests ".
                      "WHERE adventures.character_id=$char_id AND ".
                      "quests.quest_id=adventures.quest_id";
             $result = $conn->GetAll($query);
@@ -39,8 +41,8 @@
             //Insert them
             foreach($result as $quest_row) {
                 $quest_id = $quest_row['quest_id'];
-                $query = "INSERT INTO adventures(character_id, quest_id) ".
-                         "VALUES('$char_id', '$quest_id')";
+                $query = "INSERT INTO adventures(character_id, quest_id, adventure_experience) ".
+                         "VALUES($char_id, $quest_id, '10')";
                 $conn->Execute($query);
             }
             return true;
