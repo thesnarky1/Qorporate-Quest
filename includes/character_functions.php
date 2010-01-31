@@ -4,10 +4,10 @@
     function level_up_character($char_id, $level, $exp, $satis, $brown, $comp, $loyal) {
         global $conn;
 
-        $satis_add = rand(1, 5);
-        $brown_add = rand(1, 5);
-        $comp_add = rand(1, 5);
-        $loyal_add = rand(1, 5);
+        $satis_add = rand(1, 2);
+        $brown_add = rand(1, 2);
+        $comp_add = rand(1, 2);
+        $loyal_add = rand(1, 2);
 
         $satis -= $satis_add;
         $brown += $brown_add;
