@@ -1,5 +1,39 @@
 <?php
 
+    function add_character_experience($char_id, $exp) {
+        global $conn;
+
+        $query = "SELECT character_exp, character_level ".
+                 "FROM characters WHERE character_id=?";
+        $result = $conn->GetRow($query, array($char_id));
+        if($result) {
+            $level = $result['character_level'];
+            $curr_exp = $result['character_exp'];
+            $curr_exp += $exp;
+            $max_exp = $level * 100;
+            if($curr_exp > $level * 100) {
+                //We have a level up
+                $level++;
+                $curr_exp = $curr_exp - $max_exp;
+                $query = "UPDATE characters ".
+                         "SET character_exp=?, character_level=? ".
+                         "WHERE character_id=?";
+                $result = $conn->Execute($query, array($curr_exp, $level, $char_id));
+                return array("return_value"=>"<p class='error'>You are now level $level!</p>",
+                             "level" => $level);
+            } else {
+                //Just update the exp
+                $query = "UPDATE characters ".
+                         "SET character_exp=? ".
+                         "WHERE character_id=?";
+                $result = $conn->Execute($query, array($curr_exp, $char_id));
+                return array("return_value" => "<p class='error'>You gained $exp experience</p>");
+            }
+        } else {
+            echo $conn->ErrorMsg();
+        }
+    }
+
     //Function to get a character's quests
     function get_character_tasks($char_id, $limit=false) {
         global $conn;
