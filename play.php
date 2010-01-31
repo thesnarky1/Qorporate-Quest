@@ -123,7 +123,7 @@
 
 
             //This user owns this character, lets play
-            echo "<h3>Game view</h3>\n";
+            echo "<h3></h3>\n";
             echo "<div id='char_play_div'>\n";
 
             echo "<div id='char_sheet_upper'>\n";
@@ -170,9 +170,17 @@
             echo "</div> <!-- end char_stats_info div -->\n";
             echo "</div> <!-- end char_sheet_upper div -->\n";
 
+            //Current task area
+            echo "<div id='char_quest_current'>\n";
+            echo "<h3>Current quest</h3>\n";
+            echo "<div id='char_quest_current_text'>\n";
+            echo "</div> <!-- end char_quest_current_text div -->\n";
+            echo "</div> <!-- end char_quest_current div -->\n";
+
             //Quest area
-            echo "<div id='char_quests_div'>\n";
+            echo "<h3>Task List</h3>\n";
             if(isset($character_info['quests'])) {
+                echo "<div id='char_quests_div'>\n";
                 foreach($character_info['quests'] as $quest_row) {
                     //Set up vars
                     $quest_name = $quest_row['quest_name'];
@@ -188,6 +196,8 @@
                     echo "<p>$quest_flavor</p>\n";
                     echo "</div> <!-- end char_quest_single -->\n";
                 }
+            } else {
+                echo "<p class='error>No tasks assigned for the future, please refresh the page.</p>\n";
             }
             echo "</div> <!-- end char_quests_div -->\n";
             echo "</div> <!-- end char_play_div -->\n";

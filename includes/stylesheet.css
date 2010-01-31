@@ -81,6 +81,19 @@ a:hover {
     background: #ddd;
 }
 
+#char_quest_current {
+    display: none;
+    clear: both;
+}
+
+#char_quest_current_text {
+    border: 1px solid #999;
+    background-color: #bbb;
+    padding: .25em;
+    margin-top: 1em;
+    overflow: auto;
+}
+
 #char_quests_div {
     clear: both;
     border: 1px solid #999;
@@ -92,6 +105,8 @@ a:hover {
 }
 
 #char_quest_single {
+    border: 1px solid #fff;
+    margin-bottom: .25em;
 }
 
 #char_quest_single p {
@@ -128,7 +143,7 @@ a:hover {
     border: 1px solid #999;
     background-color: #bbb;
     padding: .25em;
-    width: 15em;
+    width: 10em;
 }
 
 #char_stats_info h3 {
