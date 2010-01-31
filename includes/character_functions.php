@@ -80,6 +80,7 @@
         }
         $result = $conn->Execute($query, array($char_id));
         if($result) {
+            //Check if we need more quests
             if($result->RecordCount() < 10) {
                 generate_quests_for_character($char_id, 200);
                 return get_character_tasks($char_id, $limit);
