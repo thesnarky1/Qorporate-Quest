@@ -140,7 +140,7 @@
             //Char job/Level
             echo "<div id='char_bio_job'>\n";
             echo "<div class='char_bio_info_fixed'>Job: </div>";
-            echo "<span>Level ".$character_info['bio']['character_level']." ".
+            echo "<span>Level <span id='char_level'>".$character_info['bio']['character_level']."</span> ".
                  $character_info['bio']['job_name']."</span>\n";
             echo "</div> <!-- end char_bio_job div -->\n";
             //Char department
@@ -174,7 +174,7 @@
 
             //Current task area
             echo "<div id='char_quest_current'>\n";
-            echo "<h3>Current task</h3>\n";
+            echo "<h3>Current task: <span id='progress'></span></h3>\n";
             echo "<div id='char_quest_current_text'>\n";
             echo "</div> <!-- end char_quest_current_text div -->\n";
             echo "</div> <!-- end char_quest_current div -->\n";

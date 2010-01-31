@@ -11,15 +11,24 @@ function finish_task(task_id) {
            { char_id: my_char_id, quest_id: task_id },
             function(data) {
                 display_experience(data);
+                pick_next_task();
             },
             "json"
     );
 }
 
 function display_experience(data) {
-    if(data && data.level) {
-        $('#char_messages').css('display', 'block').html(data.level).fadeOut('slow',function() {});
-    } 
+    if(data) {
+        $('#char_messages').css('display', 'block').html(data.return_value);
+        if(data.level) {
+            $('#char_messages').css('display', 'block').html(data.level);
+        }
+    }
+    window.setTimeout(function() {
+                        $('#char_messages').css('display', 'none');
+                      },
+                      20000
+                      );
 }
 
 function fetch_tasks() {
@@ -51,17 +60,37 @@ function toggle_my_p(div) {
 function do_task(div) {
     var current_quest = $("#char_quest_current_text");
     current_quest.html(div.html());
+    var task_id = current_quest.children('div').children('div').html();
     if(current_quest.parent().css("display") != "block") {
         current_quest.parent().css("display", "block");
     }
     // busted effin code....
     //current_quest.children('#div').children('#char_quest_single_head').click(function() { return false; });
     div.remove();
+    //Start timer
+    window.setTimeout(function() {
+                        work_on_task(task_id, 0);
+                      },
+                      1000
+                      );
+}
+
+function work_on_task(task_id, progress) {
+    if(progress >= 100) {
+        finish_task(task_id);
+    } else {
+        progress++;
+        $('#char_quest_current').children('h3').children('span').html(progress + "% done");
+        window.setTimeout(function() {
+                            work_on_task(task_id, progress);
+                          },
+                          1000
+                          );
+    }
 }
 
 function pick_next_task() {
     do_task($($('#char_quests_div').children('#char_quest_single')[0]));
-    //Start timer
     //Check for enough tasks
     if(quests_left() < 10) {
         fetch_tasks();
