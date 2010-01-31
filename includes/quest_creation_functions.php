@@ -12,7 +12,11 @@
                    "energy drink",
                    "caviar",
                    "peanuts",
-                   "protein bar");
+                   "protein bar",
+                   "ramen",
+                   "vodka",
+                   "Mountain Dew",
+                   "tea");
     $replacements["(FOOD)"] = $foods;
 
     //Reports
@@ -20,12 +24,22 @@
                      "TPS report",
                      "budget",
                      "focus group feedback report",
+                     "financial audit",
+                     "optimization report",
+                     "time cards",
+                     "expense reports",
+                     "closing offer",
+                     "network optimization plan",
+                     "press release",
+                     "damage assessment",
+                     "yearly asset appraisal",
                      "Standard Form A");
     $replacements["(REPORT)"] = $reports;
 
     //Office items
     $office_items = array("Red Swingline Stapler",
                           "Sharpie marker",
+                          "company credit card",
                           "three-hole punch",
                           "binder",
                           "toner cartridge",
@@ -35,21 +49,141 @@
                           "pens",
                           "pencils",
                           "CD-ROM",
-                          "power cable");
+                          "power cable",
+                          "lotion",
+                          "framed picture",
+                          "candle",
+                          "sticky notes",
+                          "index cards",
+                          "letter opener",
+                          "thumb tacks",
+                          "dry erase marker",
+                          "pencil cup",
+                          "staple remover",
+                          "hand gun",
+                          "shot glasses",
+                          "deodorant",
+                          "notes",
+                          "Kleenex",
+                          "copy paper",
+                          "paper clips",
+                          "staples",
+                          "punch cards",
+                          "eraser",
+                          "business cards");
     $replacements["(OFFICE)"] = $office_items;
+
+    $computers = array("DEC",
+                       "Apple IIE",
+                       "Dell Inspiracrap",
+                       "Proprietary expensive Apple",
+                       "White box",
+                       "Linux servers",
+                       "Cisco router",
+                       "Linksucks router",
+                       "Ancient laptop",
+                       "Cutting edge computer you're not allowed to touch",
+                       "main frame",
+                       "Compy 386",
+                       "storage racks");
+    $replacements["(COMPUTER)"] = $computers;
+
+    $music = array("Journey",
+                   "Classical",
+                   "Strong Bad Techno",
+                   "death metal",
+                   "Gwen Stefanie",
+                   "Apple proprietarily encoded files locked down to one ear",
+                   "techno",
+                   "country",
+                   "rock",
+                   "pop",
+                   "Top 40",
+                   "Lonely Island Band",
+                   "hard core nerd rap");
+    $replacements["(MUSIC)"] = $music;
+
+    $bosses = array("Pointy Haired Boss",
+                    "CEO's Cousin",
+                    "Megalomaniac",
+                    "Tyrannical Millionaire",
+                    "Supervisor From Hell",
+                    "Last Competent Manager",
+                    "Burninator",
+                    "Power Suit Soccer Mom");
+    $replacements["(BOSS)"] = $bosses;
 
     $quest_supertypes = array(
                           array("Fetch the (OFFICE)",
-                                "Apparently SOMEONE can't be bothered to go to the supply closet for their (OFFICE)... someone call in the intern."),
+                                "Apparently SOMEONE can't be bothered to go to the supply closet for their (OFFICE)... someone call in the intern.",
+                                "(OFFICE)"),
+                          array("Go shopping for the (OFFICE)",
+                                "As you walk out of Staples you vow that you'll shove an 'Easy' button so far up the boss that ordered you to go buy the new (OFFICE) he'll say 'That was easy' every time he sneezes.",
+                                "(OFFICE)"),
+                          array("Eat Lunch",
+                                "As if your sad existence couldn't get any worse when you open your lunch you notice a co-worker ate it and replaced it with only (FOOD).",
+                                "(FOOD)"),
                           array("Go for the (FOOD)",
-                                "That snobby accountant can't be bothered to fetch his own (FOOD)? Yea, sure, I'll 'step on it'..."),
+                                "That snobby accountant can't be bothered to fetch his own (FOOD)? Yea, sure, I'll 'step on it'...",
+                                "(FOOD)"),
+                          array("Clean up the (FOOD)",
+                                "It was so lovely for the boss to bring in all the (FOOD) for the office party, and even nicer for him to leave early and let you clean it all up. Is it bringing back good memories of college as a pledge?",
+                                "(FOOD)"),
                           array("Compile the (REPORT)",
-                                "Only danger you'll face here is death from boredom... and I thought cruel and unusual punishment was illegal."),
+                                "Only danger you'll face here is death from boredom... and I thought cruel and unusual punishment was illegal.",
+                                "(REPORT)"),
+                          array("Collate the (REPORT)",
+                                "Do paper cuts count for workman's comp? No? Well its going to be a very long week then.",
+                                "(REPORT)"),
+                          array("Deliver the (REPORT)",
+                                "You know the difference between you and a New York courier? A New York courier gets respect.",
+                                "(REPORT)"),
                           array("Undermine your coworker",
-                                "Its promotion time and the boss is walking around. Might as well steal your cubemate's (OFFICE) to get an edge, huh?")
+                                "Its promotion time and the boss is walking around. Might as well steal your cubemate's (OFFICE) to get an edge, huh?",
+                                "(OFFICE)"),
+                          array("Visit the Lost and Found",
+                                "Yes it seems silly to go to the Lost and Found office for just a small (OFFICE), but given that you're allocated only one trip to the supply closet a year its worth it.",
+                                "(OFFICE)"),
+                          array("Remove the (OFFICE)...",
+                                "From your boss's skull. Ok, don't panic. You finally snapped and blacked out a bit and now the boss has the (OFFICE) in his brain. Let's just remove that, frame the guy in accounting who always plays with lighters, and go back to our miserable life.",
+                                "(OFFICE)"),
+                          array("Introduce yourself to the (BOSS)",
+                                "Its funny, no matter how many times you introduce yourself to the (BOSS) he never seems to recognize you. Oh well, once more can't hurt.",
+                                "(BOSS)"),
+                          array("Turn off that infernal noise!",
+                                "Thanks to the complaints of those pie-in-the-sky mailmen the boss is making you turn down your (MUSIC). Its a sad day, I know just how hard it is to crunch numbers without that soothing melody.",
+                                "(MUSIC)"),
+                          array("Fetch the Boss's (MUSIC)",
+                                "What's worse than having to see the boss dance around his office like a schoolgirl in love to some (MUSIC)? Being the guy that has to fetch aforementioned (MUSIC) from Best Buy after work so the boss can have it on his desk in the morning. *sigh*",
+                                "(MUSIC)"),
+                          array("Set the mood with (MUSIC)",
+                                "Its a lovely Friday evening, the lights are low and the cleaners have finished up. Its just you and the annual audit. Why don't you set the mood by whipping out your coveted (MUSIC) CDs and see what happens?",
+                                "(MUSIC)"),
+                          array("Kick the (COMPUTER)",
+                                "Once again someone has to venture into the artic habitat of a data center, pushing through the penguins and polar bears to get to the (COMPUTER) that needs rebooting. Of course it being the summer all you have is shorts and a dress shirt so you better go quick or they'll find you in 500 years and thaw you for a museum somewhere.",
+                                "(COMPUTER)"),
+                          array("Suck up to the (BOSS)",
+                                "Of course back in your ivy league education you swore you'd never stoop to pure flattery to get ahead. You felt it'd be a combination of your charm, your skill, and of course your career drive that would yield great benefits. Sadly, once again, you were mistaken and the (BOSS) is again proving that to you. Better play nice or you'll be back in the mail room in no time.",
+                                "(BOSS)")
                         );
 
-    //Function generates a quest based on our supertypes
+    function generate_all_quests() {
+        global $quest_supertypes, $replacements;
+        $quests = array();
+        foreach($quest_supertypes as $quest_supertype) {
+            $variable = $quest_supertype[2];
+            $var_arr = $replacements[$variable];
+            foreach($var_arr as $var) {
+                //Now we have an iterator for getting each item to replace.
+                $quest_name = str_replace($variable, $var, $quest_supertype[0]);
+                $quest_flavor = str_replace($variable, $var, $quest_supertype[1]);
+                $quests[] = array($quest_name, $quest_flavor);
+            }
+        }
+        print_r($quests);
+    }
+
+    //Function generates a random quest based on our supertypes
     function generate_quest() {
         global $quest_supertypes; 
 
