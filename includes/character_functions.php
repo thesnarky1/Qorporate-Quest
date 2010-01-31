@@ -1,5 +1,28 @@
 <?php
 
+    //Function to get a character's quests
+    function get_character_tasks($char_id, $limit=false) {
+        global $conn;
+
+        //Add code to make sure we have enough quests in there
+
+        $to_return = array();
+        $query = "SELECT adventures.adventure_experience, quests.quest_name, ".
+                 "quests.quest_flavor, quests.quest_id ".
+                 "FROM adventures, quests ".
+                 "WHERE adventures.character_id=? AND ".
+                 "quests.quest_id=adventures.quest_id ";
+        if($limit) {
+            $query .= "LIMIT $limit";
+        }
+        $result = $conn->Execute($query, array($char_id));
+        if($result) {
+            return $result->GetRows();
+        } else {
+            return false;
+        }
+    }
+
     //Function to nab the character's information for the play field
     function get_character_info($char_id) {
         global $conn;
@@ -13,15 +36,8 @@
         $result = $conn->GetRow($query);
         if($result) {
             $to_return['bio'] = $result;
-            $query = "SELECT adventures.adventure_experience, quests.quest_name, ".
-                     "quests.quest_flavor, quests.quest_id ".
-                     "FROM adventures, quests ".
-                     "WHERE adventures.character_id=$char_id AND ".
-                     "quests.quest_id=adventures.quest_id";
-            $result = $conn->GetAll($query);
-            if($result) {
-                $to_return['quests'] = $result;
-            }
+            $quests = get_character_tasks($char_id);
+            $to_return['quests'] = $quests;
         } else {
             $to_return = false;
         }
