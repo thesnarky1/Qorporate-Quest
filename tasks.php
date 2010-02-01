@@ -32,8 +32,11 @@
                                  "WHERE adventure_id=? ".
                                  "LIMIT 1";
                         $result = $conn->Execute($query, array($adventure_id));
+                        echo json_encode($to_return);
+                    } else {
+                        $error = $conn->ErrorMsg();
+                        echo json_encode(array("return_value" => "$error - $query - $adventure_id - $char_id"));
                     }
-                    echo json_encode($to_return);
                 } else {
                     $to_return = "";
                     $tasks = get_character_tasks($char_id, 20);
@@ -42,12 +45,13 @@
                         $quest_name = $task['quest_name'];
                         $quest_flavor = $task['quest_flavor'];
                         $quest_experience = $task['adventure_experience'];
-    
+                        $adventure_id = $task['adventure_id'];
                         //Display
                         $to_return .= "<div id='char_quest_single'>\n";
                         $to_return .= "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
                         $to_return .= "<h3>$quest_name</h3>\n";
                         $to_return .= "<span>Experience: $quest_experience</span>\n";
+                        $to_return .= "<div id='char_quest_single_id'>$adventure_id</div>\n";
                         $to_return .= "</div> <!-- end char_quest_single_head -->\n";
                         $to_return .= "<p>$quest_flavor</p>\n";
                         $to_return .= "</div> <!-- end char_quest_single -->\n";
@@ -58,6 +62,8 @@
                 echo json_encode(array("return_value" => "<p class='error'>You a cheater</p>\n"));
             }
         }
+    } else {
+        echo json_encode(array("return_value" => "Some error occured and you don't appear to be logged in. User: $_SESSION[user_name], hash: $_SESSION[user_hash], id: $_SESSION[user_id]."));
     }
 
 
