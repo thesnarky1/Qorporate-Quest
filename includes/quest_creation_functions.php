@@ -183,7 +183,7 @@
                 $quests[] = array($quest_name, $quest_flavor);
             }
         }
-        print_r($quests);
+        return $quests;
     }
 
     //Function generates a random quest based on our supertypes
