@@ -118,7 +118,7 @@ function pick_next_task() {
         //Check for enough tasks
         update_quests_left();
         if(quests_left() < 5) {
-            fetch_tasks();
+            window.setTimeout(fetch_tasks(), 2000);
         }
     }
 }
