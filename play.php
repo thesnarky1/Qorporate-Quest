@@ -60,13 +60,13 @@
 
     render_header();
 
-    $characters = get_characters($user_id);
+    $characters = get_characters($user_id, "character_level DESC");
  
     //
     //Draw the sidebar, this will consist of a list of their characters to quickly switch
     //
     echo "<div id='sidebar'>\n";
-    echo "<h3>Characters</h3>\n";
+    echo "<h3>Your Characters</h3>\n";
     if(!$characters) {
         echo "You have no characters yet.";
     } else {
@@ -75,7 +75,8 @@
         foreach($characters as $character_row) {
             $character_name = $character_row['character_name'];
             $character_id = $character_row['character_id'];
-            echo "<li><a href='play.php?char_id=$character_id'>$character_name</a></li>\n";
+            $character_level = $character_row['character_level'];
+            echo "<li><a href='play.php?char_id=$character_id'>$character_name</a> ($character_level)</li>\n";
         }
         echo "<li><a href='play.php?create_char'>Create new character</a></li>\n";
         echo "</ul>\n";

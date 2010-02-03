@@ -62,7 +62,7 @@
             $user_name = get_logged_in_username();
             $user_id = get_logged_in_userid();
             echo "<div id='header_character_picker'>\n";
-            $characters = get_characters($user_id, "character_level ASC");
+            $characters = get_characters($user_id, "character_level DESC");
             if($characters) {
                 //Show character picker dropdown menu
                 echo "<span>Quick Play:</span>\n";
