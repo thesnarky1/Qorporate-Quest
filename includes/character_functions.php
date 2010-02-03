@@ -29,7 +29,7 @@
 
     //Function to add experience to a given character, checks for level up
     function add_character_experience($char_id, $exp) {
-        global $conn;
+        global $conn, $LEVEL_UP_RATIO;
 
         $query = "SELECT character_exp, character_level, ".
                  "character_satisfaction, character_brown_nosing, ".
@@ -40,8 +40,8 @@
             $level = $result['character_level'];
             $curr_exp = $result['character_exp'];
             $curr_exp += $exp;
-            $max_exp = $level * 100;
-            if($curr_exp >= $level * 100) {
+            $max_exp = $level * $LEVEL_UP_RATIO;
+            if($curr_exp >= $max_exp) {
                 //We have a level up
                 $level++;
                 $curr_exp = $curr_exp - $max_exp;

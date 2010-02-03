@@ -14,6 +14,6 @@
 
 
     //Global variables
-    $level_up_ratio = 1000; //Amount of experience needed per level (i.e. 1000, then 2000, then 3000)
+    $LEVEL_UP_RATIO = 1000; //Amount of experience needed per level (i.e. 1000, then 2000, then 3000)
 
 ?>
