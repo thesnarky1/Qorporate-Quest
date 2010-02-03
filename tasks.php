@@ -59,7 +59,7 @@
                         $to_return .= "<p>$task_flavor</p>\n";
                         $to_return .= "</div> <!-- end char_quest_single -->\n";
                     }
-                    echo json_encode(array("return_value" => $to_return));
+                    echo json_encode(array("quests" => $to_return));
                 }
             } else {
                 echo json_encode(array("return_value" => "<p class='error'>You a cheater</p>\n"));

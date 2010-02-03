@@ -10,16 +10,27 @@ function finish_task(task_id) {
     $.post("tasks.php",
            { char_id: my_char_id, task_id: task_id },
             function(data) {
-                display_experience(data);
+                display_data(data);
                 pick_next_task();
             },
             "json"
     );
 }
 
-function display_experience(data) {
+//function display_tasks(data) {
+//    $('#char_quests_div').html(data.return_value);
+//    update_quests_left();
+//}
+
+function display_data(data) {
     if(data) {
-        $('#char_messages').css('display', 'block').html(data.return_value);
+        if(data.return_value) {
+            $('#char_messages').css('display', 'block').html(data.return_value);
+        }
+        if(data.quests) {
+            $('#char_quests_div').html(data.quests);
+            update_quests_left();
+        }
         if(data.level) {
             $('#char_level').html(data.level);
         }
@@ -35,6 +46,12 @@ function display_experience(data) {
         if(data.loyalty) {
             $('#char_loyalty').html(data.loyalty);
         }
+        if(data.exp) {
+            $('#current_exp').html(data.exp);
+        }
+        if(data.max_exp) {
+            $('#max_exp').html(data.max_exp);
+        }
     }
     my_timeout = window.setTimeout(function() {
                                      $('#char_messages').css('display', 'none');
@@ -48,15 +65,10 @@ function fetch_tasks() {
     $.post("tasks.php", 
         { char_id: my_char_id }, 
         function(data) {
-            display_tasks(data);
+            display_data(data);
         },
         "json"
     );
-}
-
-function display_tasks(data) {
-    $('#char_quests_div').html(data.return_value);
-    update_quests_left();
 }
 
 function toggle_my_p(div) {

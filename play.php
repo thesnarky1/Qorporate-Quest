@@ -128,25 +128,38 @@
             echo "<div id='char_play_div'>\n";
 
             echo "<div id='char_sheet_upper'>\n";
+
             //Biographical area
             echo "<div id='char_bio_info'>\n";
             echo "<h3>Employee Personal Information</h3>\n";
+
             //Char name
             echo "<div id='char_bio_name'>\n";
             echo "<div class='char_bio_info_fixed'>Name: </div>";
             echo "<div>".$character_info['bio']['character_name']."</div>\n";
             echo "</div> <!-- end char_bio_name div -->\n";
+
             //Char job/Level
             echo "<div id='char_bio_job'>\n";
             echo "<div class='char_bio_info_fixed'>Job: </div>";
             echo "<span>Level <span id='char_level'>".$character_info['bio']['character_level']."</span> ".
                  $character_info['bio']['job_name']."</span>\n";
             echo "</div> <!-- end char_bio_job div -->\n";
+
             //Char department
             echo "<div id='char_bio_department'>\n";
             echo "<div class='char_bio_info_fixed'>Dept: </div>";
             echo "<span>".$character_info['bio']['department_name']."</span>\n";
             echo "</div> <!-- end char_bio_department div -->\n";
+
+            //Char department
+            $max_exp = $character_info['bio']['character_level'] * $LEVEL_UP_RATIO;
+            echo "<div id='char_bio_exp'>\n";
+            echo "<div class='char_bio_info_fixed'>Exp: </div>";
+            echo "<span id='current_exp'>".$character_info['bio']['character_exp']."</span> of ";
+            echo "<span id='max_exp'>$max_exp</span>\n";
+            echo "</div> <!-- end char_bio_exp div -->\n";
+
             echo "</div> <!-- end char_bio_info div -->\n";
        
             //Stats div
