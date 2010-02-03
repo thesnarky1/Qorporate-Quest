@@ -115,7 +115,7 @@
 
     $quest_supertypes = array(
                           array("Fetch the (OFFICE)",
-                                "Apparently SOMEONE can't be bothered to go to the supply closet for their (OFFICE)... someone call in the intern.",
+                                "Apparently SOMEONE can't be bothered to go to the supply closet for their (OFFICE)... call in the intern.",
                                 "(OFFICE)"),
                           array("Go shopping for the (OFFICE)",
                                 "As you walk out of Staples you vow that you'll shove an 'Easy' button so far up the boss that ordered you to go buy the new (OFFICE) he'll say 'That was easy' every time he sneezes.",
