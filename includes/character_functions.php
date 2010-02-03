@@ -13,6 +13,8 @@
         $brown += $brown_add;
         $comp += $comp_add;
         $loyal += $loyal_add;
+        $max_exp = $level * $LEVEL_UP_RATIO;
+
 
         $query = "UPDATE characters ".
                  "SET character_exp=?, character_level=?, character_satisfaction=?, ".
@@ -21,6 +23,8 @@
         $result = $conn->Execute($query, array($exp, $level, $satis, $brown, $comp, $loyal, $char_id));
         return array("return_value" => "<p class='error'>You are now level $level!</p>",
                      "level" => $level,
+                     "exp" => $exp,
+                     "max_exp" => $max_exp,
                      "satisfaction" => $satis,
                      "brown_nosing" => $brown,
                      "competence" => $comp,
@@ -57,7 +61,7 @@
                          "SET character_exp=? ".
                          "WHERE character_id=?";
                 $result = $conn->Execute($query, array($curr_exp, $char_id));
-                return array("return_value" => "<p class='error'>You gained $exp experience</p>");
+                return array("return_value" => "<p class='error'>You gained $exp experience</p>", "exp" => $curr_exp);
             }
         } else {
             echo $conn->ErrorMsg();
