@@ -1,5 +1,6 @@
 var my_char_id = null;
 var my_timeout = null;
+var my_curr_task = null;
 
 $(document).ready(function() {
     my_char_id = $('#char_id_hidden').html();
@@ -58,7 +59,7 @@ function display_data(data) {
 
 function fetch_tasks() {
     $.post("tasks.php", 
-        { char_id: my_char_id }, 
+        { char_id: my_char_id, curr_task: my_curr_task }, 
         function(data) {
             display_data(data);
         },
@@ -119,13 +120,14 @@ function pick_next_task() {
         }
         $('#char_messages').css('display', 'block').html("<p class='error'>It seems your connection may have dropped, please reload the page and try again.</p>");
     } else {
+        my_curr_task = $(next_task).children('div').children('#char_quest_single_id').html();
         //Keep going
         do_task($(next_task));
 
         //Check for enough tasks
         update_quests_left();
         if(quests_left() < 5) {
-            window.setTimeout(fetch_tasks(), 2000);
+            fetch_tasks();
         }
     }
 }
