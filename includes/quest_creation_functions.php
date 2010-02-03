@@ -225,8 +225,6 @@
             $index++;
         }
    
-        print_r($tasks);
-
         $arguments = array();
         $initial = true;
         $query = "INSERT INTO tasks(task_name, task_flavor, task_experience, boss_id, character_id) VALUES";
@@ -248,7 +246,6 @@
             $arguments[] = $boss_id;
             $arguments[] = $char_id;
         }
-        print_r($arguments);
         $conn->Execute($query, $arguments);
         $error = $conn->ErrorMsg();
         if($error) {
