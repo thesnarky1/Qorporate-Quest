@@ -17,11 +17,6 @@ function finish_task(task_id) {
     );
 }
 
-//function display_tasks(data) {
-//    $('#char_quests_div').html(data.return_value);
-//    update_quests_left();
-//}
-
 function display_data(data) {
     if(data) {
         if(data.return_value) {
