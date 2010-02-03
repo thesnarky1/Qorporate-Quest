@@ -12,4 +12,8 @@
     include('character_functions.php');
     include('quest_creation_functions.php');
 
+
+    //Global variables
+    $level_up_ratio = 1000; //Amount of experience needed per level (i.e. 1000, then 2000, then 3000)
+
 ?>
