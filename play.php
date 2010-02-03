@@ -117,10 +117,6 @@
         } else {
 
             $character_info = get_character_info($char_id, 20);
-            //echo "<div><p>\n";
-            //print_r($character_info);
-            //echo "</p></div>\n";
-
 
             //This user owns this character, lets play
             echo "<h3></h3>\n";
