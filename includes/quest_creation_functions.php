@@ -196,7 +196,7 @@
         $quest_to_insert = array();
         $quest_to_insert['name'] = $rand_quest[0];
         $quest_to_insert['flavor'] = $rand_quest[1];
-        $quest_to_insert['experience'] = 10 + $boss_experience;
+        $quest_to_insert['experience'] = 10 + $boss_exp;
         $quest_to_insert['boss_id'] = $boss_id;
     
         //return the quest
