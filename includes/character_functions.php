@@ -69,25 +69,25 @@
         global $conn;
 
         $to_return = array();
-        $query = "SELECT adventures.adventure_experience, adventures.adventure_id, ".
-                 "quests.quest_name, ".
-                 "quests.quest_flavor, quests.quest_id ".
-                 "FROM adventures, quests ".
-                 "WHERE adventures.character_id=? AND ".
-                 "quests.quest_id=adventures.quest_id ";
+        $query = "SELECT tasks.task_experience, tasks.task_id, ".
+                 "tasks.task_name, tasks.task_flavor, ".
+                 "bosses.boss_name, bosses.boss_id ".
+                 "FROM tasks, bosses ".
+                 "WHERE character_id=? AND ".
+                 "bosses.boss_id=tasks.boss_id ";
         if($limit) {
             $query .= "LIMIT $limit";
         }
         $result = $conn->Execute($query, array($char_id));
         if($result) {
             //Check if we need more quests
-            if($result->RecordCount() < 10) {
-                generate_quests_for_character($char_id, 200);
+            if($result->RecordCount() < 10 && (!$limit || $limit >= 10)) {
+                generate_quests($char_id, 200);
                 return get_character_tasks($char_id, $limit);
             }
             return $result->GetRows();
         } else {
-            generate_quests_for_character($char_id, 200);
+            generate_quests($char_id, 200);
             return get_character_tasks($char_id, $limit);
         }
     }
