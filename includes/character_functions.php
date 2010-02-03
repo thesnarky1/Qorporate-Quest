@@ -2,7 +2,7 @@
 
     //Function levels up a character
     function level_up_character($char_id, $level, $exp, $satis, $brown, $comp, $loyal) {
-        global $conn;
+        global $conn, $LEVEL_UP_RATIO;
 
         $satis_add = rand(1, 2);
         $brown_add = rand(1, 2);
@@ -54,6 +54,7 @@
                 $competence = $result['character_competence'];
                 $loyalty = $result['character_loyalty'];
                 $to_return = level_up_character($char_id, $level, $curr_exp, $satisfaction, $brown_nosing, $competence, $loyalty);
+
                 return $to_return;
             } else {
                 //Just update the exp
@@ -139,8 +140,6 @@
             }
             return true;
         } else {
-            //Do... nothing
-            //echo "$query\n"; //pure debug
             return false;
         }
     }
