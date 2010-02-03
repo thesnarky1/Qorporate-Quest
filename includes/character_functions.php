@@ -104,6 +104,7 @@
         $query = "SELECT characters.character_name, characters.character_level, ".
                  "characters.character_loyalty, characters.character_satisfaction, ".
                  "characters.character_competence, characters.character_brown_nosing, ".
+                 "characters.character_exp, ".
                  "jobs.job_name, departments.department_name ".
                  "FROM characters, jobs, departments ".
                  "WHERE characters.character_id=$char_id AND jobs.job_id=characters.job_id AND ".
