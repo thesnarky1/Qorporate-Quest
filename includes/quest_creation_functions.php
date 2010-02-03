@@ -93,7 +93,7 @@
                    "Strong Bad Techno",
                    "death metal",
                    "Gwen Stefanie",
-                   "Apple proprietarily encoded files locked down to one ear",
+                   "Apple proprietary files",
                    "techno",
                    "country",
                    "rock",
