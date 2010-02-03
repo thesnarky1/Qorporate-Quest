@@ -123,7 +123,7 @@
                           array("Eat Lunch",
                                 "As if your sad existence couldn't get any worse when you open your lunch you notice a co-worker ate it and replaced it with only (FOOD).",
                                 "(FOOD)"),
-                          array("Go for the (FOOD)",
+                          array("Gopher the (FOOD)",
                                 "That snobby accountant can't be bothered to fetch his own (FOOD)? Yea, sure, I'll 'step on it'...",
                                 "(FOOD)"),
                           array("M-M-M-M-M-M-MONSTER SPILL",
@@ -170,50 +170,86 @@
                                 "(BOSS)")
                         );
 
-    function generate_all_quests() {
-        global $quest_supertypes, $replacements;
-        $quests = array();
-        foreach($quest_supertypes as $quest_supertype) {
-            $variable = $quest_supertype[2];
-            $var_arr = $replacements[$variable];
-            foreach($var_arr as $var) {
-                //Now we have an iterator for getting each item to replace.
-                $quest_name = str_replace($variable, $var, $quest_supertype[0]);
-                $quest_flavor = str_replace($variable, $var, $quest_supertype[1]);
-                $quests[] = array($quest_name, $quest_flavor);
-            }
-        }
-        return $quests;
-    }
 
-    //Function generates a random quest based on our supertypes
-    function generate_quest() {
-        global $quest_supertypes; 
-
-        $quest = get_random_element($quest_supertypes);
-        $quest_name = $quest[0];
-        $quest_flavor = $quest[1];
-        $finished_quest = replace_variables(array($quest_name, $quest_flavor));
-        echo "$finished_quest[0]\n$finished_quest[1]\n";
-    }
-
-    function generate_quest_for_character($char_id) {
+    //Function to pull all the bosses out of the database in one fell swoop
+    function get_bosses() {
         global $conn;
-
-        $query = "SELECT quest_id ".
-                 "FROM quests ORDER BY RAND()";
-        $result = $conn->GetOne($query);
-        if($result) {
-            $query = "INSERT INTO adventures(adventure_experience, quest_id, character_id) ".
-                     "VALUES('10', $result, $char_id)";
-            $conn->Execute($query);
-        }
+    
+        $query = "SELECT * FROM bosses";
+        $bosses = $conn->GetAll($query);
+        return $bosses;
     }
-
-    function generate_quests_for_character($char_id, $num) {
-        while($num > 0) {
-            generate_quest_for_character($char_id);
-            $num--;
+    
+    //Function to pull a random quest out
+    function generate_quest($boss) {
+        global $quest_supertypes;
+    
+        $rand_quest = get_random_element($quest_supertypes);
+        $boss_name = $boss['boss_name'];
+        $boss_id = $boss['boss_id'];
+        $boss_string = "<a href='bosses.php?boss_id=$boss_id'>$boss_name</a>";
+        $boss_exp = $boss['boss_experience'];
+    
+        //Go through and replace all our variables.
+        $rand_quest = replace_variables($rand_quest, $boss_string);
+    
+        $quest_to_insert = array();
+        $quest_to_insert['name'] = $rand_quest[0];
+        $quest_to_insert['flavor'] = $rand_quest[1];
+        $quest_to_insert['experience'] = 10 + $boss_experience;
+        $quest_to_insert['boss_id'] = $boss_id;
+    
+        //return the quest
+        return $quest_to_insert;
+    }
+    
+    //Function to spit out a given number of quests for a given character (insert them into the tasks table
+    /*
+     * Also a tasks table
+     * task_id
+     * task_name
+     * task_flavor
+     * task_experience
+     * boss_id
+     * character_id
+     */
+    function generate_quests($char_id, $num) {
+        global $conn;
+    
+        $bosses = get_bosses();
+        $index = 0;
+        $tasks = array();
+        while($index < $num) {
+            $boss = get_random_element($bosses);
+            $tasks[] = generate_quest($boss);
+            $index++;
+        }
+    
+        $arguments = array();
+        $initial = true;
+        $query = "INSERT INTO tasks(task_name, task_flavor, task_experience, boss_id, character_id) VALUES";
+        foreach($tasks as $task) {
+            $task_name = $task['name'];
+            $task_flavor = $task['flavor'];
+            $task_experience = $task['experience'];
+            $boss_id = $task['boss_id'];
+            
+    	if(!$initial) {
+                $query.= ",";
+            } else {
+                $initial = false;
+            }
+            $query .= "(?, ?, ?, ?, ?)";
+            $arguments[] = $task_name;
+            $arguments[] = $task_flavor;
+            $arguments[] = $task_experience;
+            $arguments[] = $boss_id;
+            $arguments[] = $char_id;
+        }
+        $conn->Execute($query, $arguments);
+        $error = $conn->ErrorMsg();
+        if($error) {
+            echo $error;
         }
     }
 
@@ -223,9 +259,10 @@
         return $arr[$index];
     }
 
+
     //Function to replace all our replacement variables
-    function replace_variables($str_arr) {
-        global $foods, $reports, $office_items, $replacements;
+    function replace_variables($str_arr, $boss_string) {
+        global $replacements, $foods, $reports, $computers;
 
         //Initialize scoped vars
         $my_replacements = array();
@@ -252,4 +289,63 @@
         }
         return $to_return;
     }
-?>
+
+    //
+    //
+    //
+    //  DEPRECATED
+    //
+    //
+    //
+    //
+
+
+//    function generate_all_quests() {
+//        global $quest_supertypes, $replacements;
+//        $quests = array();
+//        foreach($quest_supertypes as $quest_supertype) {
+//            $variable = $quest_supertype[2];
+//            $var_arr = $replacements[$variable];
+//            foreach($var_arr as $var) {
+//                //Now we have an iterator for getting each item to replace.
+//                $quest_name = str_replace($variable, $var, $quest_supertype[0]);
+//                $quest_flavor = str_replace($variable, $var, $quest_supertype[1]);
+//                $quests[] = array($quest_name, $quest_flavor);
+//            }
+//        }
+//        return $quests;
+//    }
+//
+//
+//    //Function generates a random quest based on our supertypes
+//    function generate_quest() {
+//        global $quest_supertypes; 
+//
+//        $quest = get_random_element($quest_supertypes);
+//        $quest_name = $quest[0];
+//        $quest_flavor = $quest[1];
+//        $finished_quest = replace_variables(array($quest_name, $quest_flavor));
+//        echo "$finished_quest[0]\n$finished_quest[1]\n";
+//    }
+//
+//    function generate_quest_for_character($char_id) {
+//        global $conn;
+//
+//        $query = "SELECT quest_id ".
+//                 "FROM quests ORDER BY RAND()";
+//        $result = $conn->GetOne($query);
+//        if($result) {
+//            $query = "INSERT INTO adventures(adventure_experience, quest_id, character_id) ".
+//                     "VALUES('10', $result, $char_id)";
+//            $conn->Execute($query);
+//        }
+//    }
+//
+//    function generate_quests_for_character($char_id, $num) {
+//        while($num > 0) {
+//            generate_quest_for_character($char_id);
+//            $num--;
+//        }
+//    }
+//
+//?>
