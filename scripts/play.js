@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 function finish_task(task_id) {
     $.post("tasks.php",
-           { char_id: my_char_id, quest_id: task_id },
+           { char_id: my_char_id, task_id: task_id },
             function(data) {
                 display_experience(data);
                 pick_next_task();

@@ -187,21 +187,21 @@
             echo "<h3>Task List <span id='char_tasks_remaining'>($quest_num left)</span></h3>\n";
             if(isset($character_info['quests'])) {
                 echo "<div id='char_quests_div'>\n";
-                foreach($character_info['quests'] as $quest_row) {
+                foreach($character_info['quests'] as $task_row) {
                     //Set up vars
-                    $quest_name = $quest_row['quest_name'];
-                    $quest_flavor = $quest_row['quest_flavor'];
-                    $quest_experience = $quest_row['adventure_experience'];
-                    $adventure_id = $quest_row['adventure_id'];
+                    $task_name = $task_row['task_name'];
+                    $task_flavor = $task_row['task_flavor'];
+                    $task_experience = $task_row['task_experience'];
+                    $task_id = $task_row['task_id'];
 
                     //Display
                     echo "<div id='char_quest_single'>\n";
                     echo "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
-                    echo "<h3>$quest_name</h3>\n";
-                    echo "<span>Experience: $quest_experience</span>\n";
-                    echo "<div id='char_quest_single_id'>$adventure_id</div>\n";
+                    echo "<h3>$task_name</h3>\n";
+                    echo "<span>Experience: $task_experience</span>\n";
+                    echo "<div id='char_quest_single_id'>$task_id</div>\n";
                     echo "</div> <!-- end char_quest_single_head -->\n";
-                    echo "<p>$quest_flavor</p>\n";
+                    echo "<p>$task_flavor</p>\n";
                     echo "</div> <!-- end char_quest_single -->\n";
                 }
             } else {

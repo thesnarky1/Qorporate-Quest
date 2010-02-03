@@ -45,18 +45,18 @@
                     $tasks = get_character_tasks($char_id, 20);
                     foreach($tasks as $task) {
                         //Set up vars
-                        $quest_name = $task['quest_name'];
-                        $quest_flavor = $task['quest_flavor'];
-                        $quest_experience = $task['task_experience'];
+                        $task_name = $task['task_name'];
+                        $task_flavor = $task['task_flavor'];
+                        $task_experience = $task['task_experience'];
                         $task_id = $task['task_id'];
                         //Display
                         $to_return .= "<div id='char_quest_single'>\n";
                         $to_return .= "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
-                        $to_return .= "<h3>$quest_name</h3>\n";
-                        $to_return .= "<span>Experience: $quest_experience</span>\n";
+                        $to_return .= "<h3>$task_name</h3>\n";
+                        $to_return .= "<span>Experience: $task_experience</span>\n";
                         $to_return .= "<div id='char_quest_single_id'>$task_id</div>\n";
                         $to_return .= "</div> <!-- end char_quest_single_head -->\n";
-                        $to_return .= "<p>$quest_flavor</p>\n";
+                        $to_return .= "<p>$task_flavor</p>\n";
                         $to_return .= "</div> <!-- end char_quest_single -->\n";
                     }
                     echo json_encode(array("return_value" => $to_return));
