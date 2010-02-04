@@ -6,6 +6,7 @@
 
     if($was_logged_in) {
         logout_user();
+        header("Location: index.php");
     } 
 
     render_header();
