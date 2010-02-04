@@ -1,5 +1,24 @@
 <?php
 
+    //Function to roll for a character's skills
+    function roll($user_id) {
+        global $conn;
+
+        $satis = rand(0, 15);
+        $loyal = rand(0, 15);
+        $comp = rand(0, 15);
+        $brown = rand(0, 15);
+
+        //Remove any potential previous rolls
+        $query = "DELETE FROM rolls WHERE user_id=?";
+        $conn->Execute($query, array($user_id));
+
+        $query = "INSERT INTO rolls(roll_satisfaction, roll_brown_nosing, roll_competence, roll_loyalty, user_id) ".
+                 "VALUES(?, ?, ?, ?, ?)";
+        $conn->Execute($query, array($satis, $brown, $comp, $loyal, $user_id));
+        return array("roll_satis" => $satis, "roll_brown" => $brown, "roll_comp" => $comp, "roll_loyal" => $loyal);
+    }
+
     //Function levels up a character
     function level_up_character($char_id, $level, $exp, $satis, $brown, $comp, $loyal) {
         global $conn, $LEVEL_UP_RATIO;
