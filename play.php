@@ -228,6 +228,7 @@
         //Display new character form
         echo "<h3>Character Creation</h3>\n";
 
+
         //Our help field for the descriptions
         echo "<div id='descriptions'>\n";
         echo "<h3>Job/Department Description</h3>\n";
@@ -294,6 +295,28 @@
         echo "</select>\n";
         echo "$to_show";
         echo "<br />\n";
+
+        //Deal with stats
+        $roll = roll($user_id);
+        $satis = $roll['roll_satis'];
+        $brown = $roll['roll_brown'];
+        $loyal = $roll['roll_loyal'];
+        $comp = $roll['roll_comp'];
+
+        echo "<label class='fixed_width'>Job Satisfaction: </label>\n";
+        echo "<input type='text' id='creation_satis' value='$satis' readonly='true' />\n";
+        echo "<br />\n";
+        echo "<label class='fixed_width'>Brown Nosing: </label>\n";
+        echo "<input type='text' id='creation_brown' value='$brown' readonly='true' />\n";
+        echo "<br />\n";
+        echo "<label class='fixed_width'>Competence: </label>\n";
+        echo "<input type='text' id='creation_comp' value='$comp' readonly='true' />\n";
+        echo "<br />\n";
+        echo "<label class='fixed_width'>Loyalty: </label>\n";
+        echo "<input type='text' id='creation_loyal' value='$loyal' readonly='true' />\n";
+        echo "<br />\n";
+        echo "<div id='char_creation_stats'>\n";
+        echo "</div> <!-- end char_creation_stats div -->\n";
         echo "<input type='submit' name='submit' value='Apply!' />\n";
         echo "</form>\n";
         echo "</div> <!-- end char_creation div -->\n";
