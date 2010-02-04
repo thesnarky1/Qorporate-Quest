@@ -5,7 +5,21 @@ var my_curr_task = null;
 $(document).ready(function() {
     my_char_id = $('#char_id_hidden').html();
     pick_next_task();
+
+    if($('form')) {
+        $('#bad_hack_i_hate_javascript').bind('click', function() {
+                                                                      $('form').unbind('submit');
+                                                                      $('form').submit(); 
+                                                                  });
+        $('form').bind('submit', function(e) {
+                                                e.preventDefault();
+                                             });
+    }
 });
+
+function validate_creation_form() {
+    
+}
 
 function finish_task(task_id) {
     $.post("tasks.php",
@@ -16,6 +30,18 @@ function finish_task(task_id) {
             },
             "json"
     );
+}
+
+//Function to reroll our stats
+function reroll_stats() {
+    $.post("roll.php",
+           { },
+            function(data) {
+                display_data(data);
+            },
+            "json"
+    );
+    return false;
 }
 
 function display_data(data) {
@@ -47,6 +73,18 @@ function display_data(data) {
         }
         if(data.max_exp) {
             $('#max_exp').html(data.max_exp);
+        }
+        if(data.roll_loyal) {
+            $('#creation_loyal').val(data.roll_loyal);
+        }
+        if(data.roll_satis) {
+            $('#creation_satis').val(data.roll_satis);
+        }
+        if(data.roll_brown) {
+            $('#creation_brown').val(data.roll_brown);
+        }
+        if(data.roll_comp) {
+            $('#creation_comp').val(data.roll_comp);
         }
     }
     my_timeout = window.setTimeout(function() {
