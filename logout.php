@@ -6,17 +6,8 @@
 
     if($was_logged_in) {
         logout_user();
-        header("Location: index.php");
     } 
 
-    render_header();
-
-    if($was_logged_in) {
-        echo "<p>You are now logged out</p>\n";
-    } else {
-        echo "<p>You weren't logged in anyhow!</p>\n";
-    }
-
-    render_footer();
+    header("Location: index.php");
 
 ?>
