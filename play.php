@@ -36,24 +36,25 @@
         if(isset($_REQUEST['department'])) {
             $department = safetify_input($_REQUEST['department']);
         }
-
-        $query = "INSERT INTO characters(character_name, character_level, user_id, job_id, department_id) ".
-                 "VALUES('$char_name', '1', '$user_id', '$job', '$department')";
-        $success = $conn->Execute($query);
-        if($success && $conn->Affected_Rows() == 1) {
-            //make sure we select the new char_id so it starts playing!
-            $char_id = $conn->Insert_ID();
-            //Set up the newbie quests
-            $set_up = initialize_quests($char_id);
-            if($set_up) {
-                //aka set location to be play.php?char_id....
-                header("Location: play.php?char_id=$char_id");
+        if($char_name != "" && $job != "" & $department != "") {
+            $query = "INSERT INTO characters(character_name, character_level, user_id, job_id, department_id) ".
+                     "VALUES('$char_name', '1', '$user_id', '$job', '$department')";
+            $success = $conn->Execute($query);
+            if($success && $conn->Affected_Rows() == 1) {
+                //make sure we select the new char_id so it starts playing!
+                $char_id = $conn->Insert_ID();
+                //Set up the newbie quests
+                $set_up = initialize_quests($char_id);
+                if($set_up) {
+                    //aka set location to be play.php?char_id....
+                    header("Location: play.php?char_id=$char_id");
+                } else {
+                    render_footer();
+                    die();
+                }
             } else {
-                render_footer();
-                die();
+                echo $conn->ErrorMsg();
             }
-        } else {
-            echo $conn->ErrorMsg();
         }
     }
 
@@ -240,7 +241,7 @@
         //The main application bit
         echo "<div id='char_creation'>\n";
         echo "<h3>&lt;Company Name&gt; Application</h3>\n";
-        echo "<form name='char_creation' method='POST' action='play.php?create_char' class='form'>\n";
+        echo "<form name='char_creation' method='POST' action='play.php?create_char' class='form' >\n";
         if($error != "") {
             echo "<span class='error'>$error</span><br />\n";
         }
@@ -315,9 +316,13 @@
         echo "<label class='fixed_width'>Loyalty: </label>\n";
         echo "<input type='text' id='creation_loyal' value='$loyal' readonly='true' />\n";
         echo "<br />\n";
+        echo "<label class='fixed_width'>Reroll stats: </label>\n";
+        //echo "<div onclick='reroll_stats();' id='char_creation_reroll'>Reroll</div>\n";
+        echo "<input type='submit' value='Reroll' onclick='reroll_stats();' />\n";
+        echo "<br />\n";
         echo "<div id='char_creation_stats'>\n";
         echo "</div> <!-- end char_creation_stats div -->\n";
-        echo "<input type='submit' name='submit' value='Apply!' />\n";
+        echo "<input type='submit' name='submit' value='Apply!' id='bad_hack_i_hate_javascript' />\n";
         echo "</form>\n";
         echo "</div> <!-- end char_creation div -->\n";
     }
