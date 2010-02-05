@@ -1,5 +1,23 @@
 <?php
 
+    //Function to validate a given roll was made by a user
+    //expects an indexed array with char_satisfaction, 
+    //char_loyalty, char_brown_nosing, and char_competence
+    function validate_roll($char_satisfaction, $char_brown_nosing, $char_loyalty, $char_competence, $user_id) {
+        global $conn;
+
+        $query = "SELECT roll_id FROM rolls WHERE roll_satisfaction=?, ".
+                 "roll_brown_nosing=?, roll_competence=?, roll_loyalty=?, ".
+                 "user_id=? LIMIT 1";
+        $result = $conn->Execute($query, array($char_satisfaction, $char_brown_nosing, 
+                                 $char_competence, $char_loyalty, $user_id));
+        if($result && $result->RowCount() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Function to verify a job id is valid
     function validate_job_id($job_id) {
         global $conn;
