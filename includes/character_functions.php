@@ -1,5 +1,31 @@
 <?php
 
+    //Function to verify a job id is valid
+    function validate_job_id($job_id) {
+        global $conn;
+
+        $query = "SELECT job_id FROM jobs WHERE job_id=?";
+        $result = $conn->Execute($query, array($job_id));
+        if($result && $result->RowCount() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Function to verify a department id is valid
+    function validate_department_id($department_id) {
+        global $conn;
+
+        $query = "SELECT department_id FROM departments WHERE department_id=?";
+        $result = $conn->Execute($query, array($department_id));
+        if($result && $result->RowCount() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Function to roll for a character's skills
     function roll($user_id) {
         global $conn;
