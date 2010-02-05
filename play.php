@@ -14,44 +14,98 @@
 
     //We're logged in, lets set up the variables
     $user_id = get_logged_in_userid();
-    $char_name = false;
-    $char_id = false;
-    $job = false;
-    $department = false;
-
+    $char_satisfaction = false;
+    $char_loyalty = false;
+    $char_brown_nosing = false;
+    $char_competence = false;
 
     ///
     /// Actual character creation code
     ///
     if(isset($_REQUEST['submit'])) {
-        //Clean up all our input
+
+        //Variables needed by the creation code
+        $error = false;
+        $char_name = false;
+        $job = false;
+        $department = false;
+
+        //Clean up  and inspect all our input for input errors
         if(isset($_REQUEST['character_name'])) {
             $char_name = safetify_input($_REQUEST['character_name']);
+            if(trim($char_name) == "") {
+                $error = "Your character name may not be blank.";
+            }
+        } else {
+            $error = "You must set a character name.";
         }
     
         if(isset($_REQUEST['job'])) {
-            $job = safetify_input($_REQUEST['job']);
+            $char_job = safetify_input($_REQUEST['job']);
+            if(!validate_job_id($char_job)) {
+                $error = "Your character job appears to be falsified.";
+            }
+        } else {
+            $error = "You must select a job.";
         }
     
         if(isset($_REQUEST['department'])) {
-            $department = safetify_input($_REQUEST['department']);
+            $char_department = safetify_input($_REQUEST['department']);
+            if(!validate_department_id($char_department)) {
+                $error = "Your character department appears to be falsified.";
+            }
+        } else {
+            $error = "You must select a department.";
         }
-        if($char_name != "" && $job != "" & $department != "") {
-            $query = "INSERT INTO characters(character_name, character_level, user_id, job_id, department_id) ".
-                     "VALUES('$char_name', '1', '$user_id', '$job', '$department')";
-            $success = $conn->Execute($query);
+    
+        if(isset($_REQUEST['char_satisfaction'])) {
+            $char_satisfaction = safetify_input($_REQUEST['char_satisfaction']);
+        } else {
+            $error = "You must roll for satisfaction.";
+        }
+    
+        if(isset($_REQUEST['char_brown_nosing'])) {
+            $char_brown_nosing = safetify_input($_REQUEST['char_brown_nosing']);
+        } else {
+            $error = "You must roll for brown nosing.";
+        }
+    
+        if(isset($_REQUEST['char_loyalty'])) {
+            $char_loyalty = safetify_input($_REQUEST['char_loyalty']);
+        } else {
+            $error = "You must roll for loyalty.";
+        }
+
+        if(isset($_REQUEST['char_competence'])) {
+            $char_competence = safetify_input($_REQUEST['char_competence']);
+        } else {
+            $error = "You must roll for competence.";
+        }
+
+        $valid_roll = validate_roll($char_satisfaction, $char_brown_nosing, 
+                                    $char_competence, $char_loyalty, $user_id);
+
+        if(!$valid_roll) {
+            $error = "Your roll appears falsified.";
+        }
+
+        if(!$error) {
+            $query = "INSERT INTO characters(character_name, user_id, job_id, department_id, ".
+                     "character_satisfaction, character_loyalty, character_competence, character_brown_nosing) ".
+                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            $success = $conn->Execute($query, array($char_name, $user_id, $char_job, $char_department, 
+                                                    $char_satisfaction, $char_loyalty, $char_competence, $char_brown_nosing));
             if($success && $conn->Affected_Rows() == 1) {
+
                 //make sure we select the new char_id so it starts playing!
                 $char_id = $conn->Insert_ID();
+
                 //Set up the newbie quests
                 $set_up = initialize_quests($char_id);
                 if($set_up) {
                     //aka set location to be play.php?char_id....
                     header("Location: play.php?char_id=$char_id");
-                } else {
-                    render_footer();
-                    die();
-                }
+                } 
             } else {
                 echo $conn->ErrorMsg();
             }
@@ -298,23 +352,25 @@
         echo "<br />\n";
 
         //Deal with stats
-        $roll = roll($user_id);
-        $satis = $roll['roll_satis'];
-        $brown = $roll['roll_brown'];
-        $loyal = $roll['roll_loyal'];
-        $comp = $roll['roll_comp'];
+        if(!$char_satisfaction) {
+            $roll = roll($user_id);
+            $char_satisfaction = $roll['roll_satis'];
+            $char_brown_nosing = $roll['roll_brown'];
+            $char_loyalty = $roll['roll_loyal'];
+            $char_competence = $roll['roll_comp'];
+        }
 
         echo "<label class='fixed_width'>Job Satisfaction: </label>\n";
-        echo "<input type='text' id='creation_satis' value='$satis' readonly='true' />\n";
+        echo "<input type='text' name='char_satisfaction' id='char_satisfaction' value='$char_satisfaction' readonly='true' />\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Brown Nosing: </label>\n";
-        echo "<input type='text' id='creation_brown' value='$brown' readonly='true' />\n";
+        echo "<input type='text' name='char_brown_nosing' id='char_brown_nosing' value='$char_brown_nosing' readonly='true' />\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Competence: </label>\n";
-        echo "<input type='text' id='creation_comp' value='$comp' readonly='true' />\n";
+        echo "<input type='text' name='char_competence' id='char_competence' value='$char_competence' readonly='true' />\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Loyalty: </label>\n";
-        echo "<input type='text' id='creation_loyal' value='$loyal' readonly='true' />\n";
+        echo "<input type='text' name='char_loyalty' id='char_loyalty' value='$char_loyalty' readonly='true' />\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Reroll stats: </label>\n";
         //echo "<div onclick='reroll_stats();' id='char_creation_reroll'>Reroll</div>\n";
