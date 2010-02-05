@@ -14,21 +14,22 @@
 
     //We're logged in, lets set up the variables
     $user_id = get_logged_in_userid();
+
+    //Initialized to false so we can tell if they were set correctly by 
+    //a creation attempt later on
     $char_satisfaction = false;
     $char_loyalty = false;
     $char_brown_nosing = false;
     $char_competence = false;
+    $char_job = false;
+    $char_department = false;
+    $char_name = false;
+    $error = false;
 
     ///
     /// Actual character creation code
     ///
     if(isset($_REQUEST['submit'])) {
-
-        //Variables needed by the creation code
-        $error = false;
-        $char_name = false;
-        $job = false;
-        $department = false;
 
         //Clean up  and inspect all our input for input errors
         if(isset($_REQUEST['character_name'])) {
@@ -113,6 +114,9 @@
     }
 
 
+    //
+    // Start displaying the page
+    //
     render_header();
 
     $characters = get_characters($user_id, "character_level DESC");
@@ -317,7 +321,7 @@
             $job_div = "job_$job_id";
             echo "<option value='$job_id' ".
                    "onmouseover='swap_text(\"#descriptions\", \"#$job_div\");' ";
-            if($job && $job == $job_id) {
+            if($char_job && $char_job == $job_id) {
                 echo "selected='true'";
             }
             echo "/>$job_name</option>\n";
@@ -339,7 +343,7 @@
             $department_div = "department_$department_id";
             echo "<option value='$department_id' ".
                    "onmouseover='swap_text(\"#descriptions\", \"#$department_div\");' ";
-            if($department && $department == $department_id) {
+            if($char_department && $char_department == $department_id) {
                 echo "selected='true'";
             }
             echo "/>$department_name</option>\n";
