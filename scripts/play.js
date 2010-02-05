@@ -8,8 +8,7 @@ $(document).ready(function() {
 
     if($('form')) {
         $('#bad_hack_i_hate_javascript').bind('click', function() {
-                                                                      $('form').unbind('submit');
-                                                                      $('form').submit(); 
+                                                                      validate_creation_form(); 
                                                                   });
         $('form').bind('submit', function(e) {
                                                 e.preventDefault();
@@ -18,7 +17,41 @@ $(document).ready(function() {
 });
 
 function validate_creation_form() {
-    //Fill out    
+
+    var char_name = $('#creation_char_name').val();
+    var char_job = $('#creation_char_job').val();
+    var char_dept = $('#creation_char_dept').val();
+    var char_satis = $('#char_satisfaction').val();
+    var char_comp = $('#char_competence').val();
+    var char_brown = $('#char_brown_nosing').val();
+    var char_loyal = $('#char_loyalty').val();
+
+    char_name = $.trim(char_name);
+    char_job = $.trim(char_job);
+    char_dept = $.trim(char_dept);
+    char_satis = $.trim(char_satis);
+    char_comp = $.trim(char_comp);
+    char_brown = $.trim(char_brown);
+    char_loyal = $.trim(char_loyal);
+
+    if(!char_name || char_name == "") {
+        $('#char_creation_error').html("You must fill in a character name.");
+    } else if(!char_job || char_job == "" || char_job == 0) {
+        $('#char_creation_error').html("You must select a character job.");
+    } else if(!char_dept || char_dept == "" || char_dept == 0) {
+        $('#char_creation_error').html("You must select a character dept.");
+    } else if(!char_brown || char_brown == "") {
+        $('#char_creation_error').html("You must roll for brown nosing.");
+    } else if(!char_satis || char_satis == "") {
+        $('#char_creation_error').html("You must roll for satisfaction nosing.");
+    } else if(!char_loyal || char_loyal == "") {
+        $('#char_creation_error').html("You must roll for loyalty.");
+    } else if(!char_comp || char_comp == "") {
+        $('#char_creation_error').html("You must roll for competence.");
+    } else {
+        $('form').unbind('submit');
+        $('form').submit();
+    }
 }
 
 function finish_task(task_id) {

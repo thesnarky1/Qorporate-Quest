@@ -300,18 +300,20 @@
         echo "<div id='char_creation'>\n";
         echo "<h3>&lt;Company Name&gt; Application</h3>\n";
         echo "<form name='char_creation' method='POST' action='play.php?create_char' class='form' >\n";
+        echo "<span class='error' id='char_creation_error'>";
         if($error != "") {
-            echo "<span class='error'>$error</span><br />\n";
+            echo $error;
         }
+        echo "</span><br />\n";
         echo "<label class='fixed_width'>Applicant Name:</label>\n";
-        echo "<input type='text' name='character_name' ";
+        echo "<input type='text' name='character_name' id='creation_char_name' ";
         if($char_name) {
             echo "value='$char_name'";
         }
         echo "/>\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Applicant Position:</label>\n";
-        echo "<select name='job'>\n";
+        echo "<select name='job' id='creation_char_job'>\n";
         echo "<option value='0'>--Select a Job Position</option>\n";
         $jobs = get_jobs();
         $to_show = "";
@@ -333,7 +335,7 @@
         echo "$to_show";
         echo "<br />\n";
         echo "<label class='fixed_width'>Applicant Department:</label>\n";
-        echo "<select name='department'>\n";
+        echo "<select name='department' id='creation_char_dept'>\n";
         echo "<option value='0'>--Select a Department</option>\n";
         $departments = get_departments();
         $to_show = "";
