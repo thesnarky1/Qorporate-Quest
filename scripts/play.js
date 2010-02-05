@@ -18,7 +18,7 @@ $(document).ready(function() {
 });
 
 function validate_creation_form() {
-    
+    //Fill out    
 }
 
 function finish_task(task_id) {
@@ -75,16 +75,16 @@ function display_data(data) {
             $('#max_exp').html(data.max_exp);
         }
         if(data.roll_loyal) {
-            $('#creation_loyal').val(data.roll_loyal);
+            $('#char_loyalty').val(data.roll_loyal);
         }
         if(data.roll_satis) {
-            $('#creation_satis').val(data.roll_satis);
+            $('#char_satisfaction').val(data.roll_satis);
         }
         if(data.roll_brown) {
-            $('#creation_brown').val(data.roll_brown);
+            $('#char_brown_nosing').val(data.roll_brown);
         }
         if(data.roll_comp) {
-            $('#creation_comp').val(data.roll_comp);
+            $('#char_competence').val(data.roll_comp);
         }
     }
     my_timeout = window.setTimeout(function() {
