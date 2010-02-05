@@ -4,6 +4,10 @@
 
     render_header();
 
+
+    //
+    // Sidebar
+    //
     echo "<div id='sidebar'>\n";
     echo "<div id='sidebar_stats'>\n";
     echo "<h3>Statistics</h3>\n";
@@ -40,7 +44,14 @@
         echo "</div> <!-- end sidebar_stats div -->\n";
     }
     echo "</div> <!-- end sidebar div -->\n";
+    //
+    // End sidebar
+    //
 
+
+    //
+    // Start maintext
+    //
     echo "<div id='main_text'>\n";
     echo "<h1>&lt;Company Name&gt;</h1>\n";
     echo "<p>";
