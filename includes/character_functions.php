@@ -189,19 +189,31 @@
     function initialize_quests($char_id) {
         global $conn;
 
-        $query = "SELECT quest_id FROM quests ".
+        $bosses = get_bosses();
+        $query = "SELECT quest_name, quest_flavor FROM quests ".
                  "WHERE quest_group='initial' ".
                  "ORDER BY quest_order";
         $result = $conn->GetAll($query);
         if($result && count($result) > 0) {
+            $to_return = true;
+
             //Insert them
             foreach($result as $quest_row) {
-                $quest_id = $quest_row['quest_id'];
-                $query = "INSERT INTO adventures(character_id, quest_id, adventure_experience) ".
-                         "VALUES($char_id, $quest_id, '10')";
-                $conn->Execute($query);
+                $quest_name = $quest_row['quest_name'];
+                $quest_flavor = $quest_row['quest_flavor'];
+                $boss = get_random_element($bosses);
+                $boss_id = $boss['boss_id'];
+                $boss_experience = $boss['boss_experience'];
+
+                $task_experience = 10 + $boss_experience;
+                $query = "INSERT INTO tasks(task_name, task_flavor, task_experience, boss_id, character_id) ".
+                         "VALUES(?, ?, ?, ?, ?)";
+                $result = $conn->Execute($query, array($quest_name, $quest_flavor, $task_experience, $boss_id, $char_id));
+                if(!$result || $result->RowCount() != 1) {
+                    $to_return = false; //On error we don't want to return true
+                }
             }
-            return true;
+            return $to_return;
         } else {
             return false;
         }
