@@ -111,7 +111,7 @@
 //                    "Last Competent Manager",
 //                    "Burninator",
 //                    "Power Suit Soccer Mom");
-    $replacements["(BOSS)"] = $bosses;
+//    $replacements["(BOSS)"] = $bosses;
 
     $quest_supertypes = array(
                           array("Fetch the (OFFICE)",
@@ -277,6 +277,8 @@
         $my_replacements = array();
         $to_return = array();
 
+        $replacements["(BOSS)"] = array($boss_string);
+
         foreach($str_arr as $str) {
             foreach($replacements as $var=>$arr) {
                 if(strpos($str, $var) !== false) {
@@ -299,62 +301,4 @@
         return $to_return;
     }
 
-    //
-    //
-    //
-    //  DEPRECATED
-    //
-    //
-    //
-    //
-
-
-//    function generate_all_quests() {
-//        global $quest_supertypes, $replacements;
-//        $quests = array();
-//        foreach($quest_supertypes as $quest_supertype) {
-//            $variable = $quest_supertype[2];
-//            $var_arr = $replacements[$variable];
-//            foreach($var_arr as $var) {
-//                //Now we have an iterator for getting each item to replace.
-//                $quest_name = str_replace($variable, $var, $quest_supertype[0]);
-//                $quest_flavor = str_replace($variable, $var, $quest_supertype[1]);
-//                $quests[] = array($quest_name, $quest_flavor);
-//            }
-//        }
-//        return $quests;
-//    }
-//
-//
-//    //Function generates a random quest based on our supertypes
-//    function generate_quest() {
-//        global $quest_supertypes; 
-//
-//        $quest = get_random_element($quest_supertypes);
-//        $quest_name = $quest[0];
-//        $quest_flavor = $quest[1];
-//        $finished_quest = replace_variables(array($quest_name, $quest_flavor));
-//        echo "$finished_quest[0]\n$finished_quest[1]\n";
-//    }
-//
-//    function generate_quest_for_character($char_id) {
-//        global $conn;
-//
-//        $query = "SELECT quest_id ".
-//                 "FROM quests ORDER BY RAND()";
-//        $result = $conn->GetOne($query);
-//        if($result) {
-//            $query = "INSERT INTO adventures(adventure_experience, quest_id, character_id) ".
-//                     "VALUES('10', $result, $char_id)";
-//            $conn->Execute($query);
-//        }
-//    }
-//
-//    function generate_quests_for_character($char_id, $num) {
-//        while($num > 0) {
-//            generate_quest_for_character($char_id);
-//            $num--;
-//        }
-//    }
-//
-//?>
+?>
