@@ -1,8 +1,7 @@
 function swap_text(final_div, initial_div) {
     var content = $(initial_div).html();
-    final_div = final_div + " > p";
-    $(final_div).html(content);
-    $(final_div).css("display", "block");
+    var final_div_inner = final_div + " > p";
+    $(final_div_inner).html(content);
 }
 
 //Clears the text and hides the given div
