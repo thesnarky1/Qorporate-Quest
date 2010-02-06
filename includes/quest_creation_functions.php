@@ -103,14 +103,14 @@
                    "hard core nerd rap");
     $replacements["(MUSIC)"] = $music;
 
-    $bosses = array("Pointy Haired Boss",
-                    "CEO's Cousin",
-                    "Megalomaniac",
-                    "Tyrannical Millionaire",
-                    "Supervisor From Hell",
-                    "Last Competent Manager",
-                    "Burninator",
-                    "Power Suit Soccer Mom");
+//    $bosses = array("Pointy Haired Boss",
+//                    "CEO's Cousin",
+//                    "Megalomaniac",
+//                    "Tyrannical Millionaire",
+//                    "Supervisor From Hell",
+//                    "Last Competent Manager",
+//                    "Burninator",
+//                    "Power Suit Soccer Mom");
     $replacements["(BOSS)"] = $bosses;
 
     $quest_supertypes = array(
@@ -134,6 +134,9 @@
                                 "(FOOD)"),
                           array("Compile the (REPORT)",
                                 "Only danger you'll face here is death from boredom... and I thought cruel and unusual punishment was illegal.",
+                                "(REPORT)"),
+                          array("Copy the (REPORT)",
+                                "Nothing is more demeaning than standing at a copier all day Xeroxing your boss's party fliers other than the fact that you know you won't be invited. Oh, and I suppose the whole 'asking you to come in on Saturday to copy the (REPORT) and having it turn out to be party fliers' thing...",
                                 "(REPORT)"),
                           array("Collate the (REPORT)",
                                 "Do paper cuts count for workman's comp? No? Well its going to be a very long week then.",
@@ -165,6 +168,12 @@
                           array("Kick the (COMPUTER)",
                                 "Once again someone has to venture into the artic habitat of a data center, pushing through the penguins and polar bears to get to the (COMPUTER) that needs rebooting. Of course it being the summer all you have is shorts and a dress shirt so you better go quick or they'll find you in 500 years and thaw you for a museum somewhere.",
                                 "(COMPUTER)"),
+                          array("Steal the (COMPUTER)",
+                                "Word on the street is that the evil 'fruit' company left a very valuable (COMPUTER) sitting around thta may have their new chip architecture on it. Of course, it might also only have Doom 95, but the bossman felt you should add 'Breaking and Entering' onto your resume and under job experience put '7-10'",
+                                "(COMPUTER)"),
+                          array("Work on Saturday",
+                                "Someone needs to come in on Saturday to make sure the (REPORT) is, well, I don't know why exactly as no one else will be in. But either way, someone must be in or life will end. And that someone is you. Congrats.",
+                                "(REPORT)"),
                           array("Suck up to the (BOSS)",
                                 "Of course back in your ivy league education you swore you'd never stoop to pure flattery to get ahead. You felt it'd be a combination of your charm, your skill, and of course your career drive that would yield great benefits. Sadly, once again, you were mistaken and the (BOSS) is again proving that to you. Better play nice or you'll be back in the mail room in no time.",
                                 "(BOSS)")
