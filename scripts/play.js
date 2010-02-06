@@ -139,7 +139,7 @@ function fetch_tasks() {
 }
 
 function toggle_my_p(div) {
-    div = $(div).parent().children("p");
+    div = $(div).parent().children("#char_quest_single_body");
     var curr_display = div.css("display");
     if(curr_display == "block") {
         //hide it
