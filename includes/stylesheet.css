@@ -175,9 +175,11 @@ a:hover {
 }
 
 #descriptions {
+    margin-top: .25em;
     width: 30em;
     border: 1px solid #bbb;
-    height: 6em;
+    height: 10em;
+    overflow: auto;
 }
 
 #descriptions h3 {

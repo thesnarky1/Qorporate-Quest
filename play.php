@@ -288,13 +288,6 @@
         echo "<h3>Character Creation</h3>\n";
 
 
-        //Our help field for the descriptions
-        echo "<div id='descriptions'>\n";
-        echo "<h3>Job/Department Description</h3>\n";
-        echo "<p>\n";
-        echo "Need to know more about a life endi^H^H^H^H changing position with us? Look no further!";
-        echo "</p>\n";
-        echo "</div> <!-- end descriptions div -->\n";
 
         //The main application bit
         echo "<div id='char_creation'>\n";
@@ -320,6 +313,7 @@
         foreach($jobs as $job_row) {
             $job_name = $job_row['job_name'];
             $job_id = $job_row['job_id'];
+            $job_flavor = $job_row['job_flavor'];
             $job_div = "job_$job_id";
             echo "<option value='$job_id' ".
                    "onmouseover='swap_text(\"#descriptions\", \"#$job_div\");' ";
@@ -328,7 +322,7 @@
             }
             echo "/>$job_name</option>\n";
             $to_show .= "<div id='$job_div' style='display: none;'>\n";
-            $to_show .= "$job_name is really fun!\n";
+            $to_show .= "$job_flavor\n";
             $to_show .= "</div> <!-- end $job_div div -->\n";
         }
         echo "</select>\n";
@@ -387,6 +381,14 @@
         echo "<input type='submit' name='submit' value='Apply!' id='bad_hack_i_hate_javascript' />\n";
         echo "</form>\n";
         echo "</div> <!-- end char_creation div -->\n";
+
+        //Our help field for the descriptions
+        echo "<div id='descriptions'>\n";
+        echo "<h3>Job/Department Description</h3>\n";
+        echo "<p>\n";
+        echo "Need to know more about a life endi^H^H^H^H changing position with us? Look no further!";
+        echo "</p>\n";
+        echo "</div> <!-- end descriptions div -->\n";
     }
     echo "</div> <!-- end main_text div -->\n";
 
