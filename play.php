@@ -246,6 +246,8 @@
         foreach($departments as $department_row) {
             $department_name = $department_row['department_name'];
             $department_id = $department_row['department_id'];
+            $department_flavor = $department_row['department_flavor'];
+
             $department_div = "department_$department_id";
             echo "<option value='$department_id' ".
                    "onmouseover='swap_text(\"#descriptions\", \"#$department_div\");' ";
@@ -254,7 +256,7 @@
             }
             echo "/>$department_name</option>\n";
             $to_show .= "<div id='$department_div' style='display: none;'>\n";
-            $to_show .= "$department_name is really fun!\n";
+            $to_show .= "$department_flavor\n";
             $to_show .= "</div> <!-- end $department_div div -->\n";
         }
         echo "</select>\n";
