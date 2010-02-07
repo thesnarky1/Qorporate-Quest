@@ -4,6 +4,37 @@ function swap_text(final_div, initial_div) {
     $(final_div_inner).html(content);
 }
 
+function toggle_my_p(div) {
+    div = $(div).parent().children("#char_quest_single_body");
+    var curr_display = div.css("display");
+    if(curr_display == "block") {
+        //hide it
+        div.css("display", "none");
+    } else {
+        //show it
+        div.css("display", "block");
+    }
+}
+
+//Function to swap a boss's information from the hidden fields in the quest to the sidebar
+function swap_boss(link) {
+    
+    var footer_div = $(link).parent().parent().parent();
+    var boss_div = footer_div.children('#char_single_quest_boss');
+    var boss_name = boss_div.children('#boss_name').html();
+    var boss_experience = boss_div.children('#boss_experience').html();
+    var boss_flavor = boss_div.children('#boss_flavor').html();
+
+    var boss_sidebar = $('#sidebar_boss');
+    boss_sidebar.children('#boss_name').html(boss_name);
+    boss_sidebar.children('#boss_experience').html(boss_experience);
+    boss_sidebar.children('#boss_flavor').html(boss_flavor);
+
+    if(boss_sidebar.css('display') == 'none') {
+        boss_sidebar.css('display', 'block');
+    }
+}
+
 //Clears the text and hides the given div
 function clear_text(final_div) {
     $(final_div).css("display", "none");
