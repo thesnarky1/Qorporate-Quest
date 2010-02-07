@@ -248,7 +248,7 @@
             echo "</div> <!-- end char_quest_current_text div -->\n";
             echo "</div> <!-- end char_quest_current div -->\n";
 
-            //Quest area
+            //Task area
             $quest_num = 0;
             if($character_info['quests']) {
                 $quest_num = count($character_info['quests']);
@@ -256,23 +256,8 @@
             echo "<h3>Task List <span id='char_tasks_remaining'>($quest_num left)</span></h3>\n";
             if(isset($character_info['quests'])) {
                 echo "<div id='char_quests_div'>\n";
-                foreach($character_info['quests'] as $task_row) {
-                    //Set up vars
-                    $task_name = $task_row['task_name'];
-                    $task_flavor = $task_row['task_flavor'];
-                    $task_experience = $task_row['task_experience'];
-                    $task_id = $task_row['task_id'];
-
-                    //Display
-                    echo "<div id='char_quest_single'>\n";
-                    echo "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
-                    echo "<h3>$task_name</h3>\n";
-                    echo "<span>Experience: $task_experience</span>\n";
-                    echo "<div id='char_quest_single_id'>$task_id</div>\n";
-                    echo "</div> <!-- end char_quest_single_head -->\n";
-                    echo "<p>$task_flavor</p>\n";
-                    echo "</div> <!-- end char_quest_single -->\n";
-                }
+                //Handy function spits out the HTML for us
+                render_character_tasks($character_info['quests']);
             } else {
                 echo "<p class='error>No tasks assigned for the future, please refresh the page.</p>\n";
             }
