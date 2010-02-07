@@ -50,13 +50,30 @@
                 //successful
                 login_user($user_name, $user_pass);
                 if(is_logged_in()) {
-                    //We're REALLY successful
+                    //We're REALLY successful, send to create a character
+                    header("Location: play.php?create_char");
                 } else {
-                    $error = "Unknown error, try again.";
+                    $error = "Unknown error logging in.";
                 }
-            } else {
-                //Todo: add better logic here to see WHY it failed
-                $error = "Error registering";
+            } else { //Registration failed, lets test why
+
+                //Check if email is already registered
+                $query = "SELECT user_email FROM users WHERE user_email LIKE ? LIMIT 1";
+                $result = $conn->Execute($query, array($user_email));
+                if($result && $result->RowCount() == 1) {
+                    $error = "Email already registered.";
+                }
+
+                //Check if user_name is already registered
+                $query = "SELECT user_name FROM users WHERE user_name LIKE ? LIMIT 1";
+                $result = $conn->Execute($query, array($user_name));
+                if($result && $result->RowCount() == 1) {
+                    $error = "Username already registered.";
+                }
+
+                if(!$error || $error == "") {
+                    $error = "Unknown error registering";
+                }
             }
         }
     }
