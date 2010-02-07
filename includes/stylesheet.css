@@ -75,7 +75,6 @@ a:hover {
     border: 1px solid #000;
     padding: 1em;
     margin-left: 1em;
-    margin-right: 1em;
     width: 40em;
     overflow: hidden;
     background: #ddd;
@@ -345,6 +344,7 @@ a:hover {
     border-collapse: collapse;
     border: 1px solid #333;
     background-color: #ddd;
+    width: 40em;
 }
 
 #user_chars td {
