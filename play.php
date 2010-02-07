@@ -125,6 +125,7 @@
     //Draw the sidebar, this will consist of a list of their characters to quickly switch
     //
     echo "<div id='sidebar'>\n";
+    echo "<div id='sidebar_stats'>\n";
     echo "<h3>Your Characters</h3>\n";
     if(!$characters) {
         echo "You have no characters yet.";
@@ -140,7 +141,19 @@
         echo "<li><a href='play.php?create_char'>Create new character</a></li>\n";
         echo "</ul>\n";
     }
-    echo "</div> <!-- end sidebar div -->\n";
+    echo "</div> <!-- end sidebar_stats div -->\n";
+    echo "<div id='sidebar_boss'>\n";
+    echo "<h3>Boss Facts</h3>\n";
+    //echo "<span>Name:</span>\n";
+    echo "<span id='boss_name'></span>\n";
+    echo "<br />\n";
+    echo "<br />\n";
+    echo "<span>Experience Bonus:</span>\n";
+    echo "<span id='boss_experience'></span>\n";
+    echo "<br />\n";
+    echo "<p id='boss_flavor'></p>\n";
+    echo "</div> <!-- end sidebar_boss div -->\n";
+    echo "</div><!-- end sidebar div -->\n";
     //
     // End sidebar
     //
