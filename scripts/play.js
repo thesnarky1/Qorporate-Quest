@@ -153,12 +153,13 @@ function toggle_my_p(div) {
 function do_task(div) {
     var current_quest = $("#char_quest_current_text");
     current_quest.html(div.html());
-    var task_id = current_quest.children('div').children('div').html();
+    var task_id = current_quest.children('#char_quest_single_head').children('div').html();
     if(current_quest.parent().css("display") != "block") {
         current_quest.parent().css("display", "block");
     }
+    current_quest.children('#char_quest_single_body').css("display", "block");
     // busted effin code....
-    //current_quest.children('#div').children('#char_quest_single_head').click(function() { return false; });
+    //current_quest.children('#char_quest_single_head').unbind('click').bind('click', function(e) { e.preventDefault(); });
     div.remove();
     //Start timer
     window.setTimeout(function() {
