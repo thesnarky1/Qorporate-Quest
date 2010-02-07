@@ -11,6 +11,8 @@
             $task_id = $task_row['task_id'];
             $boss_id = $task_row['boss_id'];
             $boss_name = $task_row['boss_name'];
+            $boss_flavor = $task_row['boss_flavor'];
+            $boss_experience = $task_row['boss_experience'];
 
             //Display
             $to_return .= "<div id='char_quest_single'>\n";
@@ -22,8 +24,13 @@
             $to_return .= "<div id='char_quest_single_body'>\n";
             $to_return .= "<p>";
             $to_return .= "$task_flavor\n";
-            $to_return .= "<span class='footer'>Request by: <a href='bosses.php?boss_id=$boss_id'>$boss_name</a></span>\n";
+            $to_return .= "<span class='footer'>Requested by: <a href='#' onclick='swap_boss(this);'>$boss_name</a></span>\n";
             $to_return .= "</p>\n";
+            $to_return .= "<div id='char_single_quest_boss' style='display: none;'>\n";
+            $to_return .= "<span id='boss_name'>$boss_name</span>\n";
+            $to_return .= "<span id='boss_experience'>$boss_experience</span>\n";
+            $to_return .= "<span id='boss_flavor'>$boss_flavor</span>\n";
+            $to_return .= "</div> <!-- end boss_div -->\n";
             $to_return .= "</div> <!-- end char_quest_single_body -->\n";
             $to_return .= "</div> <!-- end char_quest_single -->\n";
         }
@@ -175,7 +182,8 @@
         $args = array($char_id);
         $query = "SELECT tasks.task_experience, tasks.task_id, ".
                  "tasks.task_name, tasks.task_flavor, ".
-                 "bosses.boss_name, bosses.boss_id ".
+                 "bosses.boss_name, bosses.boss_id, ".
+                 "bosses.boss_flavor, bosses.boss_experience ".
                  "FROM tasks, bosses ".
                  "WHERE tasks.character_id=? AND ";
         if($ignore) {
