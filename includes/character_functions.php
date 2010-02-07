@@ -190,7 +190,7 @@
            $query .= "tasks.task_id != ? AND ";
            $args[] = $ignore;
         }
-        $query .= "bosses.boss_id=tasks.boss_id ";
+        $query .= "bosses.boss_id=tasks.boss_id ORDER BY tasks.task_id ";
         if($limit) {
             $query .= "LIMIT ?";
             $args[] = $limit;
