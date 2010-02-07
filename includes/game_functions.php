@@ -9,7 +9,12 @@
     function get_characters($user_id, $ordering='character_name') {
         global $conn;
 
-        $query = "SELECT * FROM characters WHERE user_id=? ".
+        $query = "SELECT characters.character_name, characters.character_level, ".
+                 "characters.character_id, jobs.job_name, jobs.job_id, ".
+                 "departments.department_name, departments.department_id ".
+                 "FROM characters, jobs, departments WHERE characters.user_id=? AND ".
+                 "jobs.job_id=characters.job_id AND ".
+                 "departments.department_id=characters.department_id ".
                  "ORDER BY $ordering";
         $characters = $conn->GetAll($query, array($user_id));
         return $characters;
