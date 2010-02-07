@@ -196,7 +196,7 @@
         $rand_quest = get_random_element($quest_supertypes);
         $boss_name = $boss['boss_name'];
         $boss_id = $boss['boss_id'];
-        $boss_string = "<a href='bosses.php?boss_id=$boss_id'>$boss_name</a>";
+        $boss_string = "$boss_name";
         $boss_exp = $boss['boss_experience'];
     
         //Go through and replace all our variables.
