@@ -42,8 +42,8 @@
         //Check if this is a valid login
         if($error == false) {
             //register them
-            $query = "INSERT INTO users(user_name, user_pass, user_hash, user_email) ".
-                     "VALUES(?, MD5(?), ?, ?)";
+            $query = "INSERT INTO users(user_name, user_pass, user_hash, user_email, user_join_date) ".
+                     "VALUES(?, MD5(?), ?, ?, NOW())";
             $result = $conn->Execute($query, array($user_name, $user_pass, $user_hash, $user_email));
             $insert_id = $conn->Insert_ID();
             if($insert_id) {
