@@ -144,7 +144,6 @@
     echo "</div> <!-- end sidebar_stats div -->\n";
     echo "<div id='sidebar_boss'>\n";
     echo "<h3>Boss Facts</h3>\n";
-    //echo "<span>Name:</span>\n";
     echo "<span id='boss_name'></span>\n";
     echo "<br />\n";
     echo "<br />\n";
