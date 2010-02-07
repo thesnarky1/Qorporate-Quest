@@ -336,3 +336,8 @@ a:hover {
     color: white;
     background-color: #999;
 }
+
+#sidebar_boss {
+    display: none;
+    overflow: auto;
+}
