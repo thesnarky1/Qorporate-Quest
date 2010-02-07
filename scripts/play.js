@@ -16,6 +16,26 @@ $(document).ready(function() {
     }
 });
 
+//Function to swap a boss's information from the hidden fields in the quest to the sidebar
+function swap_boss(link) {
+    
+    var footer_div = $(link).parent().parent().parent();
+    var boss_div = footer_div.children('#char_single_quest_boss');
+    var boss_name = boss_div.children('#boss_name').html();
+    var boss_experience = boss_div.children('#boss_experience').html();
+    var boss_flavor = boss_div.children('#boss_flavor').html();
+
+    var boss_sidebar = $('#sidebar_boss');
+    boss_sidebar.children('#boss_name').html(boss_name);
+    boss_sidebar.children('#boss_experience').html(boss_experience);
+    boss_sidebar.children('#boss_flavor').html(boss_flavor);
+
+    if(boss_sidebar.css('display') == 'none') {
+        boss_sidebar.css('display', 'block');
+    }
+}
+
+//Function to make sure our character creation form is valid
 function validate_creation_form() {
 
     var char_name = $('#creation_char_name').val();
