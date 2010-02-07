@@ -20,8 +20,10 @@
             $to_return .= "<div id='char_quest_single_id'>$task_id</div>\n";
             $to_return .= "</div> <!-- end char_quest_single_head -->\n";
             $to_return .= "<div id='char_quest_single_body'>\n";
-            $to_return .= "<p>$task_flavor</p>\n";
-            $to_return .= "<span class='footer'>$boss_name</span>\n";
+            $to_return .= "<p>";
+            $to_return .= "$task_flavor\n";
+            $to_return .= "<span class='footer'>Request by: <a href='bosses.php?boss_id=$boss_id'>$boss_name</a></span>\n";
+            $to_return .= "</p>\n";
             $to_return .= "</div> <!-- end char_quest_single_body -->\n";
             $to_return .= "</div> <!-- end char_quest_single -->\n";
         }

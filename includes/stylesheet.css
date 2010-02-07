@@ -109,9 +109,16 @@ a:hover {
     margin-bottom: .25em;
 }
 
-#char_quest_single p {
+#char_quest_single_body {
     clear: both;
     display: none;
+}
+
+#char_quest_single_body .footer {
+    clear: both; 
+    width: 100%;
+    float: right;
+    text-align: right;
 }
 
 #char_quest_single_head {
