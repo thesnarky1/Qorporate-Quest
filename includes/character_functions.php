@@ -1,5 +1,32 @@
 <?php
 
+    //Function takes in a list of tasks and spits out the appropriate HTML
+    function render_character_tasks($tasks) {
+        foreach($tasks as $task_row) {
+            //Set up vars
+            $task_name = $task_row['task_name'];
+            $task_flavor = $task_row['task_flavor'];
+            $task_experience = $task_row['task_experience'];
+            $task_id = $task_row['task_id'];
+            $boss_id = $task_row['boss_id'];
+            $boss_name = $task_row['boss_name'];
+
+            //Display
+            echo "<div id='char_quest_single'>\n";
+            echo "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
+            echo "<h3>$task_name</h3>\n";
+            echo "<span>Experience: $task_experience</span>\n";
+            echo "<div id='char_quest_single_id'>$task_id</div>\n";
+            echo "</div> <!-- end char_quest_single_head -->\n";
+            echo "<div id='char_quest_single_body'>\n";
+            echo "<p>$task_flavor</p>\n";
+            echo "<span class='footer'>$boss_name</span>\n";
+            echo "</div> <!-- end char_quest_single_body -->\n";
+            echo "</div> <!-- end char_quest_single -->\n";
+        }
+    }
+
+
     //Function to validate a given roll was made by a user
     //expects an indexed array with char_satisfaction, 
     //char_loyalty, char_brown_nosing, and char_competence
