@@ -40,12 +40,16 @@
     if(isset($_REQUEST['user_id'])) {
         $user_id = $_REQUEST['user_id'];
 
-        $query = "SELECT user_name, user_join_date ".
+        $query = "SELECT user_name, UNIX_TIMESTAMP(user_join_date) as user_join_date ".
                  "FROM users WHERE user_id=?";
         $user = $conn->GetRow($query, array($user_id));
         if($user) {
             $user_name = $user['user_name'];
-            $user_join_date = $user['user_join_date'];
+            $user_timestamp = $user['user_join_date'];
+            $user_day = date("jS", $user_timestamp);
+            $user_month = date("F", $user_timestamp);
+            $user_year = date("Y", $user_timestamp);
+            $user_join_date = "The $user_day day of $user_month, in the year of our daily grind, $user_year";
             echo "<div id='main_text'>\n";
             echo "<h2>$user_name</h2>\n";
             echo "<span>Member since: $user_join_date</span>\n";
@@ -54,7 +58,7 @@
 
             //User character table
 
-            $characters = get_characters($user_id);
+            $characters = get_characters($user_id, "characters.character_level DESC");
             if($characters && count($characters) > 0) {
                 echo "<div id='user_chars'>\n";
                 echo "<span>Characters:</span>\n";
