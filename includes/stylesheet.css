@@ -112,6 +112,7 @@ a:hover {
 #char_quest_single_body {
     clear: both;
     display: none;
+    padding: .25em;
 }
 
 #char_quest_single_body .footer {
