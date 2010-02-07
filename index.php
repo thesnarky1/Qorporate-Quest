@@ -12,7 +12,7 @@
     echo "<div id='sidebar_stats'>\n";
     echo "<h3>Statistics</h3>\n";
     echo "<ul>\n";
-    echo "<li>Users: 1</li>\n";
+    echo "<li>Users: Finite</li>\n";
     echo "<li>Butt kicking: Infinite</li>\n";
     echo "</ul>\n";
     echo "</div> <!-- end sidebar_stats div -->\n";
