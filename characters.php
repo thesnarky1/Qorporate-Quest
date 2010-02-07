@@ -18,13 +18,14 @@
                  "departments.department_id=characters.department_id";
         $character_row = $conn->GetRow($query, array($char_id));
         if($character_row) {
-            $char_name = $character_row['character_name'];
-            $department_name = $character_row['department_name'];
-            $department_id = $character_row['department_id'];
-            $job_name = $character_row['job_name'];
-            $job_id = $character_row['job_id'];
-            echo "<h3>$char_name</h3>\n";
-            echo "<p>$char_name is a <a href='characters.php?job_id=$job_id'>$job_name</a> in the <a href='characters.php?department_id=$department_id'>$department_name</a> department.</p>\n";
+            render_character_sheet($char_id);
+//            $char_name = $character_row['character_name'];
+//            $department_name = $character_row['department_name'];
+//            $department_id = $character_row['department_id'];
+//            $job_name = $character_row['job_name'];
+//            $job_id = $character_row['job_id'];
+//            echo "<h3>$char_name</h3>\n";
+//            echo "<p>$char_name is a <a href='characters.php?job_id=$job_id'>$job_name</a> in the <a href='characters.php?department_id=$department_id'>$department_name</a> department.</p>\n";
         }
     } else {
         //Dsplay character picking stuffs

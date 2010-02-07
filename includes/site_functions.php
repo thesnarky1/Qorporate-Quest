@@ -5,6 +5,109 @@
       Includes any functions or variables needed to actually display the site
     */
 
+    //Function to render the entire play sheet for a given character
+    function render_character_sheet($char_id) {
+        global $LEVEL_UP_RATIO;
+        $character_info = get_character_info($char_id, 20);
+
+        //This user owns this character, lets play
+        echo "<h3></h3>\n";
+        echo "<div id='char_id_hidden' style='display:none;'>$char_id</div>\n";
+        echo "<div id='char_play_div'>\n";
+
+        echo "<div id='char_sheet_upper'>\n";
+
+        //Biographical area
+        echo "<div id='char_bio_info'>\n";
+        echo "<h3>Employee Personal Information</h3>\n";
+
+        //Char name
+        echo "<div id='char_bio_name'>\n";
+        echo "<div class='char_bio_info_fixed'>Name: </div>";
+        echo "<div>".$character_info['bio']['character_name']."</div>\n";
+        echo "</div> <!-- end char_bio_name div -->\n";
+
+        //Char job/Level
+        echo "<div id='char_bio_job'>\n";
+        echo "<div class='char_bio_info_fixed'>Job: </div>";
+        echo "<span>Level <span id='char_level'>".$character_info['bio']['character_level']."</span> ".
+             $character_info['bio']['job_name']."</span>\n";
+        echo "</div> <!-- end char_bio_job div -->\n";
+
+        //Char department
+        echo "<div id='char_bio_department'>\n";
+        echo "<div class='char_bio_info_fixed'>Dept: </div>";
+        echo "<span>".$character_info['bio']['department_name']."</span>\n";
+        echo "</div> <!-- end char_bio_department div -->\n";
+
+        //Char department
+        $max_exp = $character_info['bio']['character_level'] * $LEVEL_UP_RATIO;
+        echo "<div id='char_bio_exp'>\n";
+        echo "<div class='char_bio_info_fixed'>Exp: </div>";
+        echo "<span id='current_exp'>".$character_info['bio']['character_exp']."</span> of ";
+        echo "<span id='max_exp'>$max_exp</span>\n";
+        echo "</div> <!-- end char_bio_exp div -->\n";
+
+        echo "</div> <!-- end char_bio_info div -->\n";
+   
+        //Stats div
+        echo "<div id='char_stats_info'>\n";
+        echo "<h3>Employee Stats</h3>\n";
+
+        //Job Satisfaction
+        echo "<div id='char_stats_stat'>\n";
+        echo "<div class='char_stats_fixed'>Job Satisfaction: </div>";
+        echo "<div>".$character_info['bio']['character_satisfaction']."</div>\n";
+        echo "</div> <!-- end char_stats_stat div -->\n";
+
+        //Loyalty
+        echo "<div id='char_stats_stat'>\n";
+        echo "<div class='char_stats_fixed'>Loyalty: </div>";
+        echo "<div>".$character_info['bio']['character_loyalty']."</div>\n";
+        echo "</div> <!-- end char_stats_stat div -->\n";
+
+        //Competence
+        echo "<div id='char_stats_stat'>\n";
+        echo "<div class='char_stats_fixed'>Competence: </div>";
+        echo "<div>".$character_info['bio']['character_competence']."</div>\n";
+        echo "</div> <!-- end char_stats_stat div -->\n";
+
+        //Brown Nosing
+        echo "<div id='char_stats_stat'>\n";
+        echo "<div class='char_stats_fixed'>Brown Nosing: </div>";
+        echo "<div>".$character_info['bio']['character_brown_nosing']."</div>\n";
+        echo "</div> <!-- end char_stats_stat div -->\n";
+
+
+        echo "</div> <!-- end char_stats_info div -->\n";
+        echo "</div> <!-- end char_sheet_upper div -->\n";
+
+        echo "<div id='char_messages' style='display: none;'></div>\n";
+        //Current task area
+        echo "<div id='char_quest_current'>\n";
+        echo "<h3>Current task: <span id='progress'></span></h3>\n";
+        echo "<div id='char_quest_current_text'>\n";
+        echo "</div> <!-- end char_quest_current_text div -->\n";
+        echo "</div> <!-- end char_quest_current div -->\n";
+
+        //Task area
+        $quest_num = 0;
+        if($character_info['quests']) {
+            $quest_num = count($character_info['quests']);
+        }
+        echo "<h3>Task List <span id='char_tasks_remaining'>($quest_num left)</span></h3>\n";
+        if(isset($character_info['quests'])) {
+            echo "<div id='char_quests_div'>\n";
+            //Handy function spits out the HTML for us
+            render_character_tasks($character_info['quests']);
+        } else {
+            echo "<p class='error>No tasks assigned for the future, please refresh the page.</p>\n";
+        }
+        echo "</div> <!-- end char_quests_div -->\n";
+        echo "</div> <!-- end char_play_div -->\n";
+    }
+
+
     //Renders everything in the footer
     function render_footer() {
         echo "</div> <!-- end content div -->\n";
