@@ -16,19 +16,20 @@
     echo "<li>0 * 0 = 42</li>\n";
     echo "</ul>\n";
     echo "</div> <!-- end sidebar_stats div -->\n";
-    $query = "SELECT user_name, user_id FROM users ".
-             "ORDER BY user_join_date DESC LIMIT 5";
+    $query = "SELECT user_name, user_id, UNIX_TIMESTAMP(user_join_date) as user_join_date ".
+             "FROM users ORDER BY user_join_date DESC LIMIT 5";
     $newest_users = $conn->GetAll($query);
     if($newest_users) {
         echo "<div id='sidebar_stats'>\n";
         echo "<h3>Newest Users</h3>\n";
-        echo "<ul>\n";
+        //echo "<ul>\n";
         foreach($newest_users as $user_row) {
             $user_name = $user_row['user_name'];
             $user_id = $user_row['user_id'];
-            echo "<li><a href='users.php?user_id=$user_id'>$user_name</a></li>\n";
+            $user_join_date = date("n/j/y", $user_row['user_join_date']);
+            echo "<div><a href='users.php?user_id=$user_id'>$user_name</a> ($user_join_date)</div>\n";
         }
-        echo "</ul>\n";
+        //echo "</ul>\n";
         echo "</div> <!-- end sidebar_stats div -->\n";
     }
     echo "</div> <!-- end sidebar div -->\n";
@@ -93,6 +94,35 @@
         }
     } else {
         //Show some form of search menu for users
+        $query = "SELECT * FROM users ORDER BY user_name";
+        $users = $conn->GetAll($query);
+        $user_num = count($users);
+        echo "<h3>$user_num total users!</h3>\n";
+        echo "<table id='user_table'>\n";
+        $row_num = 1;
+        $cell_num = 4;
+        foreach($users as $user) {
+            $user_name = $user['user_name'];
+            $user_id = $user['user_id'];
+
+            if($cell_num == 4) {
+                $cell_num = 0;
+                $row_num++;
+                echo "<tr>\n";
+            }
+
+            echo "<td id='user_table_td'><a href='users.php?user_id=$user_id'>$user_name</a></td>\n";
+
+            if($cell_num == 4) {
+                echo "</tr>\n";
+            } else {
+                $cell_num++;
+            }
+        }
+        if($cell_num != 4) {
+            echo "</tr>\n";
+        }
+        echo "</table>\n";
     }
 
     render_footer();

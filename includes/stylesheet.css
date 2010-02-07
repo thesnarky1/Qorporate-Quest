@@ -75,7 +75,7 @@ a:hover {
     border: 1px solid #000;
     padding: 1em;
     margin-left: 1em;
-    maring-right: 1em;
+    margin-right: 1em;
     width: 40em;
     overflow: hidden;
     background: #ddd;
@@ -372,3 +372,13 @@ a:hover {
     background-color: #bbb;
 }
 
+#user_table {
+    width: 40em;
+    border-collapse: collapse;
+    border: 1px solid #333;
+    background-color: #ddd;
+}
+
+#user_table_td {
+    width: 25%;
+}
