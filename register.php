@@ -91,7 +91,7 @@
     } else {
         echo "<h1>Join &lt;Company Name&gt; Today!</h1>\n";
         echo "<p>\n";
-        echo "Flavor text of job vacency.\n";
+        echo "So, you want to join the &lt;Company Name&gt; family, do you? Well, like any good bureaucracy before you can submit an application for a job you'll need to be entered into our overall database. All we need is a name and an email to get started, and of course a password to protect your information.";
         echo "</p>\n";
     
         echo "<div id='login_form'>\n";
