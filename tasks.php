@@ -49,27 +49,8 @@
                     }
 
                     $to_return = "";
-                    $tasks = get_character_tasks($char_id, 20);
-
-                    //Add each task
-                    foreach($tasks as $task) {
-                        //Set up vars
-                        $task_name = $task['task_name'];
-                        $task_flavor = $task['task_flavor'];
-                        $task_experience = $task['task_experience'];
-                        $task_id = $task['task_id'];
-                        if(!$curr_task || $task_id != $curr_task) {
-                            //Display
-                            $to_return .= "<div id='char_quest_single'>\n";
-                            $to_return .= "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
-                            $to_return .= "<h3>$task_name</h3>\n";
-                            $to_return .= "<span>Experience: $task_experience</span>\n";
-                            $to_return .= "<div id='char_quest_single_id'>$task_id</div>\n";
-                            $to_return .= "</div> <!-- end char_quest_single_head -->\n";
-                            $to_return .= "<p>$task_flavor</p>\n";
-                            $to_return .= "</div> <!-- end char_quest_single -->\n";
-                        }
-                    }
+                    $tasks = get_character_tasks($char_id, 20, $curr_task);
+                    $to_return = render_character_tasks($tasks, false);
                     echo json_encode(array("quests" => $to_return));
                 }
             } else {
