@@ -184,7 +184,7 @@
             }
             echo "</div> <!-- end header_character_picker div -->\n";
             echo "<div id='header_username'>\n";
-            echo "<p>Welcome <a href='users.php?user_id=$user_id'>$user_name</a>!</p>\n";
+            echo "<span>Welcome <a href='users.php?user_id=$user_id'>$user_name</a>!</span>\n";
             echo "</div> <!-- end header_username div -->\n";
 
         } else {

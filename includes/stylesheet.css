@@ -260,6 +260,8 @@ a:hover {
 }
 
 #header_username {
+    text-align: center;
+    margin-top: 2em;
 }
 
 #header_username p {
