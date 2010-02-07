@@ -1,7 +1,8 @@
 <?php
 
     //Function takes in a list of tasks and spits out the appropriate HTML
-    function render_character_tasks($tasks) {
+    function render_character_tasks($tasks, $render=true) {
+        $to_return = "";
         foreach($tasks as $task_row) {
             //Set up vars
             $task_name = $task_row['task_name'];
@@ -12,17 +13,22 @@
             $boss_name = $task_row['boss_name'];
 
             //Display
-            echo "<div id='char_quest_single'>\n";
-            echo "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
-            echo "<h3>$task_name</h3>\n";
-            echo "<span>Experience: $task_experience</span>\n";
-            echo "<div id='char_quest_single_id'>$task_id</div>\n";
-            echo "</div> <!-- end char_quest_single_head -->\n";
-            echo "<div id='char_quest_single_body'>\n";
-            echo "<p>$task_flavor</p>\n";
-            echo "<span class='footer'>$boss_name</span>\n";
-            echo "</div> <!-- end char_quest_single_body -->\n";
-            echo "</div> <!-- end char_quest_single -->\n";
+            $to_return .= "<div id='char_quest_single'>\n";
+            $to_return .= "<div id='char_quest_single_head' onclick='toggle_my_p(this);'>\n";
+            $to_return .= "<h3>$task_name</h3>\n";
+            $to_return .= "<span>Experience: $task_experience</span>\n";
+            $to_return .= "<div id='char_quest_single_id'>$task_id</div>\n";
+            $to_return .= "</div> <!-- end char_quest_single_head -->\n";
+            $to_return .= "<div id='char_quest_single_body'>\n";
+            $to_return .= "<p>$task_flavor</p>\n";
+            $to_return .= "<span class='footer'>$boss_name</span>\n";
+            $to_return .= "</div> <!-- end char_quest_single_body -->\n";
+            $to_return .= "</div> <!-- end char_quest_single -->\n";
+        }
+        if($render) {
+            echo "$to_return";
+        } else {
+            return $to_return;
         }
     }
 
@@ -160,20 +166,26 @@
     }
 
     //Function to get a character's quests
-    function get_character_tasks($char_id, $limit=false) {
+    function get_character_tasks($char_id, $limit=false, $ignore=false) {
         global $conn;
 
         $to_return = array();
+        $args = array($char_id);
         $query = "SELECT tasks.task_experience, tasks.task_id, ".
                  "tasks.task_name, tasks.task_flavor, ".
                  "bosses.boss_name, bosses.boss_id ".
                  "FROM tasks, bosses ".
-                 "WHERE character_id=? AND ".
-                 "bosses.boss_id=tasks.boss_id ";
-        if($limit) {
-            $query .= "LIMIT $limit";
+                 "WHERE tasks.character_id=? AND ";
+        if($ignore) {
+           $query .= "tasks.task_id != ? AND ";
+           $args[] = $ignore;
         }
-        $result = $conn->Execute($query, array($char_id));
+        $query .= "bosses.boss_id=tasks.boss_id ";
+        if($limit) {
+            $query .= "LIMIT ?";
+            $args[] = $limit;
+        }
+        $result = $conn->Execute($query, $args);
         if($result) {
             //Check if we need more quests
             if($result->RecordCount() < 10 && (!$limit || $limit >= 10)) {
