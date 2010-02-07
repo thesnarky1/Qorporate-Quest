@@ -262,7 +262,7 @@
                     $to_return = false; //On error we don't want to return true
                 }
             }
-            return $to_return;
+            return true;
         } else {
             return false;
         }
