@@ -233,23 +233,33 @@
        
             //Stats div
             echo "<div id='char_stats_info'>\n";
-            echo "<h3>Employee Statistics</h3>\n";
-            echo "<table>\n";
-            echo "<thead>\n";
-            echo "<tr>\n";
-            echo "<td>JS</td>\n";
-            echo "<td>CL</td>\n";
-            echo "<td>CP</td>\n";
-            echo "<td>BN</td>\n";
-            echo "</tr>\n";
-            echo "</thead>\n";
-            echo "<tr>\n";
-            echo "<td id='char_satisfaction'>".$character_info['bio']['character_satisfaction']."</td>\n";
-            echo "<td id='char_loyalty'>".$character_info['bio']['character_loyalty']."</td>\n";
-            echo "<td id='char_competence'>".$character_info['bio']['character_competence']."</td>\n";
-            echo "<td id='char_brown_nosing'>".$character_info['bio']['character_brown_nosing']."</td>\n";
-            echo "</tr>\n";
-            echo "</table>\n";
+            echo "<h3>Employee Stats</h3>\n";
+
+            //Job Satisfaction
+            echo "<div id='char_stats_stat'>\n";
+            echo "<div class='char_stats_fixed'>Job Satisfaction: </div>";
+            echo "<div>".$character_info['bio']['character_satisfaction']."</div>\n";
+            echo "</div> <!-- end char_stats_stat div -->\n";
+
+            //Loyalty
+            echo "<div id='char_stats_stat'>\n";
+            echo "<div class='char_stats_fixed'>Loyalty: </div>";
+            echo "<div>".$character_info['bio']['character_loyalty']."</div>\n";
+            echo "</div> <!-- end char_stats_stat div -->\n";
+
+            //Competence
+            echo "<div id='char_stats_stat'>\n";
+            echo "<div class='char_stats_fixed'>Competence: </div>";
+            echo "<div>".$character_info['bio']['character_competence']."</div>\n";
+            echo "</div> <!-- end char_stats_stat div -->\n";
+
+            //Brown Nosing
+            echo "<div id='char_stats_stat'>\n";
+            echo "<div class='char_stats_fixed'>Brown Nosing: </div>";
+            echo "<div>".$character_info['bio']['character_brown_nosing']."</div>\n";
+            echo "</div> <!-- end char_stats_stat div -->\n";
+
+
             echo "</div> <!-- end char_stats_info div -->\n";
             echo "</div> <!-- end char_sheet_upper div -->\n";
 

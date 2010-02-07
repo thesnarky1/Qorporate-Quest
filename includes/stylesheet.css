@@ -154,7 +154,20 @@ a:hover {
     border: 1px solid #999;
     background-color: #bbb;
     padding: .25em;
+    width: 13em;
+}
+
+#char_stats_info .fixed_width {
+    width: 9em;
+    text-align: right;
+}
+
+#char_stats_info .char_stats_fixed {
     width: 10em;
+    text-align:right;
+    float: left;
+    margin-right: .25em;
+    font-weight: bold;
 }
 
 #char_stats_info h3 {
@@ -164,7 +177,6 @@ a:hover {
     text-align: center;
     padding-left: .25em;
     padding-right: .25em;
-    margin-bottom: 0px;
 }
 
 #char_stats_info table {
