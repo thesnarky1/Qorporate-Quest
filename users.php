@@ -56,14 +56,15 @@
 
             $characters = get_characters($user_id);
             if($characters && count($characters) > 0) {
+                echo "<div id='user_chars'>\n";
                 echo "<span>Characters:</span>\n";
                 echo "<table>\n";
-                echo "<tr>\n";
-                echo "<td>Name</td>\n";
-                echo "<td>Level</td>\n";
-                echo "<td>Job</td>\n";
-                echo "<td>Department</td>\n";
-                echo "</tr>\n";
+                echo "<thead>\n";
+                echo "<td class='td_name'>Name</td>\n";
+                echo "<td class='td_level'>Level</td>\n";
+                echo "<td class='td_job'>Job</td>\n";
+                echo "<td class='td_dept'>Department</td>\n";
+                echo "</thead>\n";
                 foreach($characters as $character) {
                     $char_name = $character['character_name'];
                     $char_id = $character['character_id'];
@@ -78,8 +79,11 @@
                     echo "</tr>\n";
                 }
                 echo "</table>\n";
+                echo "</div> <!-- end user_chars div -->\n";
             } else {
+                echo "<div id='user_chars'>\n";
                 echo "<p>$user_name has no characters yet.</p>\n";
+                echo "</div> <!-- end user_chars div -->\n";
             }
             echo "</div> <!--end main_text div -->\n";
         }

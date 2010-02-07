@@ -179,20 +179,6 @@ a:hover {
     padding-right: .25em;
 }
 
-#char_stats_info table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#char_stats_info td {
-    text-align: center;
-    width: 25%;
-}
-
-#char_stats_info thead {
-    border-bottom: 1px solid #999;
-}
-
 #descriptions {
     margin-top: .25em;
     width: 30em;
@@ -353,3 +339,35 @@ a:hover {
     display: none;
     overflow: auto;
 }
+
+#user_chars table {
+    border-collapse: collapse;
+    border: 1px solid #333;
+    background-color: #ddd;
+}
+
+#user_chars td {
+    text-align: center;
+}
+
+#user_chars .td_name {
+    width: 25%;
+}
+
+#user_chars .td_level {
+    width: 5%;
+}
+
+#user_chars .td_job {
+    width: 35%;
+}
+
+#user_chars .td_dept {
+    width: 35%;
+}
+
+#user_chars thead {
+    border-bottom: 1px solid #999;
+    background-color: #bbb;
+}
+
