@@ -169,7 +169,7 @@
                                 "Once again someone has to venture into the artic habitat of a data center, pushing through the penguins and polar bears to get to the (COMPUTER) that needs rebooting. Of course it being the summer all you have is shorts and a dress shirt so you better go quick or they'll find you in 500 years and thaw you for a museum somewhere.",
                                 "(COMPUTER)"),
                           array("Steal the (COMPUTER)",
-                                "Word on the street is that the evil 'fruit' company left a very valuable (COMPUTER) sitting around thta may have their new chip architecture on it. Of course, it might also only have Doom 95, but the bossman felt you should add 'Breaking and Entering' onto your resume and under job experience put '7-10'",
+                                "Word on the street is that the evil 'fruit' company left a very valuable (COMPUTER) sitting around that may have their new chip architecture on it. Of course, it might also only have Doom 95, but the bossman felt you should add 'Breaking and Entering' onto your resume and under job experience put '7-10'",
                                 "(COMPUTER)"),
                           array("Work on Saturday",
                                 "Someone needs to come in on Saturday to make sure the (REPORT) is, well, I don't know why exactly as no one else will be in. But either way, someone must be in or life will end. And that someone is you. Congrats.",
