@@ -12,117 +12,78 @@
     echo "<div id='sidebar_stats'>\n";
     echo "<h3>Random Fun</h3>\n";
     echo "<ul>\n";
+    echo "<li>1 * 1 = 1</li>\n";
     echo "<li>2 * 2 = 4</li>\n";
+    echo "<li>3 * 3 = 9</li>\n";
+    echo "<li>4 * 4 = 16</li>\n";
     echo "<li>0 * 0 = 42</li>\n";
     echo "</ul>\n";
     echo "</div> <!-- end sidebar_stats div -->\n";
-    $query = "SELECT user_name, user_id, UNIX_TIMESTAMP(user_join_date) as user_join_date ".
-             "FROM users ORDER BY user_join_date DESC LIMIT 5";
-    $newest_users = $conn->GetAll($query);
-    if($newest_users) {
-        echo "<div id='sidebar_stats'>\n";
-        echo "<h3>Newest Users</h3>\n";
-        //echo "<ul>\n";
-        foreach($newest_users as $user_row) {
-            $user_name = $user_row['user_name'];
-            $user_id = $user_row['user_id'];
-            $user_join_date = date("n/j/y", $user_row['user_join_date']);
-            echo "<div><a href='users.php?user_id=$user_id'>$user_name</a> ($user_join_date)</div>\n";
-        }
-        //echo "</ul>\n";
-        echo "</div> <!-- end sidebar_stats div -->\n";
-    }
     echo "</div> <!-- end sidebar div -->\n";
     //
     // End sidebar
     //
 
+    if(!is_logged_in()) {
+        echo "<div id='main_text'>\n";
+        echo "<p class='error'>You must be <a href='login.php'>logged in</a> to mess with your settings.</p>\n";
+        echo "</div>\n";
 
-    if(isset($_REQUEST['user_id'])) {
-        $user_id = $_REQUEST['user_id'];
+        render_footer();
+        die;
+    }
 
-        $query = "SELECT user_name, UNIX_TIMESTAMP(user_join_date) as user_join_date ".
-                 "FROM users WHERE user_id=?";
-        $user = $conn->GetRow($query, array($user_id));
-        if($user) {
-            $user_name = $user['user_name'];
-            $user_timestamp = $user['user_join_date'];
-            $user_day = date("jS", $user_timestamp);
-            $user_month = date("F", $user_timestamp);
-            $user_year = date("Y", $user_timestamp);
-            $user_join_date = "The $user_day day of $user_month, in the year of our daily grind, $user_year";
-            echo "<div id='main_text'>\n";
-            echo "<h2>$user_name</h2>\n";
-            echo "<span>Member since: $user_join_date</span>\n";
-            echo "<br />\n";
-            echo "<br />\n";
+    $user_id = get_logged_in_userid();
 
-            //User character table
+    $query = "SELECT user_name, UNIX_TIMESTAMP(user_join_date) as user_join_date ".
+             "FROM users WHERE user_id=?";
+    $user = $conn->GetRow($query, array($user_id));
+    if($user) {
+        $user_name = $user['user_name'];
+        $user_timestamp = $user['user_join_date'];
+        $user_day = date("jS", $user_timestamp);
+        $user_month = date("F", $user_timestamp);
+        $user_year = date("Y", $user_timestamp);
+        $user_join_date = "The $user_day day of $user_month, in the year of our daily grind, $user_year";
+        echo "<div id='main_text'>\n";
+        echo "<h2>Hi there $user_name!</h2>\n";
+        echo "<span>Member since: $user_join_date</span>\n";
+        echo "<br />\n";
+        echo "<br />\n";
 
-            $characters = get_characters($user_id, "characters.character_level DESC");
-            if($characters && count($characters) > 0) {
-                echo "<div id='user_chars'>\n";
-                echo "<span>Characters:</span>\n";
-                echo "<table>\n";
-                echo "<thead>\n";
-                echo "<td class='td_name'>Name</td>\n";
-                echo "<td class='td_level'>Level</td>\n";
-                echo "<td class='td_job'>Job</td>\n";
-                echo "<td class='td_dept'>Department</td>\n";
-                echo "</thead>\n";
-                foreach($characters as $character) {
-                    $char_name = $character['character_name'];
-                    $char_id = $character['character_id'];
-                    $char_level = $character['character_level'];
-                    $char_job = $character['job_name'];
-                    $char_department = $character['department_name'];
-                    echo "<tr>\n";
-                    echo "<td><a href='characters.php?char_id=$char_id'>$char_name</a></td>\n";
-                    echo "<td>$char_level</td>\n";
-                    echo "<td>$char_job</td>\n";
-                    echo "<td>$char_department</td>\n";
-                    echo "</tr>\n";
-                }
-                echo "</table>\n";
-                echo "</div> <!-- end user_chars div -->\n";
-            } else {
-                echo "<div id='user_chars'>\n";
-                echo "<p>$user_name has no characters yet.</p>\n";
-                echo "</div> <!-- end user_chars div -->\n";
-            }
-            echo "</div> <!--end main_text div -->\n";
-        }
-    } else {
-        //Show some form of search menu for users
-        $query = "SELECT * FROM users ORDER BY user_name";
-        $users = $conn->GetAll($query);
-        $user_num = count($users);
-        echo "<h3>$user_num total users!</h3>\n";
-        echo "<table id='user_table'>\n";
-        $row_num = 1;
-        $cell_num = 4;
-        foreach($users as $user) {
-            $user_name = $user['user_name'];
-            $user_id = $user['user_id'];
 
-            if($cell_num == 4) {
-                $cell_num = 0;
-                $row_num++;
+        $characters = get_characters($user_id, "characters.character_level DESC");
+        if($characters && count($characters) > 0) {
+            echo "<div id='user_chars'>\n";
+            echo "<span>Characters:</span>\n";
+            echo "<table>\n";
+            echo "<thead>\n";
+            echo "<td class='td_name'>Name</td>\n";
+            echo "<td class='td_level'>Level</td>\n";
+            echo "<td class='td_job'>Job</td>\n";
+            echo "<td class='td_dept'>Department</td>\n";
+            echo "</thead>\n";
+            foreach($characters as $character) {
+                $char_name = $character['character_name'];
+                $char_id = $character['character_id'];
+                $char_level = $character['character_level'];
+                $char_job = $character['job_name'];
+                $char_department = $character['department_name'];
                 echo "<tr>\n";
-            }
-
-            echo "<td id='user_table_td'><a href='users.php?user_id=$user_id'>$user_name</a></td>\n";
-
-            if($cell_num == 4) {
+                echo "<td><a href='characters.php?char_id=$char_id'>$char_name</a></td>\n";
+                echo "<td>$char_level</td>\n";
+                echo "<td>$char_job</td>\n";
+                echo "<td>$char_department</td>\n";
                 echo "</tr>\n";
-            } else {
-                $cell_num++;
             }
+            echo "</table>\n";
+            echo "</div> <!-- end user_chars div -->\n";
+        } else {
+            echo "<div id='user_chars'>\n";
+            echo "<p>$user_name has no characters yet.</p>\n";
+            echo "</div> <!-- end user_chars div -->\n";
         }
-        if($cell_num != 4) {
-            echo "</tr>\n";
-        }
-        echo "</table>\n";
+        echo "</div> <!--end main_text div -->\n";
     }
 
     render_footer();
