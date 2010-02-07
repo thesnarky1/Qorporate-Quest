@@ -213,10 +213,12 @@
         echo "<div id='container'>\n";
         echo "<div id='header'>\n";
 
-        //Logo on the left side
-        echo "<div id='header_logo'>\n";
-        echo "<!-- logo by Master_son - http://commons.wikimedia.org/wiki/File:WIS_County_QQ.svg -->\n";
-        echo "<img src='images/site/qq_logo_export.png' />\n";
+        //Title on the left side
+        echo "<div id='header_title'>\n";
+        echo "<a href='index.php'>";
+        echo "<div id='header_title_qq'>QQ</div>";
+        echo "<div id='header_title_moar'>moar</div>";
+        echo "</a>\n";
         echo "</div> <!-- End header_logo div -->\n";
 
         //Quick login form on the right side

@@ -215,17 +215,6 @@ a:hover {
     margin-top: 0px;
 }
 
-#header_logo {
-    float: left;
-    height: 100px;
-    width: 100px;
-}
-
-#header_logo img {
-    height: 6em;
-    width: 6em;
-}
-
 #header_nav_buttons {
     text-align: center;
     margin-top: 2.25em;
@@ -251,6 +240,23 @@ a:hover {
 
 #header_quick_login input {
     margin-top: .25em;
+}
+
+#header_title {
+    margin-left: 1em;
+    float: left;
+    height: 6em;
+}
+
+#header_title_moar {
+    text-align: center;
+    widt: 100%;
+}
+
+#header_title_qq {
+    font-weight: bold;
+    font-size: 4em;
+    font-family: sans-serif;
 }
 
 #header_username {
