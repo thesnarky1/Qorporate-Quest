@@ -48,6 +48,39 @@
             $user_join_date = $user['user_join_date'];
             echo "<div id='main_text'>\n";
             echo "<h2>$user_name</h2>\n";
+            echo "<span>Member since: $user_join_date</span>\n";
+            echo "<br />\n";
+            echo "<br />\n";
+
+            //User character table
+
+            $characters = get_characters($user_id);
+            if($characters && count($characters) > 0) {
+                echo "<span>Characters:</span>\n";
+                echo "<table>\n";
+                echo "<tr>\n";
+                echo "<td>Name</td>\n";
+                echo "<td>Level</td>\n";
+                echo "<td>Job</td>\n";
+                echo "<td>Department</td>\n";
+                echo "</tr>\n";
+                foreach($characters as $character) {
+                    $char_name = $character['character_name'];
+                    $char_id = $character['character_id'];
+                    $char_level = $character['character_level'];
+                    $char_job = $character['job_name'];
+                    $char_department = $character['department_name'];
+                    echo "<tr>\n";
+                    echo "<td><a href='characters.php?char_id=$char_id'>$char_name</a></td>\n";
+                    echo "<td>$char_level</td>\n";
+                    echo "<td>$char_job</td>\n";
+                    echo "<td>$char_department</td>\n";
+                    echo "</tr>\n";
+                }
+                echo "</table>\n";
+            } else {
+                echo "<p>$user_name has no characters yet.</p>\n";
+            }
             echo "</div> <!--end main_text div -->\n";
         }
     } else {
