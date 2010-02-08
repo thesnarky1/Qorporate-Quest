@@ -142,16 +142,18 @@
     //Renders the nav bar within the header
     function render_header_nav_bar() {
         echo "<div id='header_nav_buttons'>\n";
-        echo "<span class='nav_button'><a href='index.php'>Home</a></span>\n";
         //Toggle between login/logout
         if(is_logged_in()) {
-            echo "<span class='nav_button'><a href='logout.php'>Logout</a></span>\n";
+            echo "<span class='nav_button'><a href='index.php'>Home</a></span>\n";
             echo "<span class='nav_button'><a href='play.php'>Play</a></span>\n";
+            echo "<span class='nav_button'><a href='http://threeplanetssoftware.com/forums/index.php?board=7.0' target='blank'>Forums</a></span>\n";
+            echo "<span class='nav_button'><a href='logout.php'>Logout</a></span>\n";
         } else {
-            echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
+            echo "<span class='nav_button'><a href='index.php'>Home</a></span>\n";
+            //echo "<span class='nav_button'><a href='login.php'>Login</a></span>\n";
             echo "<span class='nav_button'><a href='register.php'>Register</a></span>\n";
+            echo "<span class='nav_button'><a href='http://threeplanetssoftware.com/forums/index.php?board=7.0' target='blank'>Forums</a></span>\n";
         }
-        echo "<span class='nav_button'><a href='http://threeplanetssoftware.com/forums/index.php?board=7.0' target='blank'>Forums</a></span>\n";
         echo "</div> <!-- end header_nav_buttons div -->\n";
     }
 
