@@ -34,7 +34,7 @@ a:hover {
     font-weight: bold;
 }
 
-#char_bio_job, #char_bio_department, #char_bio_name {
+#char_bio_job, #char_bio_department, #char_bio_name, #char_bio_exp {
     clear: both;
 }
 

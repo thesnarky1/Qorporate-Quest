@@ -40,7 +40,7 @@
         echo "<span>".$character_info['bio']['department_name']."</span>\n";
         echo "</div> <!-- end char_bio_department div -->\n";
 
-        //Char department
+        //Char Experience
         $max_exp = $character_info['bio']['character_level'] * $LEVEL_UP_RATIO;
         echo "<div id='char_bio_exp'>\n";
         echo "<div class='char_bio_info_fixed'>Exp: </div>";
