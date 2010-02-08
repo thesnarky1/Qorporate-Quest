@@ -85,6 +85,7 @@
                        "Cutting edge computer you're not allowed to touch",
                        "main frame",
                        "Compy 386",
+                       "iBrick",
                        "storage racks");
     $replacements["(COMPUTER)"] = $computers;
 
@@ -96,22 +97,13 @@
                    "Apple proprietary files",
                    "techno",
                    "country",
+                   "remix",
                    "rock",
                    "pop",
                    "Top 40",
-                   "Lonely Island Band",
+                   "Jonathan Coulton",
                    "hard core nerd rap");
     $replacements["(MUSIC)"] = $music;
-
-//    $bosses = array("Pointy Haired Boss",
-//                    "CEO's Cousin",
-//                    "Megalomaniac",
-//                    "Tyrannical Millionaire",
-//                    "Supervisor From Hell",
-//                    "Last Competent Manager",
-//                    "Burninator",
-//                    "Power Suit Soccer Mom");
-//    $replacements["(BOSS)"] = $bosses;
 
     $quest_supertypes = array(
                           array("Fetch the (OFFICE)",
