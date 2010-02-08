@@ -287,8 +287,7 @@
         echo "<input type='text' name='char_loyalty' id='char_loyalty' value='$char_loyalty' readonly='true' />\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Reroll stats: </label>\n";
-        //echo "<div onclick='reroll_stats();' id='char_creation_reroll'>Reroll</div>\n";
-        echo "<input type='submit' value='Reroll' onclick='reroll_stats();' />\n";
+        echo "<input type='submit' id='reroll_button' value='Reroll' onclick='reroll_stats();' />\n";
         echo "<br />\n";
         echo "<div id='char_creation_stats'>\n";
         echo "</div> <!-- end char_creation_stats div -->\n";

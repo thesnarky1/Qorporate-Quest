@@ -14,6 +14,11 @@ $(document).ready(function() {
                                                 e.preventDefault();
                                              });
     }
+//    if($('#progress_bar')) {
+//        $('#progress_bar').progressbar({
+//                                            value: 37
+//                                       });
+//    }
 });
 
 //Function to make sure our character creation form is valid
@@ -68,10 +73,12 @@ function finish_task(task_id) {
 
 //Function to reroll our stats
 function reroll_stats() {
+    $('#reroll_button').attr('disabled', 'disabled');
     $.post("roll.php",
            { },
             function(data) {
                 display_data(data);
+                $('#reroll_button').removeAttr('disabled');
             },
             "json"
     );
