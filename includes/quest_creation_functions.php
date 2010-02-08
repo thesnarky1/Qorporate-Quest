@@ -113,7 +113,7 @@
                                 "As you walk out of Staples you vow that you'll shove an 'Easy' button so far up the boss that ordered you to go buy the new (OFFICE) he'll say 'That was easy' every time he sneezes.",
                                 "(OFFICE)"),
                           array("Eat Lunch",
-                                "As if your sad existence couldn't get any worse when you open your lunch you notice a co-worker ate it and replaced it with only (FOOD).",
+                                "As if your sad existence couldn't get any worse when you open your lunch you notice a coworker ate it and replaced it with only (FOOD).",
                                 "(FOOD)"),
                           array("Gopher the (FOOD)",
                                 "That snobby accountant can't be bothered to fetch his own (FOOD)? Yea, sure, I'll 'step on it'...",
