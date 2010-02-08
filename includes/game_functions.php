@@ -24,7 +24,7 @@
     function get_departments() {
         global $conn;
 
-        $query = "SELECT * FROM departments";
+        $query = "SELECT * FROM departments ORDER BY department_name";
         $departments = $conn->GetAll($query);
         return $departments;
     }
@@ -33,7 +33,7 @@
     function get_jobs() {
         global $conn;
 
-        $query = "SELECT * FROM jobs";
+        $query = "SELECT * FROM jobs ORDER BY job_name";
         $jobs = $conn->GetAll($query);
 
         return $jobs;
