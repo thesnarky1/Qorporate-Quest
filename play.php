@@ -204,7 +204,7 @@
         //The main application bit
         echo "<div id='char_creation'>\n";
         echo "<h3>&lt;Company Name&gt; Application</h3>\n";
-        echo "<form name='char_creation' method='POST' action='play.php?create_char' class='form' >\n";
+        echo "<form id='creation_form' name='char_creation' method='POST' action='play.php?create_char' class='form' >\n";
         echo "<span class='error' id='char_creation_error'>";
         if($error != "") {
             echo $error;
