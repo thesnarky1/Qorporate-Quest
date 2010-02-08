@@ -96,31 +96,33 @@
     
         echo "<div id='login_form'>\n";
         echo "<h3>Application</h3>\n";
-        echo "<form name='register' method='POST' action='register.php' class='form'>\n";
+        echo "<form name='register' id='register_form' method='POST' action='register.php' class='form'>\n";
         //Check for any issues with login
+        echo "<span id='register_error' class='error'>\n";
         if($error != "") {
             //Display our error nice and big
-            echo "<span class='error'>$error</span><br />\n";
+            echo $error;
         }
+        echo "</span><br />\n";
         echo "<label class='fixed_width'>Username: </label>\n";
-        echo "<input type='text' name='user_name' ";
+        echo "<input type='text' id='register_user_name' name='user_name' ";
         if($user_name) {
             echo "value='$user_name'";
         }
         echo "/>\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Email: </label>\n";
-        echo "<input type='text' name='user_email' ";
+        echo "<input type='text' id='register_user_email' name='user_email' ";
         if($user_email) {
             echo "value='$user_email'";
         }
         echo "/>\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Password: </label>\n";
-        echo "<input type='password' name='user_pass' />\n";
+        echo "<input type='password' id='register_user_pass' name='user_pass' />\n";
         echo "<br />\n";
         echo "<label class='fixed_width'>Pass again: </label>\n";
-        echo "<input type='password' name='user_pass_again' />\n";
+        echo "<input type='password' id='register_user_pass2' name='user_pass_again' />\n";
         echo "<br />\n";
         echo "<input type='hidden' name='submit' value='submit' />\n";
         echo "<input type='submit' value='Apply!' />\n";

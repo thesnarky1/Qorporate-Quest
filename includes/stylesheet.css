@@ -327,6 +327,10 @@ a:hover {
     border: none;
 }
 
+#register_error {
+    display: none;
+}
+
 .registration_flavor {
     width: 30em;
 }
