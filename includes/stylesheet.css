@@ -45,7 +45,7 @@ a:hover {
 }
 
 #char_creation .fixed_width {
-    width: 12em;
+    width: 13em;
     margin-top: .25em;
     float: left;
     text-align: right;
@@ -325,6 +325,10 @@ a:hover {
     color: #fff;
     text-decoration: none;
     border: none;
+}
+
+.registration_flavor {
+    width: 30em;
 }
 
 #sidebar {

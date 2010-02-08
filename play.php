@@ -197,7 +197,9 @@
         //Display new character form
         echo "<h3>Character Creation</h3>\n";
 
-
+        //echo "<p class='registration_flavor'>\n";
+        //echo "Look at this lovely online application system code monkey #3 turned out! He earned himself a 5 minute trip out of the dungeon to any vending machine he wants! But enough about him, lets talk about you and your future. We've identified the positions and departments you are uniquely skilled for and--- oh I can't stop laughing, it kills me every time. Apply for whatever you want, no matter what we'll break your spirit and mold you into what we need.";
+        //echo "</p>\n";
 
         //The main application bit
         echo "<div id='char_creation'>\n";
