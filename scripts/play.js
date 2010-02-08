@@ -6,11 +6,11 @@ $(document).ready(function() {
     my_char_id = $('#char_id_hidden').html();
     pick_next_task();
 
-    if($('form')) {
+    if($('#creation_form')) {
         $('#bad_hack_i_hate_javascript').bind('click', function() {
                                                                       validate_creation_form(); 
                                                                   });
-        $('form').bind('submit', function(e) {
+        $('#creation_form').bind('submit', function(e) {
                                                 e.preventDefault();
                                              });
     }
