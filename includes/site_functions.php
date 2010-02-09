@@ -129,7 +129,7 @@
         echo "<html xmlns='http://www.w3.org/1999/xhtml' lang='en' xml:lang='en'>\n";
         echo "<head>\n";
         echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />\n";
-        echo "<link rel='SHORTCUT ICON' href='favicon.ico' />\n";
+        echo "<link rel='shortcut icon' href='favicon.ico' type='image/x-icon' />\n";
         echo "<link rel='stylesheet' href='./includes/stylesheet.css' type='text/css' media='screen' />\n";
         echo "<link rel='stylesheet' href='./scripts/libs/jquery_ui/css/smoothness/jquery-ui-1.7.2.custom.css' type='text/css' media='screen' />\n";
         echo "<script type='text/javascript' src='./scripts/libs/jquery-1.4.min.js'></script>\n";
