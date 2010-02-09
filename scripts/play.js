@@ -118,11 +118,14 @@ function display_data(data) {
         if(data.loyalty) {
             $('#char_loyalty').html(data.loyalty);
         }
-        if(data.exp) {
-            $('#current_exp').html(data.exp);
-        }
         if(data.max_exp) {
             $('#max_exp').html(data.max_exp);
+        }
+        if(data.exp) {
+            $('#current_exp').html(data.exp);
+            var max_exp = $('#max_exp').html();
+            var exp_percent = (data.exp / max_exp) * 100;
+            $('#exp_progress_bar').progressbar('value', exp_percent);
         }
         if(data.roll_loyal) {
             $('#char_loyalty').val(data.roll_loyal);
