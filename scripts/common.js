@@ -7,6 +7,19 @@ $(document).ready(function() {
                                                            e.preventDefault();
                                                        });
     }
+
+    if($('#exp_progress_bar')) {
+        var exp_progress = $('#exp_percent').html();
+        $('#exp_progress_bar').progressbar({
+                                            value: exp_progress
+                                       });
+    }
+
+    if($('#task_progress_bar')) {
+        $('#task_progress_bar').progressbar({
+                                            value: 0
+                                       });
+    }
 });
 
 function swap_text(final_div, initial_div) {
