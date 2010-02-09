@@ -38,7 +38,8 @@
                         if(!$error || $error == "") {
                             $error = "No Mysql error....";
                         }
-                        echo json_encode(array("return_value" => "$error - $query - $task_id - $char_id"));
+                        //echo json_encode(array("return_value" => "$error - $query - $task_id - $char_id"));
+                        echo json_encode(array("return_value" => "<p class='error'>Invalid or previously turned in quest, are you cheating?</p>"));
                     }
                 } else {
 
