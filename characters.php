@@ -44,6 +44,7 @@
     echo "<span id='boss_experience'></span>\n";
     echo "<br />\n";
     echo "<p id='boss_flavor'></p>\n";
+    echo "<div id='sidebar_footer' onclick=\"$('#sidebar_boss').css('display', 'none');\">Close me</div>\n";
     echo "</div> <!-- end sidebar_boss div -->\n";
     echo "</div> <!-- end sidebar div -->\n";
     //

@@ -356,6 +356,17 @@ a:hover {
     overflow: auto;
 }
 
+#sidebar_footer {
+    clear: both;
+    float: right;
+    font-size: .75em;
+    border: 1px solid white;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #999;
+    color: white;
+}
+
 #user_chars table {
     border-collapse: collapse;
     border: 1px solid #333;
