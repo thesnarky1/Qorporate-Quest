@@ -29,7 +29,7 @@
         echo "</ul>\n";
         echo "</div> <!-- end sidebar_stats div -->\n";
     }
-    $rand_characters = get_random_characters(5, "character_level DESC");
+    $rand_characters = get_random_characters(5, "character_level DESC, character_exp DESC ");
     if($rand_characters) {
         echo "<div id='sidebar_stats'>\n";
         echo "<h3>Top Characters</h3>\n";
