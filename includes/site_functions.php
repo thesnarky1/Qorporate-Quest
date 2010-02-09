@@ -48,6 +48,11 @@
         echo "<span id='max_exp'>$max_exp</span>\n";
         echo "</div> <!-- end char_bio_exp div -->\n";
 
+        //Progress Bar
+        $exp_percent = ($character_info['bio']['character_exp'] / $max_exp) * 100;
+        echo "<div id='exp_percent' style='display: none'>$exp_percent</div><!-- end exp_percent div -->\n";
+        echo "<div id='exp_progress_bar'></div>\n";
+
         echo "</div> <!-- end char_bio_info div -->\n";
    
         //Stats div
@@ -86,6 +91,7 @@
         //Current task area
         echo "<div id='char_quest_current'>\n";
         echo "<h3>Current task: <span id='progress'></span></h3>\n";
+        echo "<div id='task_progress_bar'></div><!-- end task_progress_bar div -->\n";
         echo "<div id='char_quest_current_text'>\n";
         echo "</div> <!-- end char_quest_current_text div -->\n";
         echo "</div> <!-- end char_quest_current div -->\n";
@@ -124,11 +130,12 @@
         echo "<head>\n";
         echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />\n";
         echo "<link rel='stylesheet' href='./includes/stylesheet.css' type='text/css' media='screen' />\n";
+        echo "<link rel='stylesheet' href='./scripts/libs/jquery_ui/css/smoothness/jquery-ui-1.7.2.custom.css' type='text/css' media='screen' />\n";
         echo "<script type='text/javascript' src='./scripts/libs/jquery-1.4.min.js'></script>\n";
+        echo "<script type='text/javascript' src='./scripts/libs/jquery_ui/js/jquery-ui-1.7.2.custom.min.js'></script>\n";
         echo "<script type='text/javascript' src='./scripts/common.js'></script>\n";
         $curr_file = basename($_SERVER['REQUEST_URI']);
         if(strpos($curr_file, "play.php") === false) {
-            echo "<!-- $curr_file -->\n";
         } else {
             echo "<script type='text/javascript' src='./scripts/play.js'></script>\n";
         }

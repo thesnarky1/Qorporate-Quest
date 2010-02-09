@@ -14,11 +14,20 @@ $(document).ready(function() {
                                                 e.preventDefault();
                                              });
     }
-//    if($('#progress_bar')) {
-//        $('#progress_bar').progressbar({
-//                                            value: 37
-//                                       });
-//    }
+
+    if($('#exp_progress_bar')) {
+        var exp_progress = $('#exp_percent').html();
+        $('#exp_progress_bar').progressbar({
+                                            value: exp_progress
+                                       });
+    }
+
+    if($('#task_progress_bar')) {
+        $('#task_progress_bar').progressbar({
+                                            value: 0
+                                       });
+    }
+
 });
 
 //Function to make sure our character creation form is valid
@@ -157,6 +166,8 @@ function do_task(div) {
     // busted effin code....
     //current_quest.children('#char_quest_single_head').unbind('click').bind('click', function(e) { e.preventDefault(); });
     div.remove();
+    $('#task_progress_bar').progressbar('value', 0);
+    $('#char_quest_current').children('h3').children('span').html("0% done");
     //Start timer
     window.setTimeout(function() {
                         work_on_task(task_id, 0);
@@ -170,6 +181,7 @@ function work_on_task(task_id, progress) {
         finish_task(task_id);
     } else {
         progress += 5;
+        $('#task_progress_bar').progressbar('value', progress);
         $('#char_quest_current').children('h3').children('span').html(progress + "% done");
         window.setTimeout(function() {
                             work_on_task(task_id, progress);
