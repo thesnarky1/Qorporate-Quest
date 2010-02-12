@@ -79,12 +79,16 @@ function validate_registration_form() {
 
     if(!user_name || user_name == "") {
         $('#register_error').css('display', 'block').html("You must fill in a username.");
+    } else if(user_name.match(/[^\d\w]/)) {
+        $('#register_error').css('display', 'block').html("Username must be alphanumeric.");
     } else if(!user_email || user_email == "") {
         $('#register_error').css('display', 'block').html("You must fill in an email.");
     } else if(!user_pass || user_pass == "") {
         $('#register_error').css('display', 'block').html("You must fill in a password.");
     } else if(!user_pass2 || user_pass2 == "" || user_pass2 != user_pass) {
         $('#register_error').css('display', 'block').html("You must fill in the same password twice.");
+    } else if(!user_pass.match(/.{6,}/)) {
+        $('#register_error').css('display', 'block').html("Password must be at least 6 characters.");
     } else {
         $('#register_form').unbind('submit');
         $('#register_form').submit();
