@@ -35,6 +35,10 @@
             $error = "Enter a username";
         } else {
             $user_name = safetify_input($_REQUEST['user_name']);
+            //check username
+            if(preg_match("/[^\d\w]/", $user_name)) {
+                $error = "Username must be alphanumeric only";
+            }
         }
 
         $user_hash = md5(uniqid('', TRUE));
@@ -99,7 +103,7 @@
         echo "<form name='register' id='register_form' method='POST' action='register.php' class='form'>\n";
         //Check for any issues with login
         echo "<span id='register_error' class='error'>\n";
-        if($error != "") {
+        if($error) {
             //Display our error nice and big
             echo $error;
         }
