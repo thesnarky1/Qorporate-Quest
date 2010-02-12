@@ -86,7 +86,6 @@ function validate_registration_form() {
     } else if(!user_pass2 || user_pass2 == "" || user_pass2 != user_pass) {
         $('#register_error').css('display', 'block').html("You must fill in the same password twice.");
     } else {
-        alert("Good to go");
         $('#register_form').unbind('submit');
         $('#register_form').submit();
     }
