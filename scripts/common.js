@@ -8,6 +8,24 @@ $(document).ready(function() {
                                                        });
     }
 
+    if($('#change_email_form')) {
+        $('#change_email_submit').bind('click', function(e) {
+                                                                validate_email_change();
+                                                            });
+        $('#change_email_form').bind('submit', function(e) {
+                                                              e.preventDefault();
+                                                          });
+    }
+
+    if($('#change_pass_form')) {
+        $('#change_pass_submit').bind('click', function(e) {
+                                                                validate_password_change();
+                                                            });
+        $('#change_pass_form').bind('submit', function(e) {
+                                                              e.preventDefault();
+                                                          });
+    }
+
     if($('#exp_progress_bar')) {
         var exp_progress = $('#exp_percent').html();
         $('#exp_progress_bar').progressbar({
@@ -59,10 +77,56 @@ function swap_boss(link) {
     }
 }
 
+//Function to validate the email change form
+function validate_email_change() {
+    var user_pass = $('#change_email_pass').val();
+    var user_new = $('#change_email_new').val();
+    var user_new2 = $('#change_email_new2').val();
+
+    user_pass = $.trim(user_pass);
+    user_new = $.trim(user_new);
+    user_new2 = $.trim(user_new2);
+
+    if(!user_pass || user_pass == "") {
+        $('#change_email_error').css('display', 'block').html("You must fill in your current password.");
+    } else if(!user_new || user_new == "") {
+        $('#change_email_error').css('display', 'block').html("You must fill in a new email.");
+    } else if(!user_new2 || user_new2 == "" || user_new2 != user_new) {
+        $('#change_email_error').css('display', 'block').html("You must fill in the same new email twice.");
+    } else {
+        $('#change_email_form').unbind('submit');
+        $('#change_email_form').submit();
+    }
+}
+
 //Clears the text and hides the given div
 function clear_text(final_div) {
     $(final_div).css("display", "none");
     $(final_div).html("");
+}
+
+//Function to validate the password change form
+function validate_password_change() {
+    var user_pass = $('#change_pass_pass').val();
+    var user_new = $('#change_pass_new').val();
+    var user_new2 = $('#change_pass_new2').val();
+
+    user_pass = $.trim(user_pass);
+    user_new = $.trim(user_new);
+    user_new2 = $.trim(user_new2);
+
+    if(!user_pass || user_pass == "") {
+        $('#change_pass_error').css('display', 'block').html("You must fill in your current password.");
+    } else if(!user_new || user_new == "") {
+        $('#change_pass_error').css('display', 'block').html("You must fill in a new password.");
+    } else if(!user_new2 || user_new2 == "" || user_new2 != user_new) {
+        $('#change_pass_error').css('display', 'block').html("You must fill in the same new password twice.");
+    } else if(!user_new.match(/.{6,}/)) {
+        $('#change_pass_error').css('display', 'block').html("Password must be at least 6 characters.");
+    } else {
+        $('#change_pass_form').unbind('submit');
+        $('#change_pass_form').submit();
+    }
 }
 
 //Function to validate the registration form
