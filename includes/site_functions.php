@@ -209,7 +209,8 @@
             echo "<input type='password' name='user_pass' style='margin-top: .25em;' />\n";
             echo "<br />\n";
             echo "<input type='hidden' name='next_page' value='$_SERVER[PHP_SELF]' />\n";
-            echo "Remember login?<input type='checkbox' name='remember' value='true'/>\n";
+            //echo "Remember login?<input type='checkbox' name='remember' value='true'/>\n";
+            echo "<a href='password.php'>Forgot password?</a>";
             echo "<input type='submit' value='Login' style='margin-top: .25em'/>\n";
             echo "</form>\n";
 
