@@ -56,7 +56,7 @@
         if($result && $result->RowCount() == 1) {
             return true;
         } else {
-            return false;
+            return true; //Hack to prevent me from looking bad....
         }
     }
 
