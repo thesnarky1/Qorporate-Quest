@@ -25,11 +25,11 @@
             $error = "Passwords must match";
         }
 
-        if(!isset($_REQUEST['user_email']) || $_REQUEST['user_email'] == null) {
-            $error = "Enter an email";
-        } else {
-            $user_email = safetify_input($_REQUEST['user_email']);
-        }
+//        if(!isset($_REQUEST['user_email']) || $_REQUEST['user_email'] == null) {
+//            $error = "Enter an email";
+//        } else {
+//            $user_email = safetify_input($_REQUEST['user_email']);
+//        }
 
         if(!isset($_REQUEST['user_name']) || $_REQUEST['user_name'] == null) {
             $error = "Enter a username";
@@ -46,9 +46,9 @@
         //Check if this is a valid login
         if($error == false) {
             //register them
-            $query = "INSERT INTO users(user_name, user_pass, user_hash, user_email, user_join_date) ".
-                     "VALUES(?, MD5(?), ?, ?, NOW())";
-            $result = $conn->Execute($query, array($user_name, $user_pass, $user_hash, $user_email));
+            $query = "INSERT INTO users(user_name, user_pass, user_hash, user_join_date) ".
+                     "VALUES(?, MD5(?), ?, NOW())";
+            $result = $conn->Execute($query, array($user_name, $user_pass, $user_hash));
             $insert_id = $conn->Insert_ID();
             if($insert_id) {
                 //successful
@@ -62,11 +62,11 @@
             } else { //Registration failed, lets test why
 
                 //Check if email is already registered
-                $query = "SELECT user_email FROM users WHERE user_email LIKE ? LIMIT 1";
-                $result = $conn->Execute($query, array($user_email));
-                if($result && $result->RowCount() == 1) {
-                    $error = "Email already registered.";
-                }
+//                $query = "SELECT user_email FROM users WHERE user_email LIKE ? LIMIT 1";
+//                $result = $conn->Execute($query, array($user_email));
+//                if($result && $result->RowCount() == 1) {
+//                    $error = "Email already registered.";
+//                }
 
                 //Check if user_name is already registered
                 $query = "SELECT user_name FROM users WHERE user_name LIKE ? LIMIT 1";
@@ -95,7 +95,7 @@
     } else {
         echo "<h1>Join &lt;Company Name&gt; Today!</h1>\n";
         echo "<p>\n";
-        echo "So, you want to join the &lt;Company Name&gt; family, do you? Well, like any good bureaucracy before you can submit an application for a job you'll need to be entered into our overall database. All we need is a name and an email to get started, and of course a password to protect your information.";
+        echo "So, you want to join the &lt;Company Name&gt; family, do you? Well, like any good bureaucracy before you can submit an application for a job you'll need to be entered into our overall database. All we need is a name to get started, and of course a password to protect your information.";
         echo "</p>\n";
     
         echo "<div id='login_form'>\n";
@@ -115,13 +115,13 @@
         }
         echo "/>\n";
         echo "<br />\n";
-        echo "<label class='fixed_width'>Email: </label>\n";
-        echo "<input type='text' id='register_user_email' name='user_email' ";
-        if($user_email) {
-            echo "value='$user_email'";
-        }
-        echo "/>\n";
-        echo "<br />\n";
+//        echo "<label class='fixed_width'>Email: </label>\n";
+//        echo "<input type='text' id='register_user_email' name='user_email' ";
+//        if($user_email) {
+//            echo "value='$user_email'";
+//        }
+//        echo "/>\n";
+//        echo "<br />\n";
         echo "<label class='fixed_width'>Password: </label>\n";
         echo "<input type='password' id='register_user_pass' name='user_pass' />\n";
         echo "<br />\n";
