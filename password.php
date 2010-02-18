@@ -4,8 +4,9 @@
 
     $change_email_error = false;
     $change_pass_error = false;
+    $reset_pass_error = false;
 
-    if(isset($_REQUEST['reset'])) {
+    if(isset($_REQUEST['reset_pass'])) {
         //deal with password reset
     } else if(isset($_REQUEST['change_email'])) {
         //change their email
@@ -111,18 +112,19 @@
         echo "<div id='char_creation'>\n";
         echo "<h3>Reset Password</h3>\n";
         echo "<div id='reset_pass_error' style='text-align: center; color: red;'>";
-        if($reset_pass_error) {
-            echo $reset_pass_error;
-        }
+        //if($reset_pass_error) {
+        //    echo $reset_pass_error;
+        //}
+        echo "Password reset not currently available. You'll just have to start over, consider it a demotion.";
         echo "</div> <!-- end reset_pass_error div -->\n";
-        echo "<form action='password.php'  id='reset_pass_form' method='POST'>\n";
-        echo "<label class='fixed_width'>User Email: </label>";
-        echo "<input type='text' id='reset_pass_email' name='curr_email' />\n";
-        echo "<br />\n";
-        echo "<label class='fixed_width'></label>";
-        echo "<input type='submit' id='reset_pass_submit' name='reset_password' value='Reset password' />\n";
-        echo "</form>\n";
-        echo "</div> <!-- end char_creation div -->\n";
+//        echo "<form action='password.php'  id='reset_pass_form' method='POST'>\n";
+//        echo "<label class='fixed_width'>User Email: </label>";
+//        echo "<input type='text' id='reset_pass_email' name='curr_email' />\n";
+//        echo "<br />\n";
+//        echo "<label class='fixed_width'></label>";
+//        echo "<input type='submit' id='reset_pass_submit' name='reset_password' value='Reset password' />\n";
+//        echo "</form>\n";
+//        echo "</div> <!-- end char_creation div -->\n";
     }
 
     render_footer();
