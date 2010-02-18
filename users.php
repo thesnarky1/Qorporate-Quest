@@ -47,7 +47,7 @@
         $user_join_date = "The $user_day day of $user_month, in the year of our daily grind, $user_year";
         echo "<div id='main_text'>\n";
         echo "<h2>Hi there $user_name!</h2>\n";
-        echo "<span>Care to change your <a href='password.php'>password or email</a>?</span>\n";
+        echo "<span>Care to change your <a href='password.php'>password</a>?</span>\n";
         echo "<br />\n";
         echo "<span>Member since: $user_join_date</span>\n";
         echo "<br />\n";
