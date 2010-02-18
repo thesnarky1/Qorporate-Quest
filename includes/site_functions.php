@@ -188,6 +188,9 @@
                     echo "$char_name ($char_level)";
                     echo "</option>\n";
                 }
+                echo "<option onclick='window.location=\"play.php?create_char\";'>";
+                echo "New Character";
+                echo "</option>\n";
                 echo "</select>\n";
             } else {
                 echo "<p><a href='play.php?create_char'>Start Playing!</a></p>\n";
