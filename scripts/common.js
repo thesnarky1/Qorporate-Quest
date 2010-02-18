@@ -8,14 +8,14 @@ $(document).ready(function() {
                                                        });
     }
 
-    if($('#change_email_form')) {
-        $('#change_email_submit').bind('click', function(e) {
-                                                                validate_email_change();
-                                                            });
-        $('#change_email_form').bind('submit', function(e) {
-                                                              e.preventDefault();
-                                                          });
-    }
+//    if($('#change_email_form')) {
+//        $('#change_email_submit').bind('click', function(e) {
+//                                                                validate_email_change();
+//                                                            });
+//        $('#change_email_form').bind('submit', function(e) {
+//                                                              e.preventDefault();
+//                                                          });
+//    }
 
     if($('#change_pass_form')) {
         $('#change_pass_submit').bind('click', function(e) {
@@ -78,26 +78,26 @@ function swap_boss(link) {
 }
 
 //Function to validate the email change form
-function validate_email_change() {
-    var user_pass = $('#change_email_pass').val();
-    var user_new = $('#change_email_new').val();
-    var user_new2 = $('#change_email_new2').val();
-
-    user_pass = $.trim(user_pass);
-    user_new = $.trim(user_new);
-    user_new2 = $.trim(user_new2);
-
-    if(!user_pass || user_pass == "") {
-        $('#change_email_error').css('display', 'block').html("You must fill in your current password.");
-    } else if(!user_new || user_new == "") {
-        $('#change_email_error').css('display', 'block').html("You must fill in a new email.");
-    } else if(!user_new2 || user_new2 == "" || user_new2 != user_new) {
-        $('#change_email_error').css('display', 'block').html("You must fill in the same new email twice.");
-    } else {
-        $('#change_email_form').unbind('submit');
-        $('#change_email_form').submit();
-    }
-}
+//function validate_email_change() {
+//    var user_pass = $('#change_email_pass').val();
+//    var user_new = $('#change_email_new').val();
+//    var user_new2 = $('#change_email_new2').val();
+//
+//    user_pass = $.trim(user_pass);
+//    user_new = $.trim(user_new);
+//    user_new2 = $.trim(user_new2);
+//
+//    if(!user_pass || user_pass == "") {
+//        $('#change_email_error').css('display', 'block').html("You must fill in your current password.");
+//    } else if(!user_new || user_new == "") {
+//        $('#change_email_error').css('display', 'block').html("You must fill in a new email.");
+//    } else if(!user_new2 || user_new2 == "" || user_new2 != user_new) {
+//        $('#change_email_error').css('display', 'block').html("You must fill in the same new email twice.");
+//    } else {
+//        $('#change_email_form').unbind('submit');
+//        $('#change_email_form').submit();
+//    }
+//}
 
 //Clears the text and hides the given div
 function clear_text(final_div) {
@@ -132,12 +132,12 @@ function validate_password_change() {
 //Function to validate the registration form
 function validate_registration_form() {
     var user_name = $('#register_user_name').val();
-    var user_email = $('#register_user_email').val();
+    //var user_email = $('#register_user_email').val();
     var user_pass = $('#register_user_pass').val();
     var user_pass2 = $('#register_user_pass2').val();
 
     user_name = $.trim(user_name);
-    user_email = $.trim(user_email);
+    //user_email = $.trim(user_email);
     user_pass = $.trim(user_pass);
     user_pass2 = $.trim(user_pass2);
 
@@ -145,8 +145,8 @@ function validate_registration_form() {
         $('#register_error').css('display', 'block').html("You must fill in a username.");
     } else if(user_name.match(/[^\d\w]/)) {
         $('#register_error').css('display', 'block').html("Username must be alphanumeric.");
-    } else if(!user_email || user_email == "") {
-        $('#register_error').css('display', 'block').html("You must fill in an email.");
+    //} else if(!user_email || user_email == "") {
+    //    $('#register_error').css('display', 'block').html("You must fill in an email.");
     } else if(!user_pass || user_pass == "") {
         $('#register_error').css('display', 'block').html("You must fill in a password.");
     } else if(!user_pass2 || user_pass2 == "" || user_pass2 != user_pass) {
