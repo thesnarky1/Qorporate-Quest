@@ -117,10 +117,10 @@
     //Renders everything in the footer
     function render_footer() {
         echo "</div> <!-- end content div -->\n";
+        echo "</div> <!-- end container div -->\n";
         echo "<div id='footer'>\n";
         echo "<p>Qorporate Quest is a game by Three Planets Software, based off the great game <a href='http://progressquest.com'>Progress Quest</a>. Please check it out as this rendition does not do it justice.</p>\n";
-        echo "</div>\n";
-        echo "</div> <!-- end container div -->\n";
+        echo "</div> <!-- end footer div -->\n";
         echo "</body>\n";
         echo "</html>\n";
     }
