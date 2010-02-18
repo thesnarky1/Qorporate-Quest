@@ -200,6 +200,14 @@ a:hover {
     text-align: center;
 }
 
+#footer {
+    clear: both;
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 50%;
+}
+
 #header {
     clear: both;
     height: 6em;
