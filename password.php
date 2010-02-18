@@ -132,7 +132,7 @@
         //if($reset_pass_error) {
         //    echo $reset_pass_error;
         //}
-        echo "Password reset not currently available. You'll just have to start over, consider it a demotion.";
+        echo "Haha, you want to reset your password? That's not how &lt;Company Name&gt; works. <a href='register.php'>START OVER</a>!";
         echo "</div> <!-- end reset_pass_error div -->\n";
 //        echo "<form action='password.php'  id='reset_pass_form' method='POST'>\n";
 //        echo "<label class='fixed_width'>User Email: </label>";
