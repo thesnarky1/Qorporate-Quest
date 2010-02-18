@@ -61,6 +61,23 @@
     if(is_logged_in()) {
         //Must want to change password or email
 
+
+        $changes = rand(56, 395);
+        $characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()-_";
+        $char_length = strlen($characters);
+        $rand_index = rand(0, $char_length);
+        $rand_char = $characters[$rand_index];
+        echo "<div id='sidebar'>\n";
+        echo "<div id='sidebar_stats'>\n";
+        echo "<h3>Stats</h3>\n";
+        echo "<ul>\n";
+        echo "<li>Average length: 6</li>\n";
+        echo "<li>Commonest letter: $rand_char</li>\n";
+        echo "<li>Total changes: $changes</li>\n";
+        echo "</ul>\n";
+        echo "</div> <!-- end sidebar_stats div -->\n";
+        echo "</div> <!-- end sidebar div -->\n";
+
         //Change password form
         echo "<div id='char_creation'>\n";
         echo "<h3>Change Password</h3>\n";
